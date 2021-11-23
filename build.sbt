@@ -4,6 +4,8 @@ ThisBuild / scalaVersion     := "2.12.13"
 ThisBuild / version          := "0.1.0"
 ThisBuild / organization     := "com.github.codetector1374"
 
+Compile / mainClass := Some("simple_rv64.Main")
+
 lazy val root = (project in file("."))
   .settings(
     name := "chisel_simple_rv64",
@@ -23,4 +25,3 @@ lazy val root = (project in file("."))
     addCompilerPlugin("edu.berkeley.cs" % "chisel3-plugin" % "3.4.3" cross CrossVersion.full),
     addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
   )
-
