@@ -12,7 +12,9 @@ int main(int argc, char** argv) {
     mem[0] = 0x12300093;
     mem[1] = 0x00108133;
     mem[2] = 0x02102023;
-    mem[3] = 0x02100183;
+    mem[3] = 0x02102183;
+    mem[4] = 0xff5ff06f;
+    mem[5] = 0x0ff00093;
 
     tb->opentrace("trace.vcd");
     tb->reset();

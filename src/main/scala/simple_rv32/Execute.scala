@@ -2,7 +2,7 @@ package simple_rv32
 
 import chisel3._
 import chisel3.util._
-import simple_rv32.ex.{ALU, LoadStore}
+import simple_rv32.ex.{ALU, BranchUnit, LoadStore}
 import wishbone.Wishbone
 
 class ExOut extends Bundle {
@@ -17,11 +17,16 @@ class Execute extends Module {
     val idrr = Flipped(new IDRRBuf)
     val wb = Flipped(new Wishbone())
     val out = Flipped(new RegFileWritePort)
+
+    val doBranch = Output(Bool())
+    val targetPc = Output(UInt(32.W))
   })
   val outBuf = RegInit(0.U.asTypeOf(new ExOut))
   io.out.we := true.B
   io.out.regNo := outBuf.rd
   io.out.data := outBuf.rdVal
+  io.doBranch := false.B
+  io.targetPc := DontCare
 
   val idrr = io.idrr
   val opcode = idrr.opcode
@@ -47,6 +52,14 @@ class Execute extends Module {
   lsu1.io.wb <> io.wb
   dontTouch(lsu1.io.wb)
 
+  val bru = Module(new BranchUnit)
+  bru.io.opcode := idrr.opcode
+  bru.io.pc := idrr.pc
+  bru.io.func3 := idrr.func3
+  bru.io.rs1Val := idrr.rs1Val
+  bru.io.rs2Val := idrr.rs2Val
+  bru.io.imm := idrr.imm
+
 
   val result = Wire(UInt(32.W))
   result := DontCare
@@ -58,6 +71,12 @@ class Execute extends Module {
     is(RV32Opcode.LOAD, RV32Opcode.STORE) {
       io.pipeSignalsOut.pipeStall := lsu1.io.busy
       result := lsu1.io.result
+    }
+    is(RV32Opcode.BR, RV32Opcode.JAL, RV32Opcode.JALR) {
+      io.pipeSignalsOut.pipeFlush := bru.io.doBranch
+      io.doBranch := bru.io.doBranch
+      io.targetPc := bru.io.branchTarget
+      result := bru.io.result
     }
   }
 

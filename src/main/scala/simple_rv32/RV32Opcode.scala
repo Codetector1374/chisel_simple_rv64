@@ -15,6 +15,15 @@ object RV32Opcode  {
   val ALU   = "b0110011".U
 }
 
+object BrFunc3 {
+  val Eq = "b000".U
+  val Ne = "b001".U
+  val Lt = "b100".U
+  val Ge = "b101".U
+  val LtU = "b110".U
+  val GeU = "b111".U
+}
+
 object LsFunc3 {
   val Byte = "b000".U
   val Half = "b001".U

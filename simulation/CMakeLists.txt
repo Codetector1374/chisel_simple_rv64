@@ -11,4 +11,7 @@ find_package(verilator REQUIRED)
 include_directories(src)
 
 add_executable(rv_sim src/rv_sim.cpp)
-verilate(rv_sim SOURCES ../generated/Top.v ../generated/memdev.v TOP_MODULE Top TRACE VERILATOR_ARGS -Wno-UNOPTFLAT)
+verilate(rv_sim SOURCES ../generated/Top.v ../generated/memdev.v
+        TOP_MODULE Top TRACE
+        VERILATOR_ARGS -Wno-UNOPTFLAT
+        )

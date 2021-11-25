@@ -30,6 +30,8 @@ class Top extends Module {
   ex.io.pipeSignalsOut <> idrr.io.pipeSignalsIn
   idrr.io.operandForward(1).regNo := ex.io.out.regNo
   dprf.io.write <> ex.io.out
+  fetch.io.loadPC := ex.io.doBranch
+  fetch.io.newPC := ex.io.targetPc
   dontTouch(ex.io)
 
 
