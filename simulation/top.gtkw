@@ -1,0 +1,212 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Thu Nov 25 01:32:59 2021
+[*]
+[dumpfile] "C:\Users\user\projects\github.com\codetector1374\chisel_simple_rv64\simulation\cmake-build-debug\trace.vcd"
+[dumpfile_mtime] "Wed Nov 24 21:45:22 2021"
+[dumpfile_size] 50067
+[savefile] "C:\Users\user\projects\github.com\codetector1374\chisel_simple_rv64\simulation\top.gtkw"
+[timestart] 1
+[size] 3072 1665
+[pos] -1 -1
+*-1.921819 15 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TOP.
+[treeopen] TOP.Top.
+[treeopen] TOP.Top.ex.
+[sst_width] 305
+[signals_width] 562
+[sst_expanded] 1
+[sst_vpaned_height] 528
+@22
+TOP.Top.fetch.clock
+TOP.Top.fetch.reset
+@200
+-Fetch
+@800022
+TOP.Top.fetch.pc[31:0]
+@28
+TOP.Top.fetch.io_pipeSignalsIn_pipeStall
+TOP.Top.fetch.io_pipeSignalsIn_pipeFlush
+@800200
+-Fetch WB
+@c00028
+[color] 7
+TOP.Top.fetch.wbState[1:0]
+@28
+[color] 7
+(0)TOP.Top.fetch.wbState[1:0]
+[color] 7
+(1)TOP.Top.fetch.wbState[1:0]
+@1401200
+-group_end
+@28
+[color] 7
+TOP.Top.fetch.io_wb_cyc
+[color] 7
+TOP.Top.fetch.io_wb_stb
+[color] 7
+TOP.Top.fetch.io_wb_we
+@22
+[color] 7
+TOP.Top.fetch.io_wb_addr[31:0]
+@28
+[color] 7
+TOP.Top.fetch.io_wb_sel[3:0]
+@22
+[color] 7
+TOP.Top.fetch.io_wb_mosi_data[31:0]
+@28
+[color] 7
+TOP.Top.fetch.io_wb_stall
+[color] 7
+TOP.Top.fetch.io_wb_ack
+@22
+[color] 7
+TOP.Top.fetch.io_wb_miso_data[31:0]
+@1000200
+-Fetch WB
+@1001200
+-group_end
+@200
+-
+@22
+TOP.Top.fetch.fetchBuf_pc[31:0]
+TOP.Top.fetch.fetchBuf_inst[31:0]
+@200
+-ID/RR
+@2028
+[color] 1
+^1 C:\Users\user\projects\github.com\codetector1374\chisel_simple_rv64\simulation\opcode.dict
+TOP.Top.idrr.opcode[6:0]
+@22
+TOP.Top.idrr.io_pipeSignalsIn_pipeStall
+TOP.Top.idrr.io_pipeSignalsIn_pipeFlush
+@200
+-
+@2028
+[color] 1
+^1 C:\Users\user\projects\github.com\codetector1374\chisel_simple_rv64\simulation\opcode.dict
+TOP.Top.idrr.outBuf_opcode[6:0]
+@22
+TOP.Top.idrr.outBuf_rd[4:0]
+TOP.Top.idrr.outBuf_rs1Val[31:0]
+TOP.Top.idrr.outBuf_rs2Val[31:0]
+TOP.Top.idrr.outBuf_func3[2:0]
+TOP.Top.idrr.outBuf_func7[6:0]
+TOP.Top.idrr.outBuf_imm[31:0]
+@200
+-EX
+@c00200
+-LSU
+@28
+TOP.Top.ex.lsu1.lsTargetAddrOffset[1:0]
+TOP.Top.ex.lsu1.isLoad
+TOP.Top.ex.lsu1.isStore
+TOP.Top.ex.lsu1.io_busy
+@22
+TOP.Top.ex.lsu1.io_result[31:0]
+@28
+[color] 7
+TOP.Top.ex.lsu1.io_wb_cyc
+[color] 7
+TOP.Top.ex.lsu1.io_wb_stb
+[color] 7
+TOP.Top.ex.lsu1.io_wb_we
+[color] 7
+TOP.Top.ex.lsu1.io_wb_sel[3:0]
+@22
+[color] 7
+TOP.Top.ex.lsu1.io_wb_miso_data[31:0]
+[color] 7
+TOP.Top.ex.lsu1.io_wb_addr[31:0]
+@28
+[color] 7
+TOP.Top.ex.lsu1.io_wb_stall
+[color] 7
+TOP.Top.ex.lsu1.io_wb_ack
+@22
+[color] 7
+TOP.Top.ex.lsu1.io_wb_mosi_data[31:0]
+TOP.Top.ex.lsu1.iWbData[31:0]
+@1401200
+-LSU
+@22
+TOP.Top.arb.currentMaster[7:0]
+TOP.Top.arb.nextMaster[7:0]
+@28
+TOP.Top.arb.currentTxn[1:0]
+TOP.Top.arb.io_output_stall
+@c00200
+-Registers
+@22
+TOP.Top.dprf.registers_1[31:0]
+TOP.Top.dprf.registers_2[31:0]
+TOP.Top.dprf.registers_3[31:0]
+TOP.Top.dprf.registers_4[31:0]
+TOP.Top.dprf.registers_5[31:0]
+TOP.Top.dprf.registers_6[31:0]
+TOP.Top.dprf.registers_7[31:0]
+TOP.Top.dprf.registers_8[31:0]
+TOP.Top.dprf.registers_9[31:0]
+TOP.Top.dprf.registers_10[31:0]
+TOP.Top.dprf.registers_11[31:0]
+TOP.Top.dprf.registers_12[31:0]
+TOP.Top.dprf.registers_13[31:0]
+TOP.Top.dprf.registers_14[31:0]
+TOP.Top.dprf.registers_15[31:0]
+TOP.Top.dprf.registers_16[31:0]
+TOP.Top.dprf.registers_17[31:0]
+TOP.Top.dprf.registers_18[31:0]
+TOP.Top.dprf.registers_19[31:0]
+TOP.Top.dprf.registers_20[31:0]
+TOP.Top.dprf.registers_21[31:0]
+TOP.Top.dprf.registers_22[31:0]
+TOP.Top.dprf.registers_23[31:0]
+TOP.Top.dprf.registers_24[31:0]
+TOP.Top.dprf.registers_25[31:0]
+TOP.Top.dprf.registers_26[31:0]
+TOP.Top.dprf.registers_27[31:0]
+TOP.Top.dprf.registers_28[31:0]
+TOP.Top.dprf.registers_29[31:0]
+TOP.Top.dprf.registers_30[31:0]
+TOP.Top.dprf.registers_31[31:0]
+@1401200
+-Registers
+@c00200
+-WBMaster_0
+@29
+TOP.Top.arb.io_masters_0_ack
+@23
+TOP.Top.arb.io_masters_0_addr[31:0]
+@29
+TOP.Top.arb.io_masters_0_cyc
+@23
+TOP.Top.arb.io_masters_0_miso_data[31:0]
+TOP.Top.arb.io_masters_0_mosi_data[31:0]
+TOP.Top.arb.io_masters_0_sel[3:0]
+@29
+TOP.Top.arb.io_masters_0_stall
+TOP.Top.arb.io_masters_0_stb
+TOP.Top.arb.io_masters_0_we
+@1401200
+-WBMaster_0
+@c00200
+-WBMaster_1
+@28
+TOP.Top.arb.io_masters_1_ack
+@22
+TOP.Top.arb.io_masters_1_addr[31:0]
+@28
+TOP.Top.arb.io_masters_1_cyc
+@22
+TOP.Top.arb.io_masters_1_miso_data[31:0]
+TOP.Top.arb.io_masters_1_mosi_data[31:0]
+TOP.Top.arb.io_masters_1_sel[3:0]
+@28
+TOP.Top.arb.io_masters_1_stall
+TOP.Top.arb.io_masters_1_stb
+TOP.Top.arb.io_masters_1_we
+@1401200
+-WBMaster_1
+[pattern_trace] 1
+[pattern_trace] 0

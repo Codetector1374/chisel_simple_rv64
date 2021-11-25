@@ -1,4 +1,4 @@
-package simple_rv64
+package simple_rv32
 
 import chisel3._
 import chiseltest.experimental.TestOptionBuilder._
@@ -9,7 +9,6 @@ import org.scalatest.FreeSpec
 class FetchTest extends FreeSpec with ChiselScalatestTester {
   "stuff" in {
     test(new Fetch).withFlags(Array("writeVcd=1")) { fetch =>
-      fetch.imem(0.U) := 0.U
       fetch.clock.step(100)
     }
   }

@@ -22,4 +22,5 @@ class Wishbone(val addrWidth: Int = 32, val dataWidth: Int = 32) extends Bundle 
   val sel = Input(UInt(numOfBytes.W))
   val ack = Output(Bool())
   val stall = Output(Bool())
+  val error = Output(Bool())
 }

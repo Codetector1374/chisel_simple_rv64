@@ -4,7 +4,7 @@ ThisBuild / scalaVersion     := "2.12.13"
 ThisBuild / version          := "0.1.0"
 ThisBuild / organization     := "com.github.codetector1374"
 
-Compile / mainClass := Some("simple_rv64.Main")
+Compile / mainClass := Some("simple_rv32.Main")
 
 lazy val root = (project in file("."))
   .settings(
