@@ -1,0 +1,241 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "io_leds[0]",
+					"strict" : false
+				},
+				{
+					"name" : "io_leds[1]",
+					"strict" : false
+				},
+				{
+					"name" : "io_leds[2]",
+					"strict" : false
+				},
+				{
+					"name" : "io_leds[3]",
+					"strict" : false
+				},
+				{
+					"name" : "io_leds[4]",
+					"strict" : false
+				},
+				{
+					"name" : "io_leds[5]",
+					"strict" : false
+				},
+				{
+					"name" : "io_leds[6]",
+					"strict" : false
+				},
+				{
+					"name" : "io_leds[7]",
+					"strict" : false
+				},
+				{
+					"name" : "io_leds[8]",
+					"strict" : false
+				},
+				{
+					"name" : "io_leds[9]",
+					"strict" : false
+				},
+				{
+					"name" : "io_leds[10]",
+					"strict" : false
+				},
+				{
+					"name" : "io_leds[11]",
+					"strict" : false
+				},
+				{
+					"name" : "io_leds[12]",
+					"strict" : false
+				},
+				{
+					"name" : "io_leds[13]",
+					"strict" : false
+				},
+				{
+					"name" : "io_leds[14]",
+					"strict" : false
+				},
+				{
+					"name" : "io_leds[15]",
+					"strict" : false
+				},
+				{
+					"name" : "io_tx",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_addr[0]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_addr[1]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_addr[2]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_addr[3]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_addr[4]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_addr[5]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_addr[6]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_addr[7]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_addr[8]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_addr[9]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_addr[10]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_addr[11]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_addr[12]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_bank[0]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_bank[1]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_dqm[0]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_dqm[1]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_clk",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_cs_n",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_ras_n",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_cas_n",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_we_n",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_data[0]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_data[1]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_data[2]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_data[3]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_data[4]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_data[5]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_data[6]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_data[7]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_data[8]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_data[9]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_data[10]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_data[11]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_data[12]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_data[13]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_data[14]",
+					"strict" : false
+				},
+				{
+					"name" : "io_sdram_data[15]",
+					"strict" : false
+				},
+				{
+					"name" : "clock",
+					"strict" : false
+				},
+				{
+					"name" : "i_reset",
+					"strict" : false
+				},
+				{
+					"name" : "io_rx",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

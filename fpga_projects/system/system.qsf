@@ -1,0 +1,130 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2018  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Intel Program License 
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
+# Date created = 13:50:22  November 27, 2021
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		system_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE115F29C7
+set_global_assignment -name TOP_LEVEL_ENTITY system
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.0.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "13:50:22  NOVEMBER 27, 2021"
+set_global_assignment -name LAST_QUARTUS_VERSION "18.0.0 Standard Edition"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name ENABLE_OCT_DONE OFF
+set_global_assignment -name USE_CONFIGURATION_DEVICE OFF
+set_global_assignment -name CRC_ERROR_OPEN_DRAIN OFF
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_WEAK_PULLUP "AS INPUT TRI-STATED"
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
+set_global_assignment -name SYSTEMVERILOG_FILE ../../generated/riscv_full/wbuart_with_buffer.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../generated/riscv_full/wishbone.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../generated/riscv_full/wbuart_with_ihex.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../generated/riscv_full/wb_master_breakout.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../generated/riscv_full/uart_tx.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../generated/riscv_full/uart_rx.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../generated/riscv_full/ihex.sv
+set_global_assignment -name VERILOG_FILE ../../generated/riscv_full/FullSystemTop.v
+set_location_assignment PIN_Y2 -to clock
+set_location_assignment PIN_M23 -to i_reset
+set_location_assignment PIN_G15 -to io_leds[15]
+set_location_assignment PIN_F15 -to io_leds[14]
+set_location_assignment PIN_H17 -to io_leds[13]
+set_location_assignment PIN_J16 -to io_leds[12]
+set_location_assignment PIN_H16 -to io_leds[11]
+set_location_assignment PIN_J15 -to io_leds[10]
+set_location_assignment PIN_G17 -to io_leds[9]
+set_location_assignment PIN_J17 -to io_leds[8]
+set_location_assignment PIN_H19 -to io_leds[7]
+set_location_assignment PIN_J19 -to io_leds[6]
+set_location_assignment PIN_E18 -to io_leds[5]
+set_location_assignment PIN_F18 -to io_leds[4]
+set_location_assignment PIN_F21 -to io_leds[3]
+set_location_assignment PIN_E19 -to io_leds[2]
+set_location_assignment PIN_F19 -to io_leds[1]
+set_location_assignment PIN_G19 -to io_leds[0]
+set_location_assignment PIN_G12 -to io_rx
+set_location_assignment PIN_G9 -to io_tx
+set_location_assignment PIN_Y7 -to io_sdram_addr[12]
+set_location_assignment PIN_AA5 -to io_sdram_addr[11]
+set_location_assignment PIN_R5 -to io_sdram_addr[10]
+set_location_assignment PIN_Y6 -to io_sdram_addr[9]
+set_location_assignment PIN_AA7 -to io_sdram_addr[7]
+set_location_assignment PIN_W7 -to io_sdram_addr[6]
+set_location_assignment PIN_W8 -to io_sdram_addr[5]
+set_location_assignment PIN_V5 -to io_sdram_addr[4]
+set_location_assignment PIN_P1 -to io_sdram_addr[3]
+set_location_assignment PIN_U8 -to io_sdram_addr[2]
+set_location_assignment PIN_V8 -to io_sdram_addr[1]
+set_location_assignment PIN_R6 -to io_sdram_addr[0]
+set_location_assignment PIN_Y5 -to io_sdram_addr[8]
+set_location_assignment PIN_R4 -to io_sdram_bank[1]
+set_location_assignment PIN_U7 -to io_sdram_bank[0]
+set_location_assignment PIN_V7 -to io_sdram_cas_n
+set_location_assignment PIN_AA6 -to io_sdram_cke
+set_location_assignment PIN_AE5 -to io_sdram_clk
+set_location_assignment PIN_T4 -to io_sdram_cs_n
+set_location_assignment PIN_AC2 -to io_sdram_data[15]
+set_location_assignment PIN_AB3 -to io_sdram_data[14]
+set_location_assignment PIN_AC1 -to io_sdram_data[13]
+set_location_assignment PIN_AB2 -to io_sdram_data[12]
+set_location_assignment PIN_AA3 -to io_sdram_data[11]
+set_location_assignment PIN_AB1 -to io_sdram_data[10]
+set_location_assignment PIN_Y4 -to io_sdram_data[9]
+set_location_assignment PIN_Y3 -to io_sdram_data[8]
+set_location_assignment PIN_U3 -to io_sdram_data[7]
+set_location_assignment PIN_V1 -to io_sdram_data[6]
+set_location_assignment PIN_V2 -to io_sdram_data[5]
+set_location_assignment PIN_V3 -to io_sdram_data[4]
+set_location_assignment PIN_W1 -to io_sdram_data[3]
+set_location_assignment PIN_V4 -to io_sdram_data[2]
+set_location_assignment PIN_W2 -to io_sdram_data[1]
+set_location_assignment PIN_W3 -to io_sdram_data[0]
+set_location_assignment PIN_W4 -to io_sdram_dqm[1]
+set_location_assignment PIN_U6 -to io_sdram_ras_n
+set_location_assignment PIN_V6 -to io_sdram_we_n
+set_location_assignment PIN_U2 -to io_sdram_dqm[0]
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

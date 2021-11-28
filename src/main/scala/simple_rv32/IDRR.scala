@@ -88,6 +88,7 @@ class IDRR(aftStageCount: Int = 2) extends Module {
         decodedInst.imm := Cat(Fill(20, inst(31)), inst(31, 25), inst(11, 7))
       }
       is(RV32Opcode.BR) {
+        // ----------------------------20 --------- 1 --------- 6 ------------ 4 ----------1
         decodedInst.imm := Cat(Fill(20, inst(31)), inst(7), inst(30, 25), inst(11, 8), 0.U(1.W))
       }
     }

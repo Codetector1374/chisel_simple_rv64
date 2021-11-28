@@ -1,0 +1,581 @@
+Analysis & Synthesis report for system
+Sat Nov 27 17:45:59 2021
+Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state
+  9. State Machine - |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state
+ 10. Registers Removed During Synthesis
+ 11. General Register Statistics
+ 12. Inverted Register Statistics
+ 13. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 14. Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m
+ 15. Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part
+ 16. Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_tx:tx_part
+ 17. Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wishbone:ihex_wb
+ 18. Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr
+ 19. Port Connectivity Checks: "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m"
+ 20. Post-Synthesis Netlist Statistics for Top Partition
+ 21. Elapsed Time Per Partition
+ 22. Analysis & Synthesis Messages
+ 23. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Sat Nov 27 17:45:59 2021           ;
+; Quartus Prime Version              ; 18.0.0 Build 614 04/24/2018 SJ Standard Edition ;
+; Revision Name                      ; system                                          ;
+; Top-level Entity Name              ; system                                          ;
+; Family                             ; Cyclone IV E                                    ;
+; Total logic elements               ; 4,732                                           ;
+;     Total combinational functions  ; 2,595                                           ;
+;     Dedicated logic registers      ; 2,590                                           ;
+; Total registers                    ; 2590                                            ;
+; Total pins                         ; 59                                              ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                           ; EP4CE115F29C7      ;                    ;
+; Top-level entity name                                            ; system             ; system             ;
+; Family name                                                      ; Cyclone IV E       ; Cyclone V          ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; DSP Block Balancing                                              ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto ROM Replacement                                             ; On                 ; On                 ;
+; Auto RAM Replacement                                             ; On                 ; On                 ;
+; Auto DSP Block Replacement                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Strict RAM Replacement                                           ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto RAM Block Balancing                                         ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Timing-Driven Synthesis                                          ; On                 ; On                 ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                ; Off                ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; SDC constraint protection                                        ; Off                ; Off                ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                 ; On                 ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 32          ;
+; Maximum allowed            ; 16          ;
+;                            ;             ;
+; Average used               ; 1.01        ;
+; Maximum used               ; 16          ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.1%      ;
+;     Processor 3            ;   0.1%      ;
+;     Processor 4            ;   0.1%      ;
+;     Processor 5            ;   0.1%      ;
+;     Processor 6            ;   0.1%      ;
+;     Processor 7            ;   0.0%      ;
+;     Processor 8            ;   0.0%      ;
+;     Processors 9-16        ;   0.0%      ;
++----------------------------+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                             ;
++--------------------------------------------------+-----------------+------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path                 ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                                                                   ; Library ;
++--------------------------------------------------+-----------------+------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+; ../../generated/riscv_full/wbuart_with_buffer.sv ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_buffer.sv ;         ;
+; ../../generated/riscv_full/wishbone.sv           ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wishbone.sv           ;         ;
+; ../../generated/riscv_full/wbuart_with_ihex.sv   ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_ihex.sv   ;         ;
+; ../../generated/riscv_full/wb_master_breakout.sv ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wb_master_breakout.sv ;         ;
+; ../../generated/riscv_full/uart_tx.sv            ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_tx.sv            ;         ;
+; ../../generated/riscv_full/uart_rx.sv            ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_rx.sv            ;         ;
+; ../../generated/riscv_full/ihex.sv               ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/ihex.sv               ;         ;
+; ../../generated/riscv_full/FullSystemTop.v       ; yes             ; User Verilog HDL File              ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v       ;         ;
+; system.sv                                        ; yes             ; Auto-Found SystemVerilog HDL File  ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/system.sv             ;         ;
++--------------------------------------------------+-----------------+------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary               ;
++---------------------------------------------+-------------+
+; Resource                                    ; Usage       ;
++---------------------------------------------+-------------+
+; Estimated Total logic elements              ; 4,732       ;
+;                                             ;             ;
+; Total combinational functions               ; 2595        ;
+; Logic element usage by number of LUT inputs ;             ;
+;     -- 4 input functions                    ; 1778        ;
+;     -- 3 input functions                    ; 412         ;
+;     -- <=2 input functions                  ; 405         ;
+;                                             ;             ;
+; Logic elements by mode                      ;             ;
+;     -- normal mode                          ; 2354        ;
+;     -- arithmetic mode                      ; 241         ;
+;                                             ;             ;
+; Total registers                             ; 2590        ;
+;     -- Dedicated logic registers            ; 2590        ;
+;     -- I/O registers                        ; 0           ;
+;                                             ;             ;
+; I/O pins                                    ; 59          ;
+;                                             ;             ;
+; Embedded Multiplier 9-bit elements          ; 0           ;
+;                                             ;             ;
+; Maximum fan-out node                        ; clock~input ;
+; Maximum fan-out                             ; 2591        ;
+; Total fan-out                               ; 17263       ;
+; Average fan-out                             ; 3.25        ;
++---------------------------------------------+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                              ;
++---------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------+--------------------+--------------+
+; Compilation Hierarchy Node                  ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                 ; Entity Name        ; Library Name ;
++---------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------+--------------------+--------------+
+; |system                                     ; 2595 (3)            ; 2590 (2)                  ; 0           ; 0            ; 0       ; 0         ; 59   ; 0            ; |system                                                                                             ; system             ; work         ;
+;    |FullSystemTop:top|                      ; 2592 (0)            ; 2588 (0)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top                                                                           ; FullSystemTop      ; work         ;
+;       |WBInterconnect:interconnect_|        ; 18 (18)             ; 2 (2)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBInterconnect:interconnect_                                              ; WBInterconnect     ; work         ;
+;       |WBLeds:leds|                         ; 19 (19)             ; 16 (16)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBLeds:leds                                                               ; WBLeds             ; work         ;
+;       |WBSDRAMCtlr:dramController|          ; 445 (445)           ; 258 (258)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController                                                ; WBSDRAMCtlr        ; work         ;
+;       |WBUartIhexWrapper:ihexUart|          ; 2110 (0)            ; 2312 (0)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart                                                ; WBUartIhexWrapper  ; work         ;
+;          |WBUartWithIhex:m|                 ; 2110 (21)           ; 2312 (1)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m                               ; WBUartWithIhex     ; work         ;
+;             |ihex:intel_hex_controller|     ; 1956 (1956)         ; 2208 (2208)               ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller     ; ihex               ; work         ;
+;             |uart_rx:rx_part|               ; 55 (55)             ; 47 (47)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part               ; uart_rx            ; work         ;
+;             |uart_tx:tx_part|               ; 64 (64)             ; 44 (44)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_tx:tx_part               ; uart_tx            ; work         ;
+;             |wbuart_with_buffer:uart_ctrlr| ; 14 (14)             ; 12 (12)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr ; wbuart_with_buffer ; work         ;
++---------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------+--------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state ;
++-----------------+-----------------+----------------+-------------------------------------------------------------------------+
+; Name            ; wb_state.WBIDLE ; wb_state.WBACK ; wb_state.WBEXEC                                                         ;
++-----------------+-----------------+----------------+-------------------------------------------------------------------------+
+; wb_state.WBIDLE ; 0               ; 0              ; 0                                                                       ;
+; wb_state.WBEXEC ; 1               ; 0              ; 1                                                                       ;
+; wb_state.WBACK  ; 1               ; 1              ; 0                                                                       ;
++-----------------+-----------------+----------------+-------------------------------------------------------------------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state                                                                                                                                           ;
++--------------------+--------------------+-------------------+----------------+---------------+--------------+-------------+------------+-------------+-------------+-------------+-------------+------------+------------+------------+------------+------------+
+; Name               ; state.EXEC_WB_WAIT ; state.EXEC_WB_REQ ; state.EXEC_ACK ; state.CHKSUM2 ; state.CHKSUM ; state.EXEC2 ; state.EXEC ; state.ADDR4 ; state.ADDR3 ; state.ADDR2 ; state.ADDR1 ; state.LEN2 ; state.LEN1 ; state.CMD2 ; state.CMD1 ; state.IDLE ;
++--------------------+--------------------+-------------------+----------------+---------------+--------------+-------------+------------+-------------+-------------+-------------+-------------+------------+------------+------------+------------+------------+
+; state.IDLE         ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 0          ;
+; state.CMD1         ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 1          ; 1          ;
+; state.CMD2         ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 1          ; 0          ; 1          ;
+; state.LEN1         ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 1          ; 0          ; 0          ; 1          ;
+; state.LEN2         ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 1          ; 0          ; 0          ; 0          ; 1          ;
+; state.ADDR1        ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 1           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.ADDR2        ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 1           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.ADDR3        ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 1           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.ADDR4        ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 1           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.EXEC         ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 1          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.EXEC2        ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 1           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.CHKSUM       ; 0                  ; 0                 ; 0              ; 0             ; 1            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.CHKSUM2      ; 0                  ; 0                 ; 0              ; 1             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.EXEC_ACK     ; 0                  ; 0                 ; 1              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.EXEC_WB_REQ  ; 0                  ; 1                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.EXEC_WB_WAIT ; 1                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
++--------------------+--------------------+-------------------+----------------+---------------+--------------+-------------+------------+-------------+-------------+-------------+-------------+------------+------------+------------+------------+------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                                                                        ;
++--------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
+; Register name                                                                                          ; Reason for Removal                                                                                               ;
++--------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[7]   ; Merged with FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[5] ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[6]   ; Stuck at VCC due to stuck port data_in                                                                           ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[5]   ; Stuck at GND due to stuck port data_in                                                                           ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state~5 ; Lost fanout                                                                                                      ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state~6 ; Lost fanout                                                                                                      ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state~15       ; Lost fanout                                                                                                      ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state~16       ; Lost fanout                                                                                                      ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state~17       ; Lost fanout                                                                                                      ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state~18       ; Lost fanout                                                                                                      ;
+; Total Number of Removed Registers = 9                                                                  ;                                                                                                                  ;
++--------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 2590  ;
+; Number of registers using Synchronous Clear  ; 87    ;
+; Number of registers using Synchronous Load   ; 113   ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 2494  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Inverted Register Statistics                                                                      ;
++-----------------------------------------------------------------------------------------+---------+
+; Inverted Register                                                                       ; Fan out ;
++-----------------------------------------------------------------------------------------+---------+
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part|i_rx_prev ; 1       ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part|i_rx_db   ; 3       ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part|i_rx_int  ; 1       ;
+; Total number of inverted registers = 3                                                  ;         ;
++-----------------------------------------------------------------------------------------+---------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------+
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|cmd[4]           ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|len[3]           ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|addr[9]          ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|cmp_sum[3]       ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBLeds:leds|ledBuf_0[0]                                                                ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBLeds:leds|ledBuf_1[1]                                                                ;
+; 3:1                ; 61 bits   ; 122 LEs       ; 61 LEs               ; 61 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|wbReqest_bits_data[17]                                      ;
+; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|bankActivation_0_bits[1]                                    ;
+; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|bankActivation_1_bits[1]                                    ;
+; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|bankActivation_2_bits[10]                                   ;
+; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|bankActivation_3_bits[10]                                   ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|refreshTimeout[17]                                          ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|addr[5]          ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_tx:tx_part|state[1]                   ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_tx:tx_part|counter[2]                 ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|activationCounter_0[6]                                      ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|activationCounter_1[5]                                      ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|activationCounter_2[1]                                      ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|activationCounter_3[12]                                     ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|refreshCounter[14]                                          ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part|clk_counter[8]             ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|cmd[1]           ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|addr[0]          ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part|internal_state[0]          ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_sel[3]        ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_addr[28]      ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_addr[9]       ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_mosi_data[24] ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_mosi_data[16] ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_mosi_data[9]  ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_mosi_data[1]  ;
+; 257:1              ; 16 bits   ; 2736 LEs      ; 16 LEs               ; 2720 LEs               ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|addr_offset[2]   ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|buffer_fill[6]   ;
+; 11:1               ; 8 bits    ; 56 LEs        ; 8 LEs                ; 48 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|computed_sum[2]  ;
+; 18:1               ; 21 bits   ; 252 LEs       ; 42 LEs               ; 210 LEs                ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|delayCounter[19]                                            ;
+; 7:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|buffer_fill[1]   ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 0 LEs                ; 12 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[6]     ;
+; 136:1              ; 2 bits    ; 180 LEs       ; 18 LEs               ; 162 LEs                ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[3]     ;
+; 136:1              ; 2 bits    ; 180 LEs       ; 10 LEs               ; 170 LEs                ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[1]     ;
+; 4:1                ; 14 bits   ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; No         ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|_GEN_22                                                     ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|Add2             ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|io_sdram_addr[0]                                            ;
+; 5:1                ; 9 bits    ; 27 LEs        ; 27 LEs               ; 0 LEs                  ; No         ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|io_sdram_addr[3]                                            ;
+; 15:1               ; 2 bits    ; 20 LEs        ; 8 LEs                ; 12 LEs                 ; No         ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|io_sdram_dqm[1]                                             ;
+; 256:1              ; 8 bits    ; 1360 LEs      ; 1360 LEs             ; 0 LEs                  ; No         ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|Mux7             ;
+; 22:1               ; 10 bits   ; 140 LEs       ; 120 LEs              ; 20 LEs                 ; No         ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state            ;
+; 22:1               ; 2 bits    ; 28 LEs        ; 20 LEs               ; 8 LEs                  ; No         ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state            ;
+; 27:1               ; 2 bits    ; 36 LEs        ; 14 LEs               ; 22 LEs                 ; No         ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m ;
++----------------+----------+--------------------------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                                           ;
++----------------+----------+--------------------------------------------------------------------------------+
+; I_CLOCK_FREQ   ; 50000000 ; Signed Integer                                                                 ;
+; BAUD_RATE      ; 115200   ; Signed Integer                                                                 ;
++----------------+----------+--------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part ;
++----------------+----------+------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                                                           ;
++----------------+----------+------------------------------------------------------------------------------------------------+
+; I_CLOCK_FREQ   ; 50000000 ; Signed Integer                                                                                 ;
+; BAUD_RATE      ; 115200   ; Signed Integer                                                                                 ;
++----------------+----------+------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_tx:tx_part ;
++----------------+----------+------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                                                           ;
++----------------+----------+------------------------------------------------------------------------------------------------+
+; I_CLOCK_FREQ   ; 50000000 ; Signed Integer                                                                                 ;
+; BAUD_RATE      ; 115200   ; Signed Integer                                                                                 ;
++----------------+----------+------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wishbone:ihex_wb ;
++----------------+-------+----------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                               ;
++----------------+-------+----------------------------------------------------------------------------------------------------+
+; AW             ; 30    ; Signed Integer                                                                                     ;
+; DW             ; 32    ; Signed Integer                                                                                     ;
+; SELW           ; 4     ; Signed Integer                                                                                     ;
++----------------+-------+----------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr ;
++----------------+----------+--------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                                                                         ;
++----------------+----------+--------------------------------------------------------------------------------------------------------------+
+; I_CLOCK_FREQ   ; 50000000 ; Signed Integer                                                                                               ;
+; BAUD_RATE      ; 115200   ; Signed Integer                                                                                               ;
++----------------+----------+--------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m"                          ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; o_wb_err ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 59                          ;
+; cycloneiii_ff         ; 2590                        ;
+;     ENA               ; 2337                        ;
+;     ENA SCLR          ; 77                          ;
+;     ENA SLD           ; 80                          ;
+;     SCLR              ; 10                          ;
+;     SLD               ; 33                          ;
+;     plain             ; 53                          ;
+; cycloneiii_io_obuf    ; 16                          ;
+; cycloneiii_lcell_comb ; 2597                        ;
+;     arith             ; 241                         ;
+;         2 data inputs ; 211                         ;
+;         3 data inputs ; 30                          ;
+;     normal            ; 2356                        ;
+;         0 data inputs ; 3                           ;
+;         1 data inputs ; 17                          ;
+;         2 data inputs ; 176                         ;
+;         3 data inputs ; 382                         ;
+;         4 data inputs ; 1778                        ;
+;                       ;                             ;
+; Max LUT depth         ; 12.00                       ;
+; Average LUT depth     ; 7.30                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:08     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
+    Info: Processing started: Sat Nov 27 17:45:42 2021
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off system -c system
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 16 of the 32 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_buffer.sv
+    Info (12023): Found entity 1: wbuart_with_buffer File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_buffer.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wishbone.sv
+    Info (12023): Found entity 1: wishbone File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wishbone.sv Line: 4
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_ihex.sv
+    Info (12023): Found entity 1: WBUartWithIhex File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_ihex.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wb_master_breakout.sv
+    Info (12023): Found entity 1: wb_master_breakout File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wb_master_breakout.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_tx.sv
+    Info (12023): Found entity 1: uart_tx File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_tx.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_rx.sv
+    Info (12023): Found entity 1: uart_rx File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_rx.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/ihex.sv
+    Info (12023): Found entity 1: ihex File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/ihex.sv Line: 15
+Info (12021): Found 5 design units, including 5 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/fullsystemtop.v
+    Info (12023): Found entity 1: WBLeds File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1
+    Info (12023): Found entity 2: WBUartIhexWrapper File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 91
+    Info (12023): Found entity 3: WBSDRAMCtlr File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 190
+    Info (12023): Found entity 4: WBInterconnect File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 905
+    Info (12023): Found entity 5: FullSystemTop File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1053
+Warning (12125): Using design file system.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: system File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/system.sv Line: 1
+Info (12127): Elaborating entity "system" for the top level hierarchy
+Info (12128): Elaborating entity "FullSystemTop" for hierarchy "FullSystemTop:top" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/system.sv Line: 64
+Info (12128): Elaborating entity "WBLeds" for hierarchy "FullSystemTop:top|WBLeds:leds" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1176
+Info (12128): Elaborating entity "WBUartIhexWrapper" for hierarchy "FullSystemTop:top|WBUartIhexWrapper:ihexUart" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1201
+Info (12128): Elaborating entity "WBUartWithIhex" for hierarchy "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 165
+Warning (10230): Verilog HDL assignment warning at wbuart_with_ihex.sv(71): truncated value with size 32 to match size of target (1) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_ihex.sv Line: 71
+Info (12128): Elaborating entity "uart_rx" for hierarchy "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_ihex.sv Line: 47
+Warning (10230): Verilog HDL assignment warning at uart_rx.sv(41): truncated value with size 32 to match size of target (4) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_rx.sv Line: 41
+Warning (10230): Verilog HDL assignment warning at uart_rx.sv(57): truncated value with size 32 to match size of target (4) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_rx.sv Line: 57
+Warning (10230): Verilog HDL assignment warning at uart_rx.sv(65): truncated value with size 32 to match size of target (4) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_rx.sv Line: 65
+Warning (10230): Verilog HDL assignment warning at uart_rx.sv(74): truncated value with size 32 to match size of target (4) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_rx.sv Line: 74
+Warning (10230): Verilog HDL assignment warning at uart_rx.sv(76): truncated value with size 32 to match size of target (4) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_rx.sv Line: 76
+Info (12128): Elaborating entity "uart_tx" for hierarchy "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_tx:tx_part" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_ihex.sv Line: 58
+Warning (10230): Verilog HDL assignment warning at uart_tx.sv(53): truncated value with size 32 to match size of target (4) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_tx.sv Line: 53
+Warning (10230): Verilog HDL assignment warning at uart_tx.sv(61): truncated value with size 32 to match size of target (4) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_tx.sv Line: 61
+Warning (10230): Verilog HDL assignment warning at uart_tx.sv(63): truncated value with size 32 to match size of target (4) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_tx.sv Line: 63
+Info (12128): Elaborating entity "wishbone" for hierarchy "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wishbone:ihex_wb" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_ihex.sv Line: 62
+Info (12128): Elaborating entity "wb_master_breakout" for hierarchy "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wb_master_breakout:dbg_bus_breakout" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_ihex.sv Line: 69
+Info (12128): Elaborating entity "ihex" for hierarchy "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_ihex.sv Line: 83
+Warning (10230): Verilog HDL assignment warning at ihex.sv(76): truncated value with size 32 to match size of target (8) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/ihex.sv Line: 76
+Warning (10230): Verilog HDL assignment warning at ihex.sv(137): truncated value with size 32 to match size of target (8) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/ihex.sv Line: 137
+Warning (10230): Verilog HDL assignment warning at ihex.sv(212): truncated value with size 32 to match size of target (8) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/ihex.sv Line: 212
+Warning (10230): Verilog HDL assignment warning at ihex.sv(243): truncated value with size 32 to match size of target (8) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/ihex.sv Line: 243
+Info (12128): Elaborating entity "wbuart_with_buffer" for hierarchy "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_ihex.sv Line: 97
+Warning (10230): Verilog HDL assignment warning at wbuart_with_buffer.sv(43): truncated value with size 32 to match size of target (9) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_buffer.sv Line: 43
+Warning (10230): Verilog HDL assignment warning at wbuart_with_buffer.sv(77): truncated value with size 32 to match size of target (9) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_buffer.sv Line: 77
+Warning (10230): Verilog HDL assignment warning at wbuart_with_buffer.sv(103): truncated value with size 32 to match size of target (9) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_buffer.sv Line: 103
+Warning (10034): Output port "o_wb_err" at wbuart_with_buffer.sv(29) has no driver File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_buffer.sv Line: 29
+Info (12128): Elaborating entity "WBSDRAMCtlr" for hierarchy "FullSystemTop:top|WBSDRAMCtlr:dramController" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1226
+Info (12128): Elaborating entity "WBInterconnect" for hierarchy "FullSystemTop:top|WBInterconnect:interconnect_" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1265
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "io_sdram_cke" is stuck at VCC File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/system.sv Line: 29
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 6 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/output_files/system.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 4836 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 3 input pins
+    Info (21059): Implemented 40 output pins
+    Info (21060): Implemented 16 bidirectional pins
+    Info (21061): Implemented 4777 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 21 warnings
+    Info: Peak virtual memory: 4878 megabytes
+    Info: Processing ended: Sat Nov 27 17:45:59 2021
+    Info: Elapsed time: 00:00:17
+    Info: Total CPU time (on all processors): 00:00:26
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/output_files/system.map.smsg.
+
+

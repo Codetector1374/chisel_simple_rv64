@@ -1,0 +1,25 @@
+
+State Machine - |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state
+Name wb_state.WBIDLE wb_state.WBACK wb_state.WBEXEC 
+wb_state.WBIDLE 0 0 0 
+wb_state.WBEXEC 1 0 1 
+wb_state.WBACK 1 1 0 
+
+State Machine - |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state
+Name state.EXEC_WB_WAIT state.EXEC_WB_REQ state.EXEC_ACK state.CHKSUM2 state.CHKSUM state.EXEC2 state.EXEC state.ADDR4 state.ADDR3 state.ADDR2 state.ADDR1 state.LEN2 state.LEN1 state.CMD2 state.CMD1 state.IDLE 
+state.IDLE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.CMD1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.CMD2 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.LEN1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.LEN2 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.ADDR1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.ADDR2 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.ADDR3 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.ADDR4 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.EXEC 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.EXEC2 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.CHKSUM 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.CHKSUM2 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state.EXEC_ACK 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.EXEC_WB_REQ 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.EXEC_WB_WAIT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 

@@ -2,7 +2,7 @@
 
 template<class MODULE> struct TESTBENCH {
   // Need to add a new class variable
-  VerilatedVcdC	*m_trace;
+  VerilatedVcdC	*m_trace = nullptr;
   unsigned long	m_tickcount;
   MODULE	*m_core;
 
@@ -47,7 +47,7 @@ template<class MODULE> struct TESTBENCH {
       m_core->reset = 0;
   }
 
-  virtual void	tick(void) {
+  virtual void downtick(void) {
       // Make sure the tickcount is greater than zero before
       // we do this
       m_tickcount++;
@@ -58,35 +58,36 @@ template<class MODULE> struct TESTBENCH {
       // coming into here, since we need all combinatorial logic
       // to be settled before we call for a clock tick.
       //
+      m_core->eval();
       m_core->clock = 0;
       m_core->eval();
-
       //
       // Here's the new item:
       //
       //	Dump values to our trace file
       //
-      if(m_trace) m_trace->dump(2*m_tickcount-1);
 
+  }
+
+  virtual void uptick(void) {
+      if(m_trace) m_trace->dump(2*m_tickcount-1);
+      if (m_trace) {
+          m_trace->flush();
+      }
       // Repeat for the positive edge of the clock
+      m_core->eval();
       m_core->clock = 1;
       m_core->eval();
       if(m_trace) m_trace->dump(2*m_tickcount);
 
-      // Now the negative edge
-//      m_core->clock = 0;
-//      m_core->eval();
       if (m_trace) {
-          // This portion, though, is a touch different.
-          // After dumping our values as they exist on the
-          // negative clock edge ...
-//          m_trace->dump(10*m_tickcount+5);
-          //
-          // We'll also need to make sure we flush any I/O to
-          // the trace file, so that we can use the assert()
-          // function between now and the next tick if we want to.
           m_trace->flush();
       }
+  }
+
+  virtual void	tick(void) {
+      downtick();
+      uptick();
   }
 
   virtual bool	done(void) { return (Verilated::gotFinish()); }

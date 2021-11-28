@@ -15,3 +15,8 @@ verilate(rv_sim SOURCES ../generated/Top.v ../generated/memdev.v
         TOP_MODULE Top TRACE
         VERILATOR_ARGS -Wno-UNOPTFLAT
         )
+
+
+add_executable(sdram_sim src/sdramsim.cpp src/wbsdram_sim.cpp)
+verilate(sdram_sim SOURCES ../generated/fpga_test/TestWBMaster.v TRACE
+        VERILATOR_ARGS)

@@ -1,0 +1,133 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2013 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II 64-Bit
+# Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+# Date created = 19:25:55  November 27, 2021
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		simple_ram_test_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone II"
+set_global_assignment -name DEVICE EP2C35F672C7
+set_global_assignment -name TOP_LEVEL_ENTITY simple_ram_test
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "19:25:55  NOVEMBER 27, 2021"
+set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name VERILOG_FILE ../../generated/fpga_test/TestWBMaster.v
+set_global_assignment -name VERILOG_FILE sseg.v
+set_global_assignment -name SYSTEMVERILOG_FILE simple_ram_test.sv
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_location_assignment PIN_V13 -to hex0[0]
+set_location_assignment PIN_V14 -to hex0[1]
+set_location_assignment PIN_AE11 -to hex0[2]
+set_location_assignment PIN_AD11 -to hex0[3]
+set_location_assignment PIN_AC12 -to hex0[4]
+set_location_assignment PIN_AB12 -to hex0[5]
+set_location_assignment PIN_AF10 -to hex0[6]
+set_location_assignment PIN_AB24 -to hex1[0]
+set_location_assignment PIN_AA23 -to hex1[1]
+set_location_assignment PIN_AA24 -to hex1[2]
+set_location_assignment PIN_Y22 -to hex1[3]
+set_location_assignment PIN_W21 -to hex1[4]
+set_location_assignment PIN_V21 -to hex1[5]
+set_location_assignment PIN_V20 -to hex1[6]
+set_location_assignment PIN_N2 -to clock
+set_location_assignment PIN_AE23 -to idle
+set_location_assignment PIN_T6 -to io_sdram_addr[0]
+set_location_assignment PIN_V4 -to io_sdram_addr[1]
+set_location_assignment PIN_V3 -to io_sdram_addr[2]
+set_location_assignment PIN_W2 -to io_sdram_addr[3]
+set_location_assignment PIN_W1 -to io_sdram_addr[4]
+set_location_assignment PIN_U6 -to io_sdram_addr[5]
+set_location_assignment PIN_U7 -to io_sdram_addr[6]
+set_location_assignment PIN_U5 -to io_sdram_addr[7]
+set_location_assignment PIN_W4 -to io_sdram_addr[8]
+set_location_assignment PIN_W3 -to io_sdram_addr[9]
+set_location_assignment PIN_Y1 -to io_sdram_addr[10]
+set_location_assignment PIN_V5 -to io_sdram_addr[11]
+set_location_assignment PIN_AE2 -to io_sdram_bank[0]
+set_location_assignment PIN_AE3 -to io_sdram_bank[1]
+set_location_assignment PIN_AB3 -to io_sdram_cas_n
+set_location_assignment PIN_AA6 -to io_sdram_cke
+set_location_assignment PIN_AA7 -to io_sdram_clk
+set_location_assignment PIN_AC3 -to io_sdram_cs_n
+set_location_assignment PIN_V6 -to io_sdram_data[0]
+set_location_assignment PIN_AA2 -to io_sdram_data[1]
+set_location_assignment PIN_AA1 -to io_sdram_data[2]
+set_location_assignment PIN_Y3 -to io_sdram_data[3]
+set_location_assignment PIN_Y4 -to io_sdram_data[4]
+set_location_assignment PIN_R8 -to io_sdram_data[5]
+set_location_assignment PIN_T8 -to io_sdram_data[6]
+set_location_assignment PIN_V7 -to io_sdram_data[7]
+set_location_assignment PIN_W6 -to io_sdram_data[8]
+set_location_assignment PIN_AB2 -to io_sdram_data[9]
+set_location_assignment PIN_AB1 -to io_sdram_data[10]
+set_location_assignment PIN_AA4 -to io_sdram_data[11]
+set_location_assignment PIN_AA3 -to io_sdram_data[12]
+set_location_assignment PIN_AC2 -to io_sdram_data[13]
+set_location_assignment PIN_AC1 -to io_sdram_data[14]
+set_location_assignment PIN_AA5 -to io_sdram_data[15]
+set_location_assignment PIN_AD2 -to io_sdram_dqm[0]
+set_location_assignment PIN_Y5 -to io_sdram_dqm[1]
+set_location_assignment PIN_AB4 -to io_sdram_ras_n
+set_location_assignment PIN_AD3 -to io_sdram_we_n
+set_location_assignment PIN_N25 -to io_switches[0]
+set_location_assignment PIN_N26 -to io_switches[1]
+set_location_assignment PIN_P25 -to io_switches[2]
+set_location_assignment PIN_AE14 -to io_switches[3]
+set_location_assignment PIN_AF14 -to io_switches[4]
+set_location_assignment PIN_AD13 -to io_switches[5]
+set_location_assignment PIN_AC13 -to io_switches[6]
+set_location_assignment PIN_C13 -to io_switches[7]
+set_location_assignment PIN_B13 -to io_switches[8]
+set_location_assignment PIN_A13 -to io_switches[9]
+set_location_assignment PIN_N1 -to io_switches[10]
+set_location_assignment PIN_P1 -to io_switches[11]
+set_location_assignment PIN_P2 -to io_switches[12]
+set_location_assignment PIN_T7 -to io_switches[13]
+set_location_assignment PIN_U3 -to io_switches[14]
+set_location_assignment PIN_U4 -to io_switches[15]
+set_location_assignment PIN_G26 -to reset
+set_location_assignment PIN_W26 -to io_write
+set_location_assignment PIN_AE22 -to stall
+set_global_assignment -name USE_CONFIGURATION_DEVICE ON
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
+set_location_assignment PIN_V1 -to io_switches[16]
+set_location_assignment PIN_V2 -to io_switches[17]
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
