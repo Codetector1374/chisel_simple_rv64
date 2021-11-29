@@ -1,5 +1,5 @@
 Analysis & Synthesis report for system
-Sat Nov 27 17:45:59 2021
+Mon Nov 29 15:05:41 2021
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
 
 
@@ -13,22 +13,30 @@ Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state
-  9. State Machine - |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state
- 10. Registers Removed During Synthesis
- 11. General Register Statistics
- 12. Inverted Register Statistics
- 13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m
- 15. Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part
- 16. Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_tx:tx_part
- 17. Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wishbone:ihex_wb
- 18. Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr
- 19. Port Connectivity Checks: "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m"
- 20. Post-Synthesis Netlist Statistics for Top Partition
- 21. Elapsed Time Per Partition
- 22. Analysis & Synthesis Messages
- 23. Analysis & Synthesis Suppressed Messages
+  8. Analysis & Synthesis RAM Summary
+  9. State Machine - |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state
+ 10. State Machine - |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state
+ 11. State Machine - |system|FullSystemTop:top|ProcTop:core|Execute:ex|LoadStore:lsu1|state
+ 12. State Machine - |system|FullSystemTop:top|ProcTop:core|Fetch:fetch|wbState
+ 13. Registers Removed During Synthesis
+ 14. General Register Statistics
+ 15. Inverted Register Statistics
+ 16. Registers Added for RAM Pass-Through Logic
+ 17. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 18. Source assignments for FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|altsyncram:rx_buffer_rtl_0|altsyncram_2tg1:auto_generated
+ 19. Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m
+ 20. Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part
+ 21. Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_tx:tx_part
+ 22. Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wishbone:ihex_wb
+ 23. Parameter Settings for User Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr
+ 24. Parameter Settings for Inferred Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|altsyncram:rx_buffer_rtl_0
+ 25. altsyncram Parameter Settings by Entity Instance
+ 26. Port Connectivity Checks: "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m"
+ 27. Port Connectivity Checks: "FullSystemTop:top|ProcTop:core|WBArbiter:arb"
+ 28. Post-Synthesis Netlist Statistics for Top Partition
+ 29. Elapsed Time Per Partition
+ 30. Analysis & Synthesis Messages
+ 31. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -54,18 +62,18 @@ refer to the applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Nov 27 17:45:59 2021           ;
+; Analysis & Synthesis Status        ; Successful - Mon Nov 29 15:05:41 2021           ;
 ; Quartus Prime Version              ; 18.0.0 Build 614 04/24/2018 SJ Standard Edition ;
 ; Revision Name                      ; system                                          ;
 ; Top-level Entity Name              ; system                                          ;
 ; Family                             ; Cyclone IV E                                    ;
-; Total logic elements               ; 4,732                                           ;
-;     Total combinational functions  ; 2,595                                           ;
-;     Dedicated logic registers      ; 2,590                                           ;
-; Total registers                    ; 2590                                            ;
-; Total pins                         ; 59                                              ;
+; Total logic elements               ; 9,011                                           ;
+;     Total combinational functions  ; 5,864                                           ;
+;     Dedicated logic registers      ; 4,027                                           ;
+; Total registers                    ; 4027                                            ;
+; Total pins                         ; 151                                             ;
 ; Total virtual pins                 ; 0                                               ;
-; Total memory bits                  ; 0                                               ;
+; Total memory bits                  ; 4,096                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                               ;
 ; Total PLLs                         ; 0                                               ;
 +------------------------------------+-------------------------------------------------+
@@ -175,27 +183,37 @@ refer to the applicable agreement for further details.
 ;     Processor 4            ;   0.1%      ;
 ;     Processor 5            ;   0.1%      ;
 ;     Processor 6            ;   0.1%      ;
-;     Processor 7            ;   0.0%      ;
-;     Processor 8            ;   0.0%      ;
+;     Processor 7            ;   0.1%      ;
+;     Processor 8            ;   0.1%      ;
 ;     Processors 9-16        ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                                                             ;
-+--------------------------------------------------+-----------------+------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path                 ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                                                                   ; Library ;
-+--------------------------------------------------+-----------------+------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
-; ../../generated/riscv_full/wbuart_with_buffer.sv ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_buffer.sv ;         ;
-; ../../generated/riscv_full/wishbone.sv           ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wishbone.sv           ;         ;
-; ../../generated/riscv_full/wbuart_with_ihex.sv   ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_ihex.sv   ;         ;
-; ../../generated/riscv_full/wb_master_breakout.sv ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wb_master_breakout.sv ;         ;
-; ../../generated/riscv_full/uart_tx.sv            ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_tx.sv            ;         ;
-; ../../generated/riscv_full/uart_rx.sv            ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_rx.sv            ;         ;
-; ../../generated/riscv_full/ihex.sv               ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/ihex.sv               ;         ;
-; ../../generated/riscv_full/FullSystemTop.v       ; yes             ; User Verilog HDL File              ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v       ;         ;
-; system.sv                                        ; yes             ; Auto-Found SystemVerilog HDL File  ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/system.sv             ;         ;
-+--------------------------------------------------+-----------------+------------------------------------+----------------------------------------------------------------------------------------------------------------+---------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                              ;
++--------------------------------------------------+-----------------+------------------------------------+-----------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path                 ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                                                                    ; Library ;
++--------------------------------------------------+-----------------+------------------------------------+-----------------------------------------------------------------------------------------------------------------+---------+
+; ../../generated/riscv_full/wbuart_with_buffer.sv ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_buffer.sv  ;         ;
+; ../../generated/riscv_full/wishbone.sv           ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wishbone.sv            ;         ;
+; ../../generated/riscv_full/wbuart_with_ihex.sv   ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_ihex.sv    ;         ;
+; ../../generated/riscv_full/wb_master_breakout.sv ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wb_master_breakout.sv  ;         ;
+; ../../generated/riscv_full/uart_tx.sv            ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_tx.sv             ;         ;
+; ../../generated/riscv_full/uart_rx.sv            ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_rx.sv             ;         ;
+; ../../generated/riscv_full/ihex.sv               ; yes             ; User SystemVerilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/ihex.sv                ;         ;
+; ../../generated/riscv_full/FullSystemTop.v       ; yes             ; User Verilog HDL File              ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v        ;         ;
+; system.sv                                        ; yes             ; Auto-Found SystemVerilog HDL File  ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/system.sv              ;         ;
+; altsyncram.tdf                                   ; yes             ; Megafunction                       ; c:/intelfpga/18.0/quartus/libraries/megafunctions/altsyncram.tdf                                                ;         ;
+; stratix_ram_block.inc                            ; yes             ; Megafunction                       ; c:/intelfpga/18.0/quartus/libraries/megafunctions/stratix_ram_block.inc                                         ;         ;
+; lpm_mux.inc                                      ; yes             ; Megafunction                       ; c:/intelfpga/18.0/quartus/libraries/megafunctions/lpm_mux.inc                                                   ;         ;
+; lpm_decode.inc                                   ; yes             ; Megafunction                       ; c:/intelfpga/18.0/quartus/libraries/megafunctions/lpm_decode.inc                                                ;         ;
+; aglobal180.inc                                   ; yes             ; Megafunction                       ; c:/intelfpga/18.0/quartus/libraries/megafunctions/aglobal180.inc                                                ;         ;
+; a_rdenreg.inc                                    ; yes             ; Megafunction                       ; c:/intelfpga/18.0/quartus/libraries/megafunctions/a_rdenreg.inc                                                 ;         ;
+; altrom.inc                                       ; yes             ; Megafunction                       ; c:/intelfpga/18.0/quartus/libraries/megafunctions/altrom.inc                                                    ;         ;
+; altram.inc                                       ; yes             ; Megafunction                       ; c:/intelfpga/18.0/quartus/libraries/megafunctions/altram.inc                                                    ;         ;
+; altdpram.inc                                     ; yes             ; Megafunction                       ; c:/intelfpga/18.0/quartus/libraries/megafunctions/altdpram.inc                                                  ;         ;
+; db/altsyncram_2tg1.tdf                           ; yes             ; Auto-Generated Megafunction        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/db/altsyncram_2tg1.tdf ;         ;
++--------------------------------------------------+-----------------+------------------------------------+-----------------------------------------------------------------------------------------------------------------+---------+
 
 
 +-----------------------------------------------------------+
@@ -203,51 +221,75 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimated Total logic elements              ; 4,732       ;
+; Estimated Total logic elements              ; 9,011       ;
 ;                                             ;             ;
-; Total combinational functions               ; 2595        ;
+; Total combinational functions               ; 5864        ;
 ; Logic element usage by number of LUT inputs ;             ;
-;     -- 4 input functions                    ; 1778        ;
-;     -- 3 input functions                    ; 412         ;
-;     -- <=2 input functions                  ; 405         ;
+;     -- 4 input functions                    ; 4093        ;
+;     -- 3 input functions                    ; 1071        ;
+;     -- <=2 input functions                  ; 700         ;
 ;                                             ;             ;
 ; Logic elements by mode                      ;             ;
-;     -- normal mode                          ; 2354        ;
-;     -- arithmetic mode                      ; 241         ;
+;     -- normal mode                          ; 5293        ;
+;     -- arithmetic mode                      ; 571         ;
 ;                                             ;             ;
-; Total registers                             ; 2590        ;
-;     -- Dedicated logic registers            ; 2590        ;
+; Total registers                             ; 4027        ;
+;     -- Dedicated logic registers            ; 4027        ;
 ;     -- I/O registers                        ; 0           ;
 ;                                             ;             ;
-; I/O pins                                    ; 59          ;
+; I/O pins                                    ; 151         ;
+; Total memory bits                           ; 4096        ;
 ;                                             ;             ;
 ; Embedded Multiplier 9-bit elements          ; 0           ;
 ;                                             ;             ;
 ; Maximum fan-out node                        ; clock~input ;
-; Maximum fan-out                             ; 2591        ;
-; Total fan-out                               ; 17263       ;
-; Average fan-out                             ; 3.25        ;
+; Maximum fan-out                             ; 4036        ;
+; Total fan-out                               ; 33879       ;
+; Average fan-out                             ; 3.31        ;
 +---------------------------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                              ;
-+---------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------+--------------------+--------------+
-; Compilation Hierarchy Node                  ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                 ; Entity Name        ; Library Name ;
-+---------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------+--------------------+--------------+
-; |system                                     ; 2595 (3)            ; 2590 (2)                  ; 0           ; 0            ; 0       ; 0         ; 59   ; 0            ; |system                                                                                             ; system             ; work         ;
-;    |FullSystemTop:top|                      ; 2592 (0)            ; 2588 (0)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top                                                                           ; FullSystemTop      ; work         ;
-;       |WBInterconnect:interconnect_|        ; 18 (18)             ; 2 (2)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBInterconnect:interconnect_                                              ; WBInterconnect     ; work         ;
-;       |WBLeds:leds|                         ; 19 (19)             ; 16 (16)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBLeds:leds                                                               ; WBLeds             ; work         ;
-;       |WBSDRAMCtlr:dramController|          ; 445 (445)           ; 258 (258)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController                                                ; WBSDRAMCtlr        ; work         ;
-;       |WBUartIhexWrapper:ihexUart|          ; 2110 (0)            ; 2312 (0)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart                                                ; WBUartIhexWrapper  ; work         ;
-;          |WBUartWithIhex:m|                 ; 2110 (21)           ; 2312 (1)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m                               ; WBUartWithIhex     ; work         ;
-;             |ihex:intel_hex_controller|     ; 1956 (1956)         ; 2208 (2208)               ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller     ; ihex               ; work         ;
-;             |uart_rx:rx_part|               ; 55 (55)             ; 47 (47)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part               ; uart_rx            ; work         ;
-;             |uart_tx:tx_part|               ; 64 (64)             ; 44 (44)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_tx:tx_part               ; uart_tx            ; work         ;
-;             |wbuart_with_buffer:uart_ctrlr| ; 14 (14)             ; 12 (12)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr ; wbuart_with_buffer ; work         ;
-+---------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------+--------------------+--------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                               ;
++----------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+--------------+
+; Compilation Hierarchy Node                         ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                           ; Entity Name        ; Library Name ;
++----------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+--------------+
+; |system                                            ; 5864 (3)            ; 4027 (2)                  ; 4096        ; 0            ; 0       ; 0         ; 151  ; 0            ; |system                                                                                                                                                       ; system             ; work         ;
+;    |FullSystemTop:top|                             ; 5861 (1)            ; 4025 (0)                  ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top                                                                                                                                     ; FullSystemTop      ; work         ;
+;       |ProcTop:core|                               ; 2847 (0)            ; 1283 (0)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|ProcTop:core                                                                                                                        ; ProcTop            ; work         ;
+;          |DPRF:dprf|                               ; 0 (0)               ; 992 (992)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|ProcTop:core|DPRF:dprf                                                                                                              ; DPRF               ; work         ;
+;          |Execute:ex|                              ; 1144 (393)          ; 40 (37)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|ProcTop:core|Execute:ex                                                                                                             ; Execute            ; work         ;
+;             |ALU:alu1|                             ; 512 (512)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|ProcTop:core|Execute:ex|ALU:alu1                                                                                                    ; ALU                ; work         ;
+;             |BranchUnit:bru|                       ; 155 (155)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|ProcTop:core|Execute:ex|BranchUnit:bru                                                                                              ; BranchUnit         ; work         ;
+;             |LoadStore:lsu1|                       ; 84 (84)             ; 3 (3)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|ProcTop:core|Execute:ex|LoadStore:lsu1                                                                                              ; LoadStore          ; work         ;
+;          |Fetch:fetch|                             ; 149 (149)           ; 100 (100)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|ProcTop:core|Fetch:fetch                                                                                                            ; Fetch              ; work         ;
+;          |IDRR:idrr|                               ; 1550 (1550)         ; 150 (150)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|ProcTop:core|IDRR:idrr                                                                                                              ; IDRR               ; work         ;
+;          |WBArbiter:arb|                           ; 4 (4)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|ProcTop:core|WBArbiter:arb                                                                                                          ; WBArbiter          ; work         ;
+;       |WBArbiter:arbiter|                          ; 91 (91)             ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBArbiter:arbiter                                                                                                                   ; WBArbiter          ; work         ;
+;       |WBInterconnect:interconnect_|               ; 110 (110)           ; 34 (34)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBInterconnect:interconnect_                                                                                                        ; WBInterconnect     ; work         ;
+;       |WBLeds:leds|                                ; 24 (24)             ; 16 (16)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBLeds:leds                                                                                                                         ; WBLeds             ; work         ;
+;       |WBSDRAMCtlr:ramWB_dramController|           ; 510 (510)           ; 291 (291)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController                                                                                                    ; WBSDRAMCtlr        ; work         ;
+;       |WBSSeg:ssegs|                               ; 74 (18)             ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBSSeg:ssegs                                                                                                                        ; WBSSeg             ; work         ;
+;          |SSEG:sseg|                               ; 56 (56)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBSSeg:ssegs|SSEG:sseg                                                                                                              ; SSEG               ; work         ;
+;       |WBUartIhexWrapper:ihexUart|                 ; 2204 (0)            ; 2368 (0)                  ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart                                                                                                          ; WBUartIhexWrapper  ; work         ;
+;          |WBUartWithIhex:m|                        ; 2204 (12)           ; 2368 (1)                  ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m                                                                                         ; WBUartWithIhex     ; work         ;
+;             |ihex:intel_hex_controller|            ; 1960 (1960)         ; 2208 (2208)               ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller                                                               ; ihex               ; work         ;
+;             |uart_rx:rx_part|                      ; 67 (67)             ; 47 (47)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part                                                                         ; uart_rx            ; work         ;
+;             |uart_tx:tx_part|                      ; 64 (64)             ; 44 (44)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_tx:tx_part                                                                         ; uart_tx            ; work         ;
+;             |wbuart_with_buffer:uart_ctrlr|        ; 101 (101)           ; 68 (68)                   ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr                                                           ; wbuart_with_buffer ; work         ;
+;                |altsyncram:rx_buffer_rtl_0|        ; 0 (0)               ; 0 (0)                     ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|altsyncram:rx_buffer_rtl_0                                ; altsyncram         ; work         ;
+;                   |altsyncram_2tg1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|altsyncram:rx_buffer_rtl_0|altsyncram_2tg1:auto_generated ; altsyncram_2tg1    ; work         ;
++----------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                                                                     ;
++------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; Name                                                                                                                                                             ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF  ;
++------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|altsyncram:rx_buffer_rtl_0|altsyncram_2tg1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 512          ; 8            ; 512          ; 8            ; 4096 ; None ;
++------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
 
 
 Encoding Type:  One-Hot
@@ -287,22 +329,51 @@ Encoding Type:  One-Hot
 +--------------------+--------------------+-------------------+----------------+---------------+--------------+-------------+------------+-------------+-------------+-------------+-------------+------------+------------+------------+------------+------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                                                                                                                                        ;
-+--------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
-; Register name                                                                                          ; Reason for Removal                                                                                               ;
-+--------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
-; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[7]   ; Merged with FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[5] ;
-; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[6]   ; Stuck at VCC due to stuck port data_in                                                                           ;
-; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[5]   ; Stuck at GND due to stuck port data_in                                                                           ;
-; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state~5 ; Lost fanout                                                                                                      ;
-; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state~6 ; Lost fanout                                                                                                      ;
-; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state~15       ; Lost fanout                                                                                                      ;
-; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state~16       ; Lost fanout                                                                                                      ;
-; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state~17       ; Lost fanout                                                                                                      ;
-; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state~18       ; Lost fanout                                                                                                      ;
-; Total Number of Removed Registers = 9                                                                  ;                                                                                                                  ;
-+--------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------+
+; State Machine - |system|FullSystemTop:top|ProcTop:core|Execute:ex|LoadStore:lsu1|state ;
++----------+----------+----------+-------------------------------------------------------+
+; Name     ; state.00 ; state.10 ; state.01                                              ;
++----------+----------+----------+-------------------------------------------------------+
+; state.00 ; 0        ; 0        ; 0                                                     ;
+; state.01 ; 1        ; 0        ; 1                                                     ;
+; state.10 ; 1        ; 1        ; 0                                                     ;
++----------+----------+----------+-------------------------------------------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------+
+; State Machine - |system|FullSystemTop:top|ProcTop:core|Fetch:fetch|wbState ;
++------------+------------+------------+------------+------------------------+
+; Name       ; wbState.11 ; wbState.10 ; wbState.01 ; wbState.00             ;
++------------+------------+------------+------------+------------------------+
+; wbState.00 ; 0          ; 0          ; 0          ; 0                      ;
+; wbState.01 ; 0          ; 0          ; 1          ; 1                      ;
+; wbState.10 ; 0          ; 1          ; 0          ; 1                      ;
+; wbState.11 ; 1          ; 0          ; 0          ; 1                      ;
++------------+------------+------------+------------+------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                                                                              ;
++--------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
+; Register name                                                                                                ; Reason for Removal                                                                                               ;
++--------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|o_wb_data[9..30] ; Stuck at GND due to stuck port data_in                                                                           ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[7]         ; Merged with FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[5] ;
+; FullSystemTop:top|ProcTop:core|DPRF:dprf|registers_0[0..31]                                                  ; Lost fanout                                                                                                      ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[6]         ; Stuck at VCC due to stuck port data_in                                                                           ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[5]         ; Stuck at GND due to stuck port data_in                                                                           ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state~5       ; Lost fanout                                                                                                      ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state~6       ; Lost fanout                                                                                                      ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state~15             ; Lost fanout                                                                                                      ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state~16             ; Lost fanout                                                                                                      ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state~17             ; Lost fanout                                                                                                      ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state~18             ; Lost fanout                                                                                                      ;
+; FullSystemTop:top|ProcTop:core|Fetch:fetch|wbState~2                                                         ; Lost fanout                                                                                                      ;
+; FullSystemTop:top|ProcTop:core|Fetch:fetch|wbState~3                                                         ; Lost fanout                                                                                                      ;
+; Total Number of Removed Registers = 65                                                                       ;                                                                                                                  ;
++--------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -310,12 +381,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 2590  ;
-; Number of registers using Synchronous Clear  ; 87    ;
-; Number of registers using Synchronous Load   ; 113   ;
+; Total registers                              ; 4027  ;
+; Number of registers using Synchronous Clear  ; 157   ;
+; Number of registers using Synchronous Load   ; 193   ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 2494  ;
+; Number of registers using Clock Enable       ; 3816  ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -325,67 +396,147 @@ Encoding Type:  One-Hot
 +-----------------------------------------------------------------------------------------+---------+
 ; Inverted Register                                                                       ; Fan out ;
 +-----------------------------------------------------------------------------------------+---------+
-; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part|i_rx_prev ; 1       ;
 ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part|i_rx_db   ; 3       ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part|i_rx_prev ; 1       ;
 ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part|i_rx_int  ; 1       ;
 ; Total number of inverted registers = 3                                                  ;         ;
 +-----------------------------------------------------------------------------------------+---------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                 ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                       ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------+
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|cmd[4]           ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|len[3]           ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|addr[9]          ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|cmp_sum[3]       ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBLeds:leds|ledBuf_0[0]                                                                ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBLeds:leds|ledBuf_1[1]                                                                ;
-; 3:1                ; 61 bits   ; 122 LEs       ; 61 LEs               ; 61 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|wbReqest_bits_data[17]                                      ;
-; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|bankActivation_0_bits[1]                                    ;
-; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|bankActivation_1_bits[1]                                    ;
-; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|bankActivation_2_bits[10]                                   ;
-; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|bankActivation_3_bits[10]                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|refreshTimeout[17]                                          ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|addr[5]          ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_tx:tx_part|state[1]                   ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_tx:tx_part|counter[2]                 ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|activationCounter_0[6]                                      ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|activationCounter_1[5]                                      ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|activationCounter_2[1]                                      ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|activationCounter_3[12]                                     ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|refreshCounter[14]                                          ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part|clk_counter[8]             ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|cmd[1]           ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|addr[0]          ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part|internal_state[0]          ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_sel[3]        ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_addr[28]      ;
-; 4:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_addr[9]       ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_mosi_data[24] ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_mosi_data[16] ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_mosi_data[9]  ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_mosi_data[1]  ;
-; 257:1              ; 16 bits   ; 2736 LEs      ; 16 LEs               ; 2720 LEs               ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|addr_offset[2]   ;
-; 7:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|buffer_fill[6]   ;
-; 11:1               ; 8 bits    ; 56 LEs        ; 8 LEs                ; 48 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|computed_sum[2]  ;
-; 18:1               ; 21 bits   ; 252 LEs       ; 42 LEs               ; 210 LEs                ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|delayCounter[19]                                            ;
-; 7:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|buffer_fill[1]   ;
-; 9:1                ; 2 bits    ; 12 LEs        ; 0 LEs                ; 12 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[6]     ;
-; 136:1              ; 2 bits    ; 180 LEs       ; 18 LEs               ; 162 LEs                ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[3]     ;
-; 136:1              ; 2 bits    ; 180 LEs       ; 10 LEs               ; 170 LEs                ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[1]     ;
-; 4:1                ; 14 bits   ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; No         ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|_GEN_22                                                     ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|Add2             ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|io_sdram_addr[0]                                            ;
-; 5:1                ; 9 bits    ; 27 LEs        ; 27 LEs               ; 0 LEs                  ; No         ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|io_sdram_addr[3]                                            ;
-; 15:1               ; 2 bits    ; 20 LEs        ; 8 LEs                ; 12 LEs                 ; No         ; |system|FullSystemTop:top|WBSDRAMCtlr:dramController|io_sdram_dqm[1]                                             ;
-; 256:1              ; 8 bits    ; 1360 LEs      ; 1360 LEs             ; 0 LEs                  ; No         ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|Mux7             ;
-; 22:1               ; 10 bits   ; 140 LEs       ; 120 LEs              ; 20 LEs                 ; No         ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state            ;
-; 22:1               ; 2 bits    ; 28 LEs        ; 20 LEs               ; 8 LEs                  ; No         ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state            ;
-; 27:1               ; 2 bits    ; 36 LEs        ; 14 LEs               ; 22 LEs                 ; No         ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state            ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Added for RAM Pass-Through Logic                                                                                                                                                                                           ;
++------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+
+; Register Name                                                                                                          ; RAM Name                                                                                                    ;
++------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[0]  ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[1]  ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[2]  ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[3]  ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[4]  ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[5]  ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[6]  ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[7]  ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[8]  ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[9]  ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[10] ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[11] ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[12] ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[13] ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[14] ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[15] ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[16] ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[17] ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[18] ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[19] ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[20] ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[21] ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[22] ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[23] ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[24] ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[25] ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
+; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0_bypass[26] ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0 ;
++------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------------------------------+
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|cmd[6]                  ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|len[2]                  ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|addr[8]                 ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|cmp_sum[3]              ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|o_wb_data[31]       ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |system|FullSystemTop:top|ProcTop:core|Execute:ex|outBuf_rd[4]                                                          ;
+; 3:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController|wbReqest_bits_addr[22]                                       ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController|refreshTimeout[14]                                           ;
+; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController|bankActivation_0_bits[12]                                    ;
+; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController|bankActivation_1_bits[7]                                     ;
+; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController|bankActivation_2_bits[1]                                     ;
+; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController|bankActivation_3_bits[7]                                     ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController|dataBuffer_0[31]                                             ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_write_pointer[1] ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |system|FullSystemTop:top|WBLeds:leds|ledBuf_1[0]                                                                       ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSSeg:ssegs|dataBuf_0[1]                                                                     ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|addr[7]                 ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController|activationCounter_0[15]                                      ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController|activationCounter_1[11]                                      ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController|activationCounter_2[10]                                      ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController|activationCounter_3[9]                                       ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_tx:tx_part|state[0]                          ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_tx:tx_part|counter[2]                        ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBSSeg:ssegs|dataBuf_2[3]                                                                     ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBSSeg:ssegs|dataBuf_3[2]                                                                     ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController|refreshCounter[0]                                            ;
+; 4:1                ; 39 bits   ; 78 LEs        ; 39 LEs               ; 39 LEs                 ; Yes        ; |system|FullSystemTop:top|ProcTop:core|IDRR:idrr|outBuf_opcode[2]                                                       ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part|clk_counter[10]                   ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|cmd[0]                  ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|addr[0]                 ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController|bankActivation_1_valid                                       ;
+; 5:1                ; 15 bits   ; 45 LEs        ; 30 LEs               ; 15 LEs                 ; Yes        ; |system|FullSystemTop:top|WBInterconnect:interconnect_|wbdata[19]                                                       ;
+; 5:1                ; 7 bits    ; 21 LEs        ; 14 LEs               ; 7 LEs                  ; Yes        ; |system|FullSystemTop:top|WBInterconnect:interconnect_|wbdata[14]                                                       ;
+; 5:1                ; 9 bits    ; 27 LEs        ; 27 LEs               ; 0 LEs                  ; Yes        ; |system|FullSystemTop:top|WBInterconnect:interconnect_|wbdata[2]                                                        ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part|internal_state[2]                 ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|o_wb_data[4]        ;
+; 5:1                ; 10 bits   ; 30 LEs        ; 10 LEs               ; 20 LEs                 ; Yes        ; |system|FullSystemTop:top|ProcTop:core|IDRR:idrr|outBuf_func7[2]                                                        ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |system|FullSystemTop:top|ProcTop:core|Fetch:fetch|pc[1]                                                                ;
+; 5:1                ; 30 bits   ; 90 LEs        ; 60 LEs               ; 30 LEs                 ; Yes        ; |system|FullSystemTop:top|ProcTop:core|Fetch:fetch|pc[3]                                                                ;
+; 6:1                ; 11 bits   ; 44 LEs        ; 22 LEs               ; 22 LEs                 ; Yes        ; |system|FullSystemTop:top|ProcTop:core|IDRR:idrr|outBuf_imm[30]                                                         ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |system|FullSystemTop:top|ProcTop:core|IDRR:idrr|outBuf_imm[16]                                                         ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 5 LEs                ; 15 LEs                 ; Yes        ; |system|FullSystemTop:top|ProcTop:core|IDRR:idrr|outBuf_rd[4]                                                           ;
+; 7:1                ; 6 bits    ; 24 LEs        ; 6 LEs                ; 18 LEs                 ; Yes        ; |system|FullSystemTop:top|ProcTop:core|IDRR:idrr|outBuf_imm[8]                                                          ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_sel[3]               ;
+; 6:1                ; 64 bits   ; 256 LEs       ; 64 LEs               ; 192 LEs                ; Yes        ; |system|FullSystemTop:top|ProcTop:core|Fetch:fetch|fetchBuf_pc[12]                                                      ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 8 LEs                ; 12 LEs                 ; Yes        ; |system|FullSystemTop:top|ProcTop:core|IDRR:idrr|outBuf_imm[3]                                                          ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_addr[24]             ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_addr[9]              ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_mosi_data[29]        ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_mosi_data[23]        ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_mosi_data[8]         ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_mosi_data[4]         ;
+; 35:1               ; 32 bits   ; 736 LEs       ; 672 LEs              ; 64 LEs                 ; Yes        ; |system|FullSystemTop:top|ProcTop:core|IDRR:idrr|outBuf_rs1Val[31]                                                      ;
+; 35:1               ; 32 bits   ; 736 LEs       ; 672 LEs              ; 64 LEs                 ; Yes        ; |system|FullSystemTop:top|ProcTop:core|IDRR:idrr|outBuf_rs2Val[27]                                                      ;
+; 257:1              ; 16 bits   ; 2736 LEs      ; 16 LEs               ; 2720 LEs               ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|addr_offset[2]          ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|buffer_fill[7]          ;
+; 11:1               ; 8 bits    ; 56 LEs        ; 8 LEs                ; 48 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|computed_sum[1]         ;
+; 7:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|buffer_fill[4]          ;
+; 12:1               ; 22 bits   ; 176 LEs       ; 110 LEs              ; 66 LEs                 ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController|delayCounter[17]                                             ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 0 LEs                ; 12 LEs                 ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[5]            ;
+; 136:1              ; 2 bits    ; 180 LEs       ; 18 LEs               ; 162 LEs                ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[4]            ;
+; 136:1              ; 2 bits    ; 180 LEs       ; 10 LEs               ; 170 LEs                ; Yes        ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[1]            ;
+; 22:1               ; 3 bits    ; 42 LEs        ; 36 LEs               ; 6 LEs                  ; Yes        ; |system|FullSystemTop:top|ProcTop:core|Execute:ex|outBuf_rdVal[4]                                                       ;
+; 22:1               ; 7 bits    ; 98 LEs        ; 84 LEs               ; 14 LEs                 ; Yes        ; |system|FullSystemTop:top|ProcTop:core|Execute:ex|outBuf_rdVal[8]                                                       ;
+; 24:1               ; 7 bits    ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |system|FullSystemTop:top|ProcTop:core|Execute:ex|outBuf_rdVal[18]                                                      ;
+; 23:1               ; 2 bits    ; 30 LEs        ; 24 LEs               ; 6 LEs                  ; Yes        ; |system|FullSystemTop:top|ProcTop:core|Execute:ex|outBuf_rdVal[2]                                                       ;
+; 25:1               ; 4 bits    ; 64 LEs        ; 48 LEs               ; 16 LEs                 ; Yes        ; |system|FullSystemTop:top|ProcTop:core|Execute:ex|outBuf_rdVal[26]                                                      ;
+; 26:1               ; 2 bits    ; 34 LEs        ; 28 LEs               ; 6 LEs                  ; Yes        ; |system|FullSystemTop:top|ProcTop:core|Execute:ex|outBuf_rdVal[29]                                                      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController|wbReqest_bits_data[0]                                        ;
+; 3:1                ; 30 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; No         ; |system|FullSystemTop:top|WBArbiter:arbiter|io_output_addr[1]                                                           ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |system|FullSystemTop:top|ProcTop:core|Execute:ex|LoadStore:lsu1|ShiftRight0                                            ;
+; 4:1                ; 14 bits   ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; No         ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController|_GEN_22[3]                                                   ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; No         ; |system|FullSystemTop:top|ProcTop:core|IDRR:idrr|decodedInst_rs2[4]                                                     ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; No         ; |system|FullSystemTop:top|ProcTop:core|IDRR:idrr|decodedInst_rs1[1]                                                     ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |system|FullSystemTop:top|WBArbiter:arbiter|io_output_mosi_data[8]                                                      ;
+; 4:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_read_pointer     ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|Add2                    ;
+; 16:1               ; 4 bits    ; 40 LEs        ; 24 LEs               ; 16 LEs                 ; No         ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController|io_sdram_dqm[0]                                              ;
+; 5:1                ; 16 bits   ; 48 LEs        ; 32 LEs               ; 16 LEs                 ; No         ; |system|FullSystemTop:top|WBArbiter:arbiter|io_output_mosi_data[21]                                                     ;
+; 5:1                ; 9 bits    ; 27 LEs        ; 27 LEs               ; 0 LEs                  ; No         ; |system|FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController|io_sdram_addr[1]                                             ;
+; 256:1              ; 8 bits    ; 1360 LEs      ; 1360 LEs             ; 0 LEs                  ; No         ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|Mux6                    ;
+; 22:1               ; 10 bits   ; 140 LEs       ; 120 LEs              ; 20 LEs                 ; No         ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state                   ;
+; 22:1               ; 2 bits    ; 28 LEs        ; 20 LEs               ; 8 LEs                  ; No         ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state                   ;
+; 27:1               ; 2 bits    ; 36 LEs        ; 14 LEs               ; 22 LEs                 ; No         ; |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|ihex:intel_hex_controller|state                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|altsyncram:rx_buffer_rtl_0|altsyncram_2tg1:auto_generated ;
++---------------------------------+--------------------+------+----------------------------------------------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                                                             ;
++---------------------------------+--------------------+------+----------------------------------------------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                                                              ;
++---------------------------------+--------------------+------+----------------------------------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------+
@@ -444,6 +595,87 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|altsyncram:rx_buffer_rtl_0 ;
++------------------------------------+----------------------+-------------------------------------------------------------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                                                                        ;
++------------------------------------+----------------------+-------------------------------------------------------------------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                                                                                     ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                                                                                  ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                                                                                ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                                                                                ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                                                                              ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                                                                                     ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                                                                                                     ;
+; WIDTH_A                            ; 8                    ; Untyped                                                                                                     ;
+; WIDTHAD_A                          ; 9                    ; Untyped                                                                                                     ;
+; NUMWORDS_A                         ; 512                  ; Untyped                                                                                                     ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                                                                                     ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                                                                                     ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                                                                                     ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                                                                                     ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                                                                                     ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                                                                                     ;
+; WIDTH_B                            ; 8                    ; Untyped                                                                                                     ;
+; WIDTHAD_B                          ; 9                    ; Untyped                                                                                                     ;
+; NUMWORDS_B                         ; 512                  ; Untyped                                                                                                     ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                                                                                     ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                                                                                     ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                                                                                     ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                                                                                                     ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                                                                                     ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                                                                                     ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                                                                                     ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                                                                     ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                                                                                     ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                                                                                     ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                                                                     ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                                                                                     ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                                                                                                     ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                                                                                     ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                                                                                     ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                                                                                     ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA             ; Untyped                                                                                                     ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                                                                                     ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                                                                                     ;
+; INIT_FILE                          ; UNUSED               ; Untyped                                                                                                     ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                                                                                     ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                                                                                     ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                                                                                                     ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                                                                                     ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                                                                                                     ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                                                                                     ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                                                                                     ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                                                                                     ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                                                                                     ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                                                                                     ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                                                                                     ;
+; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                                                                                                     ;
+; CBXI_PARAMETER                     ; altsyncram_2tg1      ; Untyped                                                                                                     ;
++------------------------------------+----------------------+-------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                                                                                                   ;
++-------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
+; Name                                      ; Value                                                                                                                  ;
++-------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
+; Number of entity instances                ; 1                                                                                                                      ;
+; Entity Instance                           ; FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|altsyncram:rx_buffer_rtl_0 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                                                                                              ;
+;     -- WIDTH_A                            ; 8                                                                                                                      ;
+;     -- NUMWORDS_A                         ; 512                                                                                                                    ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                                                           ;
+;     -- WIDTH_B                            ; 8                                                                                                                      ;
+;     -- NUMWORDS_B                         ; 512                                                                                                                    ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                                                                                 ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                                                           ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                                                                   ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; OLD_DATA                                                                                                               ;
++-------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
+
+
 +--------------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m"                          ;
 +----------+--------+----------+-------------------------------------------------------------------------------------+
@@ -453,33 +685,47 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------+--------+----------+-------------------------------------------------------------------------------------+
 
 
++--------------------------------------------------------------------------+
+; Port Connectivity Checks: "FullSystemTop:top|ProcTop:core|WBArbiter:arb" ;
++------------------------+-------+----------+------------------------------+
+; Port                   ; Type  ; Severity ; Details                      ;
++------------------------+-------+----------+------------------------------+
+; io_masters_1_we        ; Input ; Info     ; Stuck at GND                 ;
+; io_masters_1_mosi_data ; Input ; Info     ; Stuck at GND                 ;
+; io_masters_1_sel       ; Input ; Info     ; Stuck at VCC                 ;
++------------------------+-------+----------+------------------------------+
+
+
 +-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 59                          ;
-; cycloneiii_ff         ; 2590                        ;
-;     ENA               ; 2337                        ;
-;     ENA SCLR          ; 77                          ;
+; boundary_port         ; 151                         ;
+; cycloneiii_ff         ; 4027                        ;
+;     ENA               ; 3608                        ;
+;     ENA SCLR          ; 73                          ;
+;     ENA SCLR SLD      ; 55                          ;
 ;     ENA SLD           ; 80                          ;
-;     SCLR              ; 10                          ;
-;     SLD               ; 33                          ;
-;     plain             ; 53                          ;
-; cycloneiii_io_obuf    ; 16                          ;
-; cycloneiii_lcell_comb ; 2597                        ;
-;     arith             ; 241                         ;
-;         2 data inputs ; 211                         ;
-;         3 data inputs ; 30                          ;
-;     normal            ; 2356                        ;
+;     SCLR              ; 9                           ;
+;     SCLR SLD          ; 20                          ;
+;     SLD               ; 38                          ;
+;     plain             ; 144                         ;
+; cycloneiii_io_obuf    ; 32                          ;
+; cycloneiii_lcell_comb ; 5913                        ;
+;     arith             ; 571                         ;
+;         2 data inputs ; 285                         ;
+;         3 data inputs ; 286                         ;
+;     normal            ; 5342                        ;
 ;         0 data inputs ; 3                           ;
-;         1 data inputs ; 17                          ;
-;         2 data inputs ; 176                         ;
-;         3 data inputs ; 382                         ;
-;         4 data inputs ; 1778                        ;
+;         1 data inputs ; 67                          ;
+;         2 data inputs ; 394                         ;
+;         3 data inputs ; 785                         ;
+;         4 data inputs ; 4093                        ;
+; cycloneiii_ram_block  ; 8                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 12.00                       ;
-; Average LUT depth     ; 7.30                        ;
+; Max LUT depth         ; 15.60                       ;
+; Average LUT depth     ; 8.03                        ;
 +-----------------------+-----------------------------+
 
 
@@ -488,7 +734,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:08     ;
+; Top            ; 00:00:15     ;
 +----------------+--------------+
 
 
@@ -498,10 +744,12 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
-    Info: Processing started: Sat Nov 27 17:45:42 2021
+    Info: Processing started: Mon Nov 29 15:05:17 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off system -c system
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 32 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/singleportram.v
+    Info (12023): Found entity 1: SinglePortRam File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/SinglePortRam.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_buffer.sv
     Info (12023): Found entity 1: wbuart_with_buffer File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_buffer.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wishbone.sv
@@ -516,19 +764,41 @@ Info (12021): Found 1 design units, including 1 entities, in source file /users/
     Info (12023): Found entity 1: uart_rx File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_rx.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/ihex.sv
     Info (12023): Found entity 1: ihex File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/ihex.sv Line: 15
-Info (12021): Found 5 design units, including 5 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/fullsystemtop.v
-    Info (12023): Found entity 1: WBLeds File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1
-    Info (12023): Found entity 2: WBUartIhexWrapper File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 91
-    Info (12023): Found entity 3: WBSDRAMCtlr File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 190
-    Info (12023): Found entity 4: WBInterconnect File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 905
-    Info (12023): Found entity 5: FullSystemTop File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1053
+Info (12021): Found 16 design units, including 16 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/fullsystemtop.v
+    Info (12023): Found entity 1: Fetch File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1
+    Info (12023): Found entity 2: DPRF File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 171
+    Info (12023): Found entity 3: IDRR File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 516
+    Info (12023): Found entity 4: ALU File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 788
+    Info (12023): Found entity 5: LoadStore File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 835
+    Info (12023): Found entity 6: BranchUnit File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 972
+    Info (12023): Found entity 7: Execute File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1007
+    Info (12023): Found entity 8: WBArbiter File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1229
+    Info (12023): Found entity 9: ProcTop File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1332
+    Info (12023): Found entity 10: WBLeds File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1624
+    Info (12023): Found entity 11: SSEG File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1718
+    Info (12023): Found entity 12: WBSSeg File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1994
+    Info (12023): Found entity 13: WBUartIhexWrapper File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 2154
+    Info (12023): Found entity 14: WBSDRAMCtlr File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 2253
+    Info (12023): Found entity 15: WBInterconnect File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 2949
+    Info (12023): Found entity 16: FullSystemTop File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 3112
 Warning (12125): Using design file system.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: system File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/system.sv Line: 1
 Info (12127): Elaborating entity "system" for the top level hierarchy
-Info (12128): Elaborating entity "FullSystemTop" for hierarchy "FullSystemTop:top" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/system.sv Line: 64
-Info (12128): Elaborating entity "WBLeds" for hierarchy "FullSystemTop:top|WBLeds:leds" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1176
-Info (12128): Elaborating entity "WBUartIhexWrapper" for hierarchy "FullSystemTop:top|WBUartIhexWrapper:ihexUart" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1201
-Info (12128): Elaborating entity "WBUartWithIhex" for hierarchy "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 165
+Info (12128): Elaborating entity "FullSystemTop" for hierarchy "FullSystemTop:top" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/system.sv Line: 92
+Info (12128): Elaborating entity "ProcTop" for hierarchy "FullSystemTop:top|ProcTop:core" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 3315
+Info (12128): Elaborating entity "Fetch" for hierarchy "FullSystemTop:top|ProcTop:core|Fetch:fetch" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1464
+Info (12128): Elaborating entity "DPRF" for hierarchy "FullSystemTop:top|ProcTop:core|DPRF:dprf" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1473
+Info (12128): Elaborating entity "IDRR" for hierarchy "FullSystemTop:top|ProcTop:core|IDRR:idrr" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1497
+Info (12128): Elaborating entity "Execute" for hierarchy "FullSystemTop:top|ProcTop:core|Execute:ex" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1525
+Info (12128): Elaborating entity "ALU" for hierarchy "FullSystemTop:top|ProcTop:core|Execute:ex|ALU:alu1" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1094
+Info (12128): Elaborating entity "LoadStore" for hierarchy "FullSystemTop:top|ProcTop:core|Execute:ex|LoadStore:lsu1" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1115
+Info (12128): Elaborating entity "BranchUnit" for hierarchy "FullSystemTop:top|ProcTop:core|Execute:ex|BranchUnit:bru" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1126
+Info (12128): Elaborating entity "WBArbiter" for hierarchy "FullSystemTop:top|ProcTop:core|WBArbiter:arb" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1559
+Info (12128): Elaborating entity "WBLeds" for hierarchy "FullSystemTop:top|WBLeds:leds" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 3328
+Info (12128): Elaborating entity "WBSSeg" for hierarchy "FullSystemTop:top|WBSSeg:ssegs" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 3347
+Info (12128): Elaborating entity "SSEG" for hierarchy "FullSystemTop:top|WBSSeg:ssegs|SSEG:sseg" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 2044
+Info (12128): Elaborating entity "WBUartIhexWrapper" for hierarchy "FullSystemTop:top|WBUartIhexWrapper:ihexUart" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 3372
+Info (12128): Elaborating entity "WBUartWithIhex" for hierarchy "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 2228
 Warning (10230): Verilog HDL assignment warning at wbuart_with_ihex.sv(71): truncated value with size 32 to match size of target (1) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_ihex.sv Line: 71
 Info (12128): Elaborating entity "uart_rx" for hierarchy "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|uart_rx:rx_part" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_ihex.sv Line: 47
 Warning (10230): Verilog HDL assignment warning at uart_rx.sv(41): truncated value with size 32 to match size of target (4) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/uart_rx.sv Line: 41
@@ -552,25 +822,65 @@ Warning (10230): Verilog HDL assignment warning at wbuart_with_buffer.sv(43): tr
 Warning (10230): Verilog HDL assignment warning at wbuart_with_buffer.sv(77): truncated value with size 32 to match size of target (9) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_buffer.sv Line: 77
 Warning (10230): Verilog HDL assignment warning at wbuart_with_buffer.sv(103): truncated value with size 32 to match size of target (9) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_buffer.sv Line: 103
 Warning (10034): Output port "o_wb_err" at wbuart_with_buffer.sv(29) has no driver File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/wbuart_with_buffer.sv Line: 29
-Info (12128): Elaborating entity "WBSDRAMCtlr" for hierarchy "FullSystemTop:top|WBSDRAMCtlr:dramController" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1226
-Info (12128): Elaborating entity "WBInterconnect" for hierarchy "FullSystemTop:top|WBInterconnect:interconnect_" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 1265
+Info (12128): Elaborating entity "WBSDRAMCtlr" for hierarchy "FullSystemTop:top|WBSDRAMCtlr:ramWB_dramController" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 3431
+Info (12128): Elaborating entity "WBInterconnect" for hierarchy "FullSystemTop:top|WBInterconnect:interconnect_" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/riscv_full/FullSystemTop.v Line: 3477
+Warning (276020): Inferred RAM node "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
+Info (19000): Inferred 1 megafunctions from design logic
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|rx_buffer_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 8
+        Info (286033): Parameter WIDTHAD_A set to 9
+        Info (286033): Parameter NUMWORDS_A set to 512
+        Info (286033): Parameter WIDTH_B set to 8
+        Info (286033): Parameter WIDTHAD_B set to 9
+        Info (286033): Parameter NUMWORDS_B set to 512
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter READ_DURING_WRITE_MODE_MIXED_PORTS set to OLD_DATA
+Info (12130): Elaborated megafunction instantiation "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|altsyncram:rx_buffer_rtl_0"
+Info (12133): Instantiated megafunction "FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|altsyncram:rx_buffer_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "8"
+    Info (12134): Parameter "WIDTHAD_A" = "9"
+    Info (12134): Parameter "NUMWORDS_A" = "512"
+    Info (12134): Parameter "WIDTH_B" = "8"
+    Info (12134): Parameter "WIDTHAD_B" = "9"
+    Info (12134): Parameter "NUMWORDS_B" = "512"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "READ_DURING_WRITE_MODE_MIXED_PORTS" = "OLD_DATA"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_2tg1.tdf
+    Info (12023): Found entity 1: altsyncram_2tg1 File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/db/altsyncram_2tg1.tdf Line: 27
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "io_sdram_cke" is stuck at VCC File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/system.sv Line: 29
+    Warning (13410): Pin "io_sdram_cke" is stuck at VCC File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/system.sv Line: 38
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 6 registers lost all their fanouts during netlist optimizations.
+Info (17049): 40 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/output_files/system.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 4836 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 3 input pins
-    Info (21059): Implemented 40 output pins
-    Info (21060): Implemented 16 bidirectional pins
-    Info (21061): Implemented 4777 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 21 warnings
-    Info: Peak virtual memory: 4878 megabytes
-    Info: Processing ended: Sat Nov 27 17:45:59 2021
-    Info: Elapsed time: 00:00:17
-    Info: Total CPU time (on all processors): 00:00:26
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "io_switches[16]" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/system.sv Line: 43
+Info (21057): Implemented 9236 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 21 input pins
+    Info (21059): Implemented 98 output pins
+    Info (21060): Implemented 32 bidirectional pins
+    Info (21061): Implemented 9077 logic cells
+    Info (21064): Implemented 8 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 24 warnings
+    Info: Peak virtual memory: 4914 megabytes
+    Info: Processing ended: Mon Nov 29 15:05:41 2021
+    Info: Elapsed time: 00:00:24
+    Info: Total CPU time (on all processors): 00:00:35
 
 
 +------------------------------------------+

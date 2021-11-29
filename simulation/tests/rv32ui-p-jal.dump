@@ -1,0 +1,57 @@
+
+rv32ui-p-jal:     file format elf32-littleriscv
+
+
+Disassembly of section .text.init:
+
+00000000 <_start>:
+   0:	00200193          	li	gp,2
+   4:	00000093          	li	ra,0
+   8:	0100026f          	jal	tp,18 <target_2>
+
+0000000c <linkaddr_2>:
+   c:	00000013          	nop
+  10:	00000013          	nop
+  14:	0400006f          	j	54 <fail>
+
+00000018 <target_2>:
+  18:	00000117          	auipc	sp,0x0
+  1c:	ff410113          	addi	sp,sp,-12 # c <linkaddr_2>
+  20:	02411a63          	bne	sp,tp,54 <fail>
+
+00000024 <test_3>:
+  24:	00100093          	li	ra,1
+  28:	0140006f          	j	3c <test_3+0x18>
+  2c:	00108093          	addi	ra,ra,1
+  30:	00108093          	addi	ra,ra,1
+  34:	00108093          	addi	ra,ra,1
+  38:	00108093          	addi	ra,ra,1
+  3c:	00108093          	addi	ra,ra,1
+  40:	00108093          	addi	ra,ra,1
+  44:	00300393          	li	t2,3
+  48:	00300193          	li	gp,3
+  4c:	00709463          	bne	ra,t2,54 <fail>
+  50:	00301663          	bne	zero,gp,5c <pass>
+
+00000054 <fail>:
+  54:	f00008b7          	lui	a7,0xf0000
+  58:	0038a023          	sw	gp,0(a7) # f0000000 <_end+0xeffff000>
+
+0000005c <pass>:
+  5c:	000071b7          	lui	gp,0x7
+  60:	96918193          	addi	gp,gp,-1687 # 6969 <_end+0x5969>
+  64:	f00008b7          	lui	a7,0xf0000
+  68:	0038a023          	sw	gp,0(a7) # f0000000 <_end+0xeffff000>
+
+0000006c <here>:
+  6c:	0000006f          	j	6c <here>
+  70:	0000                	unimp
+  72:	0000                	unimp
+  74:	0000                	unimp
+  76:	0000                	unimp
+  78:	0000                	unimp
+  7a:	0000                	unimp
+  7c:	0000                	unimp
+  7e:	0000                	unimp
+  80:	0000                	unimp
+  82:	0000                	unimp

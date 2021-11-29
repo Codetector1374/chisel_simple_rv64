@@ -1,0 +1,96 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Mon Nov 29 13:52:57 2021
+[*]
+[dumpfile] "C:\Users\user\projects\github.com\codetector1374\chisel_simple_rv64\simulation\cmake-build-debug\test_trace.vcd"
+[dumpfile_mtime] "Mon Nov 29 13:50:29 2021"
+[dumpfile_size] 1143714
+[savefile] "C:\Users\user\projects\github.com\codetector1374\chisel_simple_rv64\simulation\top_full.gtkw"
+[timestart] 31
+[size] 3072 1665
+[pos] -1 -1
+*-1.000000 35 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TOP.
+[treeopen] TOP.FullSystemTop.
+[treeopen] TOP.FullSystemTop.core.
+[treeopen] TOP.FullSystemTop.core.ex.
+[sst_width] 307
+[signals_width] 464
+[sst_expanded] 1
+[sst_vpaned_height] 528
+@22
+TOP.io_leds[15:0]
+@200
+-Fetch
+@22
+TOP.FullSystemTop.core.fetch.fetchBuf_pc[31:0]
+TOP.FullSystemTop.core.fetch.fetchBuf_inst[31:0]
+@200
+-IDRR
+@29
+[color] 7
+TOP.FullSystemTop.core.idrr.io_pipeSignalsOut_pipeStall
+@2028
+^1 C:\Users\user\projects\github.com\codetector1374\chisel_simple_rv64\simulation\opcode.dict
+TOP.FullSystemTop.core.idrr.opcode[6:0]
+@29
+[color] 7
+TOP.FullSystemTop.core.idrr.io_pipeSignalsIn_pipeStall
+@200
+-EX
+@29
+[color] 7
+TOP.FullSystemTop.core.ex.io_pipeSignalsOut_pipeStall
+@22
+TOP.FullSystemTop.core.idrr.outBuf_pc[31:0]
+@2028
+^1 C:\Users\user\projects\github.com\codetector1374\chisel_simple_rv64\simulation\opcode.dict
+TOP.FullSystemTop.core.idrr.outBuf_opcode[6:0]
+@28
+TOP.FullSystemTop.core.ex.io_idrr_func3[2:0]
+@22
+TOP.FullSystemTop.core.ex.io_idrr_func7[6:0]
+TOP.FullSystemTop.core.ex.io_idrr_rd[4:0]
+TOP.FullSystemTop.core.ex.io_idrr_rs1Val[31:0]
+TOP.FullSystemTop.core.ex.io_idrr_rs2Val[31:0]
+@200
+-
+@22
+TOP.FullSystemTop.core.ex.alu1_io_result[31:0]
+TOP.FullSystemTop.core.ex.bru_io_result[31:0]
+TOP.FullSystemTop.core.ex.bru_io_result[31:0]
+@800200
+-MemWB
+@28
+[color] 2
+TOP.FullSystemTop.core.ex.lsu1.state[1:0]
+[color] 2
+TOP.FullSystemTop.core.ex.lsu1.io_wb_cyc
+[color] 2
+TOP.FullSystemTop.core.ex.lsu1.io_wb_stb
+[color] 2
+TOP.FullSystemTop.core.ex.lsu1.io_wb_stall
+[color] 2
+TOP.FullSystemTop.core.ex.lsu1.io_wb_ack
+[color] 2
+TOP.FullSystemTop.core.ex.lsu1.io_wb_we
+@22
+[color] 2
+TOP.FullSystemTop.core.ex.lsu1.io_wb_sel[3:0]
+[color] 2
+TOP.FullSystemTop.core.ex.lsu1.io_wb_addr[31:0]
+[color] 2
+TOP.FullSystemTop.core.ex.lsu1.io_wb_mosi_data[31:0]
+[color] 2
+TOP.FullSystemTop.core.ex.lsu1.io_wb_miso_data[31:0]
+@1000200
+-MemWB
+@200
+-COMMIT
+@22
+TOP.FullSystemTop.core.ex.io_dprf_write_regNo[4:0]
+TOP.FullSystemTop.core.ex.io_dprf_write_data[31:0]
+@200
+-
+[pattern_trace] 1
+[pattern_trace] 0

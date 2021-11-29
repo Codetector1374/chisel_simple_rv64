@@ -40,7 +40,6 @@ class LoadStore extends Module {
   val state = RegInit(WBState.idle)
 
   io.wb <> DontCare
-  io.wb.addr := lsTargetAddr(31, 2)
   when (isLoad) {
     io.wb.sel := "b1111".U
   } .elsewhen (isStore) {
@@ -102,20 +101,22 @@ class LoadStore extends Module {
   io.wb.stb := false.B
   io.wb.cyc := false.B
   io.wb.we := isStore
+  io.wb.addr := lsTargetAddr(31, 2)
   when(state === WBState.idle) {
     when(isLoad || isStore) {
+      state := WBState.strobe
       io.busy := true.B
-
-      io.wb.cyc := true.B
-      io.wb.stb := true.B
-
+    }
+  }.elsewhen(state === WBState.strobe) {
+    io.busy := true.B
+    io.wb.cyc := true.B
+    io.wb.stb := true.B
+    when(!io.wb.stall) {
       when(io.wb.ack) {
         io.busy := false.B
+        state := WBState.idle
         io.result := loadResult
-      }.elsewhen(io.wb.error) {
-        io.busy := false.B
-        io.result := "hDEAD_BEEF".U
-      }.elsewhen(!io.wb.stall) {
+      }.otherwise {
         state := WBState.waitAck
       }
     }

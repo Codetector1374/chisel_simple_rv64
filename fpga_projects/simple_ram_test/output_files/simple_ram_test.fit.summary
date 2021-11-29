@@ -1,18 +1,16 @@
-Fitter Status : Successful - Fri Nov 26 22:47:29 2021
+Fitter Status : Successful - Mon Nov 29 00:09:18 2021
 Quartus Prime Version : 18.0.0 Build 614 04/24/2018 SJ Standard Edition
 Revision Name : simple_ram_test
 Top-level Entity Name : simple_ram_test
-Family : MAX 10
-Device : 10M50DAF484C7G
+Family : Cyclone IV E
+Device : EP4CE115F29C7
 Timing Models : Final
-Total logic elements : 327 / 49,760 ( < 1 % )
-    Total combinational functions : 316 / 49,760 ( < 1 % )
-    Dedicated logic registers : 150 / 49,760 ( < 1 % )
-Total registers : 150
-Total pins : 68 / 360 ( 19 % )
+Total logic elements : 3,679 / 114,480 ( 3 % )
+    Total combinational functions : 2,680 / 114,480 ( 2 % )
+    Dedicated logic registers : 2,628 / 114,480 ( 2 % )
+Total registers : 2628
+Total pins : 138 / 529 ( 26 % )
 Total virtual pins : 0
-Total memory bits : 0 / 1,677,312 ( 0 % )
-Embedded Multiplier 9-bit elements : 0 / 288 ( 0 % )
+Total memory bits : 0 / 3,981,312 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 532 ( 0 % )
 Total PLLs : 0 / 4 ( 0 % )
-UFM blocks : 0 / 1 ( 0 % )
-ADC blocks : 0 / 2 ( 0 % )

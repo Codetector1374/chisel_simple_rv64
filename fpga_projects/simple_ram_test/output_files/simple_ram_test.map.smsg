@@ -1,1 +1,1 @@
-Warning (10273): Verilog HDL warning at simple_ram_test.sv(50): extended using "x" or "z" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/simple_ram_test/simple_ram_test.sv Line: 50
+Warning (10273): Verilog HDL warning at simple_ram_test.sv(69): extended using "x" or "z" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/simple_ram_test/simple_ram_test.sv Line: 69

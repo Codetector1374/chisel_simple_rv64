@@ -107,19 +107,19 @@ RESERVED_INPUT               : AA10      :        :                   :         
 VCCIO3                       : AA11      : power  :                   : 2.5V    : 3         :                
 RESERVED_INPUT               : AA12      :        :                   :         : 3         :                
 RESERVED_INPUT               : AA13      :        :                   :         : 3         :                
-RESERVED_INPUT               : AA14      :        :                   :         : 3         :                
-RESERVED_INPUT               : AA15      :        :                   :         : 4         :                
-RESERVED_INPUT               : AA16      :        :                   :         : 4         :                
-RESERVED_INPUT               : AA17      :        :                   :         : 4         :                
+io_ssegs_7[0]                : AA14      : output : 2.5 V             :         : 3         : Y              
+io_ssegs_6[1]                : AA15      : output : 2.5 V             :         : 4         : Y              
+io_ssegs_6[4]                : AA16      : output : 2.5 V             :         : 4         : Y              
+io_ssegs_6[6]                : AA17      : output : 2.5 V             :         : 4         : Y              
 VCCIO4                       : AA18      : power  :                   : 2.5V    : 4         :                
-RESERVED_INPUT               : AA19      :        :                   :         : 4         :                
+io_ssegs_4[5]                : AA19      : output : 2.5 V             :         : 4         : Y              
 GNDA4                        : AA20      : gnd    :                   :         :           :                
-RESERVED_INPUT               : AA21      :        :                   :         : 4         :                
-RESERVED_INPUT               : AA22      :        :                   :         : 5         :                
-RESERVED_INPUT               : AA23      :        :                   :         : 5         :                
-RESERVED_INPUT               : AA24      :        :                   :         : 5         :                
-RESERVED_INPUT               : AA25      :        :                   :         : 5         :                
-RESERVED_INPUT               : AA26      :        :                   :         : 5         :                
+io_ssegs_3[3]                : AA21      : output : 2.5 V             :         : 4         : Y              
+io_switches[15]              : AA22      : input  : 2.5 V             :         : 5         : Y              
+io_switches[14]              : AA23      : input  : 2.5 V             :         : 5         : Y              
+io_switches[13]              : AA24      : input  : 2.5 V             :         : 5         : Y              
+io_ssegs_2[6]                : AA25      : output : 2.5 V             :         : 5         : Y              
+io_ssegs_2[5]                : AA26      : output : 2.5 V             :         : 5         : Y              
 GND                          : AA27      : gnd    :                   :         :           :                
 VCCIO5                       : AA28      : power  :                   : 2.5V    : 5         :                
 io_sdram_data[10]            : AB1       : bidir  : 2.5 V             :         : 2         : Y              
@@ -136,20 +136,20 @@ RESERVED_INPUT               : AB11      :        :                   :         
 RESERVED_INPUT               : AB12      :        :                   :         : 3         :                
 RESERVED_INPUT               : AB13      :        :                   :         : 3         :                
 RESERVED_INPUT               : AB14      :        :                   :         : 3         :                
-RESERVED_INPUT               : AB15      :        :                   :         : 4         :                
-RESERVED_INPUT               : AB16      :        :                   :         : 4         :                
-RESERVED_INPUT               : AB17      :        :                   :         : 4         :                
-RESERVED_INPUT               : AB18      :        :                   :         : 4         :                
-RESERVED_INPUT               : AB19      :        :                   :         : 4         :                
-RESERVED_INPUT               : AB20      :        :                   :         : 4         :                
+io_ssegs_6[2]                : AB15      : output : 2.5 V             :         : 4         : Y              
+io_ssegs_6[5]                : AB16      : output : 2.5 V             :         : 4         : Y              
+io_ssegs_6[3]                : AB17      : output : 2.5 V             :         : 4         : Y              
+io_ssegs_5[4]                : AB18      : output : 2.5 V             :         : 4         : Y              
+io_ssegs_4[6]                : AB19      : output : 2.5 V             :         : 4         : Y              
+io_ssegs_3[4]                : AB20      : output : 2.5 V             :         : 4         : Y              
 RESERVED_INPUT               : AB21      :        :                   :         : 4         :                
 RESERVED_INPUT               : AB22      :        :                   :         : 4         :                
-RESERVED_INPUT               : AB23      :        :                   :         : 5         :                
-RESERVED_INPUT               : AB24      :        :                   :         : 5         :                
-RESERVED_INPUT               : AB25      :        :                   :         : 5         :                
-RESERVED_INPUT               : AB26      :        :                   :         : 5         :                
-RESERVED_INPUT               : AB27      :        :                   :         : 5         :                
-RESERVED_INPUT               : AB28      :        :                   :         : 5         :                
+io_switches[12]              : AB23      : input  : 2.5 V             :         : 5         : Y              
+io_switches[11]              : AB24      : input  : 2.5 V             :         : 5         : Y              
+io_switches[9]               : AB25      : input  : 2.5 V             :         : 5         : Y              
+io_switches[7]               : AB26      : input  : 2.5 V             :         : 5         : Y              
+io_switches[4]               : AB27      : input  : 2.5 V             :         : 5         : Y              
+io_switches[0]               : AB28      : input  : 2.5 V             :         : 5         : Y              
 io_sdram_data[13]            : AC1       : bidir  : 2.5 V             :         : 2         : Y              
 io_sdram_data[15]            : AC2       : bidir  : 2.5 V             :         : 2         : Y              
 RESERVED_INPUT               : AC3       :        :                   :         : 2         :                
@@ -166,18 +166,18 @@ GND                          : AC13      : gnd    :                   :         
 RESERVED_INPUT               : AC14      :        :                   :         : 3         :                
 RESERVED_INPUT               : AC15      :        :                   :         : 4         :                
 GND                          : AC16      : gnd    :                   :         :           :                
-RESERVED_INPUT               : AC17      :        :                   :         : 4         :                
-RESERVED_INPUT               : AC18      :        :                   :         : 4         :                
+io_ssegs_6[0]                : AC17      : output : 2.5 V             :         : 4         : Y              
+io_ssegs_5[5]                : AC18      : output : 2.5 V             :         : 4         : Y              
 RESERVED_INPUT               : AC19      :        :                   :         : 4         :                
 GND                          : AC20      : gnd    :                   :         :           :                
 RESERVED_INPUT               : AC21      :        :                   :         : 4         :                
 RESERVED_INPUT               : AC22      :        :                   :         : 4         :                
 GND                          : AC23      : gnd    :                   :         :           :                
-RESERVED_INPUT               : AC24      :        :                   :         : 5         :                
-RESERVED_INPUT               : AC25      :        :                   :         : 5         :                
-RESERVED_INPUT               : AC26      :        :                   :         : 5         :                
-RESERVED_INPUT               : AC27      :        :                   :         : 5         :                
-RESERVED_INPUT               : AC28      :        :                   :         : 5         :                
+io_switches[10]              : AC24      : input  : 2.5 V             :         : 5         : Y              
+io_switches[8]               : AC25      : input  : 2.5 V             :         : 5         : Y              
+io_switches[5]               : AC26      : input  : 2.5 V             :         : 5         : Y              
+io_switches[2]               : AC27      : input  : 2.5 V             :         : 5         : Y              
+io_switches[1]               : AC28      : input  : 2.5 V             :         : 5         : Y              
 RESERVED_INPUT               : AD1       :        :                   :         : 2         :                
 RESERVED_INPUT               : AD2       :        :                   :         : 2         :                
 RESERVED_INPUT               : AD3       :        :                   :         : 2         :                
@@ -194,17 +194,17 @@ VCCIO3                       : AD13      : power  :                   : 2.5V    
 RESERVED_INPUT               : AD14      :        :                   :         : 3         :                
 RESERVED_INPUT               : AD15      :        :                   :         : 4         :                
 VCCIO4                       : AD16      : power  :                   : 2.5V    : 4         :                
-RESERVED_INPUT               : AD17      :        :                   :         : 4         :                
-RESERVED_INPUT               : AD18      :        :                   :         : 4         :                
+io_ssegs_7[6]                : AD17      : output : 2.5 V             :         : 4         : Y              
+io_ssegs_5[6]                : AD18      : output : 2.5 V             :         : 4         : Y              
 RESERVED_INPUT               : AD19      :        :                   :         : 4         :                
 VCCIO4                       : AD20      : power  :                   : 2.5V    : 4         :                
 RESERVED_INPUT               : AD21      :        :                   :         : 4         :                
 RESERVED_INPUT               : AD22      :        :                   :         : 4         :                
 VCCIO4                       : AD23      : power  :                   : 2.5V    : 4         :                
-RESERVED_INPUT               : AD24      :        :                   :         : 4         :                
+io_ssegs_3[2]                : AD24      : output : 2.5 V             :         : 4         : Y              
 RESERVED_INPUT               : AD25      :        :                   :         : 4         :                
-RESERVED_INPUT               : AD26      :        :                   :         : 5         :                
-RESERVED_INPUT               : AD27      :        :                   :         : 5         :                
+io_switches[6]               : AD26      : input  : 2.5 V             :         : 5         : Y              
+io_switches[3]               : AD27      : input  : 2.5 V             :         : 5         : Y              
 RESERVED_INPUT               : AD28      :        :                   :         : 5         :                
 RESERVED_INPUT               : AE1       :        :                   :         : 2         :                
 RESERVED_INPUT               : AE2       :        :                   :         : 2         :                
@@ -222,9 +222,9 @@ RESERVED_INPUT               : AE13      :        :                   :         
 RESERVED_INPUT               : AE14      :        :                   :         : 3         :                
 RESERVED_INPUT               : AE15      :        :                   :         : 4         :                
 RESERVED_INPUT               : AE16      :        :                   :         : 4         :                
-RESERVED_INPUT               : AE17      :        :                   :         : 4         :                
-RESERVED_INPUT               : AE18      :        :                   :         : 4         :                
-RESERVED_INPUT               : AE19      :        :                   :         : 4         :                
+io_ssegs_7[5]                : AE17      : output : 2.5 V             :         : 4         : Y              
+io_ssegs_4[0]                : AE18      : output : 2.5 V             :         : 4         : Y              
+io_ssegs_4[2]                : AE19      : output : 2.5 V             :         : 4         : Y              
 RESERVED_INPUT               : AE20      :        :                   :         : 4         :                
 RESERVED_INPUT               : AE21      :        :                   :         : 4         :                
 RESERVED_INPUT               : AE22      :        :                   :         : 4         :                
@@ -250,13 +250,13 @@ RESERVED_INPUT               : AF13      :        :                   :         
 RESERVED_INPUT               : AF14      :        :                   :         : 3         :                
 RESERVED_INPUT               : AF15      :        :                   :         : 4         :                
 RESERVED_INPUT               : AF16      :        :                   :         : 4         :                
-RESERVED_INPUT               : AF17      :        :                   :         : 4         :                
-RESERVED_INPUT               : AF18      :        :                   :         : 4         :                
-RESERVED_INPUT               : AF19      :        :                   :         : 4         :                
+io_ssegs_7[2]                : AF17      : output : 2.5 V             :         : 4         : Y              
+io_ssegs_5[1]                : AF18      : output : 2.5 V             :         : 4         : Y              
+io_ssegs_4[1]                : AF19      : output : 2.5 V             :         : 4         : Y              
 RESERVED_INPUT               : AF20      :        :                   :         : 4         :                
 RESERVED_INPUT               : AF21      :        :                   :         : 4         :                
 RESERVED_INPUT               : AF22      :        :                   :         : 4         :                
-RESERVED_INPUT               : AF23      :        :                   :         : 4         :                
+io_ssegs_3[1]                : AF23      : output : 2.5 V             :         : 4         : Y              
 RESERVED_INPUT               : AF24      :        :                   :         : 4         :                
 RESERVED_INPUT               : AF25      :        :                   :         : 4         :                
 RESERVED_INPUT               : AF26      :        :                   :         : 4         :                
@@ -278,11 +278,11 @@ GND                          : AG13      : gnd    :                   :         
 GND+                         : AG14      :        :                   :         : 3         :                
 GND+                         : AG15      :        :                   :         : 4         :                
 GND                          : AG16      : gnd    :                   :         :           :                
-RESERVED_INPUT               : AG17      :        :                   :         : 4         :                
-RESERVED_INPUT               : AG18      :        :                   :         : 4         :                
-RESERVED_INPUT               : AG19      :        :                   :         : 4         :                
+io_ssegs_7[4]                : AG17      : output : 2.5 V             :         : 4         : Y              
+io_ssegs_7[1]                : AG18      : output : 2.5 V             :         : 4         : Y              
+io_ssegs_5[2]                : AG19      : output : 2.5 V             :         : 4         : Y              
 GND                          : AG20      : gnd    :                   :         :           :                
-RESERVED_INPUT               : AG21      :        :                   :         : 4         :                
+io_ssegs_4[4]                : AG21      : output : 2.5 V             :         : 4         : Y              
 RESERVED_INPUT               : AG22      :        :                   :         : 4         :                
 RESERVED_INPUT               : AG23      :        :                   :         : 4         :                
 GND                          : AG24      : gnd    :                   :         :           :                
@@ -305,11 +305,11 @@ VCCIO3                       : AH13      : power  :                   : 2.5V    
 GND+                         : AH14      :        :                   :         : 3         :                
 GND+                         : AH15      :        :                   :         : 4         :                
 VCCIO4                       : AH16      : power  :                   : 2.5V    : 4         :                
-RESERVED_INPUT               : AH17      :        :                   :         : 4         :                
-RESERVED_INPUT               : AH18      :        :                   :         : 4         :                
-RESERVED_INPUT               : AH19      :        :                   :         : 4         :                
+io_ssegs_7[3]                : AH17      : output : 2.5 V             :         : 4         : Y              
+io_ssegs_5[0]                : AH18      : output : 2.5 V             :         : 4         : Y              
+io_ssegs_5[3]                : AH19      : output : 2.5 V             :         : 4         : Y              
 VCCIO4                       : AH20      : power  :                   : 2.5V    : 4         :                
-RESERVED_INPUT               : AH21      :        :                   :         : 4         :                
+io_ssegs_4[3]                : AH21      : output : 2.5 V             :         : 4         : Y              
 RESERVED_INPUT               : AH22      :        :                   :         : 4         :                
 RESERVED_INPUT               : AH23      :        :                   :         : 4         :                
 VCCIO4                       : AH24      : power  :                   : 2.5V    : 4         :                
@@ -416,7 +416,7 @@ VCCIO8                       : E13       : power  :                   : 2.5V    
 RESERVED_INPUT               : E14       :        :                   :         : 8         :                
 RESERVED_INPUT               : E15       :        :                   :         : 7         :                
 VCCIO7                       : E16       : power  :                   : 2.5V    : 7         :                
-RESERVED_INPUT               : E17       :        :                   :         : 7         :                
+io_ssegs_0[4]                : E17       : output : 2.5 V             :         : 7         : Y              
 io_leds[5]                   : E18       : output : 2.5 V             :         : 7         : Y              
 io_leds[2]                   : E19       : output : 2.5 V             :         : 7         : Y              
 VCCIO7                       : E20       : power  :                   : 2.5V    : 7         :                
@@ -449,7 +449,7 @@ io_leds[4]                   : F18       : output : 2.5 V             :         
 io_leds[1]                   : F19       : output : 2.5 V             :         : 7         : Y              
 GND                          : F20       : gnd    :                   :         :           :                
 io_leds[3]                   : F21       : output : 2.5 V             :         : 7         : Y              
-RESERVED_INPUT               : F22       :        :                   :         : 7         :                
+io_ssegs_0[5]                : F22       : output : 2.5 V             :         : 7         : Y              
 GND                          : F23       : gnd    :                   :         :           :                
 RESERVED_INPUT               : F24       :        :                   :         : 6         :                
 RESERVED_INPUT               : F25       :        :                   :         : 6         :                
@@ -473,7 +473,7 @@ RESERVED_INPUT               : G14       :        :                   :         
 io_leds[15]                  : G15       : output : 2.5 V             :         : 7         : Y              
 RESERVED_INPUT               : G16       :        :                   :         : 7         :                
 io_leds[9]                   : G17       : output : 2.5 V             :         : 7         : Y              
-RESERVED_INPUT               : G18       :        :                   :         : 7         :                
+io_ssegs_0[6]                : G18       : output : 2.5 V             :         : 7         : Y              
 io_leds[0]                   : G19       : output : 2.5 V             :         : 7         : Y              
 RESERVED_INPUT               : G20       :        :                   :         : 7         :                
 RESERVED_INPUT               : G21       :        :                   :         : 7         :                
@@ -505,7 +505,7 @@ VCCIO7                       : H18       : power  :                   : 2.5V    
 io_leds[7]                   : H19       : output : 2.5 V             :         : 7         : Y              
 GNDA2                        : H20       : gnd    :                   :         :           :                
 RESERVED_INPUT               : H21       :        :                   :         : 7         :                
-RESERVED_INPUT               : H22       :        :                   :         : 6         :                
+io_ssegs_0[0]                : H22       : output : 2.5 V             :         : 6         : Y              
 RESERVED_INPUT               : H23       :        :                   :         : 6         :                
 RESERVED_INPUT               : H24       :        :                   :         : 6         :                
 RESERVED_INPUT               : H25       :        :                   :         : 6         :                
@@ -533,7 +533,7 @@ GND                          : J18       : gnd    :                   :         
 io_leds[6]                   : J19       : output : 2.5 V             :         : 7         : Y              
 VCCD_PLL2                    : J20       : power  :                   : 1.2V    :           :                
 VCCA2                        : J21       : power  :                   : 2.5V    :           :                
-RESERVED_INPUT               : J22       :        :                   :         : 6         :                
+io_ssegs_0[1]                : J22       : output : 2.5 V             :         : 6         : Y              
 RESERVED_INPUT               : J23       :        :                   :         : 6         :                
 RESERVED_INPUT               : J24       :        :                   :         : 6         :                
 RESERVED_INPUT               : J25       :        :                   :         : 6         :                
@@ -547,7 +547,7 @@ RESERVED_INPUT               : K4        :        :                   :         
 VCCIO1                       : K5        : power  :                   : 2.5V    : 1         :                
 GND                          : K6        : gnd    :                   :         :           :                
 RESERVED_INPUT               : K7        :        :                   :         : 1         :                
-RESERVED_INPUT               : K8        :        :                   :         : 1         :                
+io_sdram_dqm[2]              : K8        : output : 2.5 V             :         : 1         : Y              
 VCCINT                       : K9        : power  :                   : 1.2V    :           :                
 GND                          : K10       : gnd    :                   :         :           :                
 VCCINT                       : K11       : power  :                   : 1.2V    :           :                
@@ -574,8 +574,8 @@ RESERVED_INPUT               : L3        :        :                   :         
 RESERVED_INPUT               : L4        :        :                   :         : 1         :                
 RESERVED_INPUT               : L5        :        :                   :         : 1         :                
 RESERVED_INPUT               : L6        :        :                   :         : 1         :                
-RESERVED_INPUT               : L7        :        :                   :         : 1         :                
-RESERVED_INPUT               : L8        :        :                   :         : 1         :                
+io_sdram_data[23]            : L7        : bidir  : 2.5 V             :         : 1         : Y              
+io_sdram_data[17]            : L8        : bidir  : 2.5 V             :         : 1         : Y              
 GND                          : L9        : gnd    :                   :         :           :                
 VCCINT                       : L10       : power  :                   : 1.2V    :           :                
 GND                          : L11       : gnd    :                   :         :           :                
@@ -592,18 +592,18 @@ RESERVED_INPUT               : L21       :        :                   :         
 RESERVED_INPUT               : L22       :        :                   :         : 6         :                
 RESERVED_INPUT               : L23       :        :                   :         : 6         :                
 RESERVED_INPUT               : L24       :        :                   :         : 6         :                
-RESERVED_INPUT               : L25       :        :                   :         : 6         :                
-RESERVED_INPUT               : L26       :        :                   :         : 6         :                
+io_ssegs_0[2]                : L25       : output : 2.5 V             :         : 6         : Y              
+io_ssegs_0[3]                : L26       : output : 2.5 V             :         : 6         : Y              
 RESERVED_INPUT               : L27       :        :                   :         : 6         :                
 RESERVED_INPUT               : L28       :        :                   :         : 6         :                
 RESERVED_INPUT               : M1        :        :                   :         : 1         :                
 RESERVED_INPUT               : M2        :        :                   :         : 1         :                
 RESERVED_INPUT               : M3        :        :                   :         : 1         :                
-RESERVED_INPUT               : M4        :        :                   :         : 1         :                
+io_sdram_data[21]            : M4        : bidir  : 2.5 V             :         : 1         : Y              
 RESERVED_INPUT               : M5        :        :                   :         : 1         :                
 nSTATUS                      : M6        :        :                   :         : 1         :                
-RESERVED_INPUT               : M7        :        :                   :         : 1         :                
-RESERVED_INPUT               : M8        :        :                   :         : 1         :                
+io_sdram_data[22]            : M7        : bidir  : 2.5 V             :         : 1         : Y              
+io_sdram_data[16]            : M8        : bidir  : 2.5 V             :         : 1         : Y              
 VCCINT                       : M9        : power  :                   : 1.2V    :           :                
 GND                          : M10       : gnd    :                   :         :           :                
 VCCINT                       : M11       : power  :                   : 1.2V    :           :                
@@ -619,19 +619,19 @@ GND                          : M20       : gnd    :                   :         
 RESERVED_INPUT               : M21       :        :                   :         : 6         :                
 MSEL2                        : M22       :        :                   :         : 6         :                
 i_reset                      : M23       : input  : 2.5 V             :         : 6         : Y              
-RESERVED_INPUT               : M24       :        :                   :         : 6         :                
+io_ssegs_1[6]                : M24       : output : 2.5 V             :         : 6         : Y              
 RESERVED_INPUT               : M25       :        :                   :         : 6         :                
 RESERVED_INPUT               : M26       :        :                   :         : 6         :                
 RESERVED_INPUT               : M27       :        :                   :         : 6         :                
 RESERVED_INPUT               : M28       :        :                   :         : 6         :                
 VCCIO1                       : N1        : power  :                   : 2.5V    : 1         :                
 GND                          : N2        : gnd    :                   :         :           :                
-RESERVED_INPUT               : N3        :        :                   :         : 1         :                
-RESERVED_INPUT               : N4        :        :                   :         : 1         :                
+io_sdram_data[19]            : N3        : bidir  : 2.5 V             :         : 1         : Y              
+io_sdram_data[20]            : N4        : bidir  : 2.5 V             :         : 1         : Y              
 VCCIO1                       : N5        : power  :                   : 2.5V    : 1         :                
 GND                          : N6        : gnd    :                   :         :           :                
 ~ALTERA_DATA0~ / RESERVED_INPUT_WITH_WEAK_PULLUP : N7        : input  : 2.5 V             :         : 1         : N              
-RESERVED_INPUT               : N8        :        :                   :         : 1         :                
+io_sdram_dqm[3]              : N8        : output : 2.5 V             :         : 1         : Y              
 GND                          : N9        : gnd    :                   :         :           :                
 VCCINT                       : N10       : power  :                   : 1.2V    :           :                
 GND                          : N11       : gnd    :                   :         :           :                
@@ -653,7 +653,7 @@ RESERVED_INPUT               : N26       :        :                   :         
 GND                          : N27       : gnd    :                   :         :           :                
 VCCIO6                       : N28       : power  :                   : 2.5V    : 6         :                
 io_sdram_addr[3]             : P1        : output : 2.5 V             :         : 1         : Y              
-RESERVED_INPUT               : P2        :        :                   :         : 1         :                
+io_sdram_data[18]            : P2        : bidir  : 2.5 V             :         : 1         : Y              
 ~ALTERA_DCLK~                : P3        : output : 2.5 V             :         : 1         : N              
 nCONFIG                      : P4        :        :                   :         : 1         :                
 TCK                          : P5        : input  :                   :         : 1         :                
@@ -680,13 +680,13 @@ RESERVED_INPUT               : P25       :        :                   :         
 RESERVED_INPUT               : P26       :        :                   :         : 6         :                
 RESERVED_INPUT               : P27       :        :                   :         : 6         :                
 ~ALTERA_nCEO~ / RESERVED_OUTPUT_OPEN_DRAIN : P28       : output : 2.5 V             :         : 6         : N              
-RESERVED_INPUT               : R1        :        :                   :         : 2         :                
-RESERVED_INPUT               : R2        :        :                   :         : 2         :                
-RESERVED_INPUT               : R3        :        :                   :         : 2         :                
+io_sdram_data[26]            : R1        : bidir  : 2.5 V             :         : 2         : Y              
+io_sdram_data[27]            : R2        : bidir  : 2.5 V             :         : 2         : Y              
+io_sdram_data[28]            : R3        : bidir  : 2.5 V             :         : 2         : Y              
 io_sdram_bank[1]             : R4        : output : 2.5 V             :         : 2         : Y              
 io_sdram_addr[10]            : R5        : output : 2.5 V             :         : 2         : Y              
 io_sdram_addr[0]             : R6        : output : 2.5 V             :         : 2         : Y              
-RESERVED_INPUT               : R7        :        :                   :         : 2         :                
+io_sdram_data[25]            : R7        : bidir  : 2.5 V             :         : 2         : Y              
 nCE                          : R8        :        :                   :         : 1         :                
 GND                          : R9        : gnd    :                   :         :           :                
 VCCINT                       : R10       : power  :                   : 1.2V    :           :                
@@ -710,7 +710,7 @@ RESERVED_INPUT               : R27       :        :                   :         
 RESERVED_INPUT               : R28       :        :                   :         : 5         :                
 VCCIO2                       : T1        : power  :                   : 2.5V    : 2         :                
 GND                          : T2        : gnd    :                   :         :           :                
-RESERVED_INPUT               : T3        :        :                   :         : 2         :                
+io_sdram_data[29]            : T3        : bidir  : 2.5 V             :         : 2         : Y              
 io_sdram_cs_n                : T4        : output : 2.5 V             :         : 2         : Y              
 VCCIO2                       : T5        : power  :                   : 2.5V    : 2         :                
 GND                          : T6        : gnd    :                   :         :           :                
@@ -736,11 +736,11 @@ RESERVED_INPUT               : T25       :        :                   :         
 RESERVED_INPUT               : T26       :        :                   :         : 5         :                
 GND                          : T27       : gnd    :                   :         :           :                
 VCCIO5                       : T28       : power  :                   : 2.5V    : 5         :                
-RESERVED_INPUT               : U1        :        :                   :         : 2         :                
+io_sdram_data[31]            : U1        : bidir  : 2.5 V             :         : 2         : Y              
 io_sdram_dqm[0]              : U2        : output : 2.5 V             :         : 2         : Y              
 io_sdram_data[7]             : U3        : bidir  : 2.5 V             :         : 2         : Y              
-RESERVED_INPUT               : U4        :        :                   :         : 2         :                
-RESERVED_INPUT               : U5        :        :                   :         : 2         :                
+io_sdram_data[30]            : U4        : bidir  : 2.5 V             :         : 2         : Y              
+io_sdram_data[24]            : U5        : bidir  : 2.5 V             :         : 2         : Y              
 io_sdram_ras_n               : U6        : output : 2.5 V             :         : 2         : Y              
 io_sdram_bank[0]             : U7        : output : 2.5 V             :         : 2         : Y              
 io_sdram_addr[2]             : U8        : output : 2.5 V             :         : 2         : Y              
@@ -756,10 +756,10 @@ GND                          : U17       : gnd    :                   :         
 VCCINT                       : U18       : power  :                   : 1.2V    :           :                
 GND                          : U19       : gnd    :                   :         :           :                
 VCCINT                       : U20       : power  :                   : 1.2V    :           :                
-RESERVED_INPUT               : U21       :        :                   :         : 5         :                
+io_ssegs_3[5]                : U21       : output : 2.5 V             :         : 5         : Y              
 RESERVED_INPUT               : U22       :        :                   :         : 5         :                
-RESERVED_INPUT               : U23       :        :                   :         : 5         :                
-RESERVED_INPUT               : U24       :        :                   :         : 5         :                
+io_ssegs_1[1]                : U23       : output : 2.5 V             :         : 5         : Y              
+io_ssegs_1[0]                : U24       : output : 2.5 V             :         : 5         : Y              
 RESERVED_INPUT               : U25       :        :                   :         : 5         :                
 RESERVED_INPUT               : U26       :        :                   :         : 5         :                
 RESERVED_INPUT               : U27       :        :                   :         : 5         :                
@@ -784,7 +784,7 @@ VCCINT                       : V17       : power  :                   : 1.2V    
 GND                          : V18       : gnd    :                   :         :           :                
 VCCINT                       : V19       : power  :                   : 1.2V    :           :                
 GND                          : V20       : gnd    :                   :         :           :                
-RESERVED_INPUT               : V21       :        :                   :         : 5         :                
+io_ssegs_3[6]                : V21       : output : 2.5 V             :         : 5         : Y              
 RESERVED_INPUT               : V22       :        :                   :         : 5         :                
 RESERVED_INPUT               : V23       :        :                   :         : 5         :                
 RESERVED_INPUT               : V24       :        :                   :         : 5         :                
@@ -812,14 +812,14 @@ GND                          : W17       : gnd    :                   :         
 VCCINT                       : W18       : power  :                   : 1.2V    :           :                
 GND                          : W19       : gnd    :                   :         :           :                
 VCCINT                       : W20       : power  :                   : 1.2V    :           :                
-RESERVED_INPUT               : W21       :        :                   :         : 5         :                
-RESERVED_INPUT               : W22       :        :                   :         : 5         :                
+io_ssegs_1[4]                : W21       : output : 2.5 V             :         : 5         : Y              
+io_ssegs_1[3]                : W22       : output : 2.5 V             :         : 5         : Y              
 GND                          : W23       : gnd    :                   :         :           :                
 VCCIO5                       : W24       : power  :                   : 2.5V    : 5         :                
-RESERVED_INPUT               : W25       :        :                   :         : 5         :                
-RESERVED_INPUT               : W26       :        :                   :         : 5         :                
-RESERVED_INPUT               : W27       :        :                   :         : 5         :                
-RESERVED_INPUT               : W28       :        :                   :         : 5         :                
+io_ssegs_1[2]                : W25       : output : 2.5 V             :         : 5         : Y              
+io_ssegs_2[3]                : W26       : output : 2.5 V             :         : 5         : Y              
+io_ssegs_2[1]                : W27       : output : 2.5 V             :         : 5         : Y              
+io_ssegs_2[0]                : W28       : output : 2.5 V             :         : 5         : Y              
 GND+                         : Y1        :        :                   :         : 2         :                
 clock                        : Y2        : input  : 2.5 V             :         : 2         : Y              
 io_sdram_data[8]             : Y3        : bidir  : 2.5 V             :         : 2         : Y              
@@ -838,13 +838,13 @@ RESERVED_INPUT               : Y15       :        :                   :         
 RESERVED_INPUT               : Y16       :        :                   :         : 4         :                
 RESERVED_INPUT               : Y17       :        :                   :         : 4         :                
 GND                          : Y18       : gnd    :                   :         :           :                
-RESERVED_INPUT               : Y19       :        :                   :         : 4         :                
+io_ssegs_3[0]                : Y19       : output : 2.5 V             :         : 4         : Y              
 VCCD_PLL4                    : Y20       : power  :                   : 1.2V    :           :                
 VCCA4                        : Y21       : power  :                   : 2.5V    :           :                
-RESERVED_INPUT               : Y22       :        :                   :         : 5         :                
-RESERVED_INPUT               : Y23       :        :                   :         : 5         :                
-RESERVED_INPUT               : Y24       :        :                   :         : 5         :                
-RESERVED_INPUT               : Y25       :        :                   :         : 5         :                
-RESERVED_INPUT               : Y26       :        :                   :         : 5         :                
+io_ssegs_1[5]                : Y22       : output : 2.5 V             :         : 5         : Y              
+io_switches[17]              : Y23       : input  : 2.5 V             :         : 5         : Y              
+io_switches[16]              : Y24       : input  : 2.5 V             :         : 5         : Y              
+io_ssegs_2[4]                : Y25       : output : 2.5 V             :         : 5         : Y              
+io_ssegs_2[2]                : Y26       : output : 2.5 V             :         : 5         : Y              
 GND+                         : Y27       :        :                   :         : 5         :                
 GND+                         : Y28       :        :                   :         : 5         :                

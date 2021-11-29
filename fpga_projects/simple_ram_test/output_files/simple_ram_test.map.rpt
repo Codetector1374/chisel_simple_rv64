@@ -1,5 +1,5 @@
 Analysis & Synthesis report for simple_ram_test
-Sat Nov 27 21:13:28 2021
+Mon Nov 29 00:08:33 2021
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
 
 
@@ -10,8 +10,28 @@ Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
-  6. Analysis & Synthesis Suppressed Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |simple_ram_test|TestWBMaster:a|state
+  9. State Machine - |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state
+ 10. State Machine - |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|state
+ 11. Registers Removed During Synthesis
+ 12. Removed Registers Triggering Further Register Optimizations
+ 13. General Register Statistics
+ 14. Inverted Register Statistics
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Parameter Settings for User Entity Instance: TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m
+ 17. Parameter Settings for User Entity Instance: TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_rx:rx_part
+ 18. Parameter Settings for User Entity Instance: TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_tx:tx_part
+ 19. Parameter Settings for User Entity Instance: TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|wishbone:ihex_wb
+ 20. Parameter Settings for User Entity Instance: TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr
+ 21. Port Connectivity Checks: "TestWBMaster:a|WBArbiter:arb"
+ 22. Port Connectivity Checks: "TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m"
+ 23. Post-Synthesis Netlist Statistics for Top Partition
+ 24. Elapsed Time Per Partition
+ 25. Analysis & Synthesis Messages
+ 26. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -37,22 +57,20 @@ refer to the applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Sat Nov 27 21:13:28 2021               ;
+; Analysis & Synthesis Status        ; Successful - Mon Nov 29 00:08:32 2021           ;
 ; Quartus Prime Version              ; 18.0.0 Build 614 04/24/2018 SJ Standard Edition ;
 ; Revision Name                      ; simple_ram_test                                 ;
 ; Top-level Entity Name              ; simple_ram_test                                 ;
-; Family                             ; MAX 10                                          ;
-; Total logic elements               ; N/A until Partition Merge                       ;
-;     Total combinational functions  ; N/A until Partition Merge                       ;
-;     Dedicated logic registers      ; N/A until Partition Merge                       ;
-; Total registers                    ; N/A until Partition Merge                       ;
-; Total pins                         ; N/A until Partition Merge                       ;
-; Total virtual pins                 ; N/A until Partition Merge                       ;
-; Total memory bits                  ; N/A until Partition Merge                       ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                       ;
-; Total PLLs                         ; N/A until Partition Merge                       ;
-; UFM blocks                         ; N/A until Partition Merge                       ;
-; ADC blocks                         ; N/A until Partition Merge                       ;
+; Family                             ; Cyclone IV E                                    ;
+; Total logic elements               ; 4,809                                           ;
+;     Total combinational functions  ; 2,680                                           ;
+;     Dedicated logic registers      ; 2,628                                           ;
+; Total registers                    ; 2628                                            ;
+; Total pins                         ; 138                                             ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
 +------------------------------------+-------------------------------------------------+
 
 
@@ -61,9 +79,9 @@ refer to the applicable agreement for further details.
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Option                                                           ; Setting            ; Default Value      ;
 +------------------------------------------------------------------+--------------------+--------------------+
-; Device                                                           ; 10M50DAF484C7G     ;                    ;
+; Device                                                           ; EP4CE115F29C7      ;                    ;
 ; Top-level entity name                                            ; simple_ram_test    ; simple_ram_test    ;
-; Family name                                                      ; MAX 10             ; Cyclone V          ;
+; Family name                                                      ; Cyclone IV E       ; Cyclone V          ;
 ; Use smart compilation                                            ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
 ; Enable compact report table                                      ; Off                ; Off                ;
@@ -150,12 +168,395 @@ refer to the applicable agreement for further details.
 ; Number detected on machine ; 32          ;
 ; Maximum allowed            ; 16          ;
 ;                            ;             ;
-; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Average used               ; 1.01        ;
+; Maximum used               ; 16          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.1%      ;
+;     Processor 3            ;   0.1%      ;
+;     Processor 4            ;   0.1%      ;
+;     Processor 5            ;   0.1%      ;
+;     Processor 6            ;   0.1%      ;
+;     Processor 7            ;   0.1%      ;
+;     Processor 8            ;   0.1%      ;
+;     Processors 9-16        ;   0.0%      ;
 +----------------------------+-------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                                     ;
++---------------------------------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path                        ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                                          ; Library ;
++---------------------------------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------------------------------------------------------+---------+
+; ../../generated/fpga_test_de2_115/wishbone.sv           ; yes             ; User SystemVerilog HDL File  ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wishbone.sv           ;         ;
+; ../../generated/fpga_test_de2_115/wbuart_with_ihex.sv   ; yes             ; User SystemVerilog HDL File  ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wbuart_with_ihex.sv   ;         ;
+; ../../generated/fpga_test_de2_115/wbuart_with_buffer.sv ; yes             ; User SystemVerilog HDL File  ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wbuart_with_buffer.sv ;         ;
+; ../../generated/fpga_test_de2_115/wb_master_breakout.sv ; yes             ; User SystemVerilog HDL File  ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wb_master_breakout.sv ;         ;
+; ../../generated/fpga_test_de2_115/uart_tx.sv            ; yes             ; User SystemVerilog HDL File  ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/uart_tx.sv            ;         ;
+; ../../generated/fpga_test_de2_115/uart_rx.sv            ; yes             ; User SystemVerilog HDL File  ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/uart_rx.sv            ;         ;
+; ../../generated/fpga_test_de2_115/ihex.sv               ; yes             ; User SystemVerilog HDL File  ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/ihex.sv               ;         ;
+; ../../generated/fpga_test_de2_115/TestWBMaster.v        ; yes             ; User Verilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/TestWBMaster.v        ;         ;
+; simple_ram_test.sv                                      ; yes             ; User SystemVerilog HDL File  ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/simple_ram_test/simple_ram_test.sv  ;         ;
+; sseg.v                                                  ; yes             ; User Verilog HDL File        ; C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/simple_ram_test/sseg.v              ;         ;
++---------------------------------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary               ;
++---------------------------------------------+-------------+
+; Resource                                    ; Usage       ;
++---------------------------------------------+-------------+
+; Estimated Total logic elements              ; 4,809       ;
+;                                             ;             ;
+; Total combinational functions               ; 2680        ;
+; Logic element usage by number of LUT inputs ;             ;
+;     -- 4 input functions                    ; 1819        ;
+;     -- 3 input functions                    ; 427         ;
+;     -- <=2 input functions                  ; 434         ;
+;                                             ;             ;
+; Logic elements by mode                      ;             ;
+;     -- normal mode                          ; 2439        ;
+;     -- arithmetic mode                      ; 241         ;
+;                                             ;             ;
+; Total registers                             ; 2628        ;
+;     -- Dedicated logic registers            ; 2628        ;
+;     -- I/O registers                        ; 0           ;
+;                                             ;             ;
+; I/O pins                                    ; 138         ;
+;                                             ;             ;
+; Embedded Multiplier 9-bit elements          ; 0           ;
+;                                             ;             ;
+; Maximum fan-out node                        ; clock~input ;
+; Maximum fan-out                             ; 2629        ;
+; Total fan-out                               ; 17884       ;
+; Average fan-out                             ; 3.18        ;
++---------------------------------------------+-------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                       ;
++-----------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------+-------------------+--------------+
+; Compilation Hierarchy Node              ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                               ; Entity Name       ; Library Name ;
++-----------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------+-------------------+--------------+
+; |simple_ram_test                        ; 2680 (3)            ; 2628 (2)                  ; 0           ; 0            ; 0       ; 0         ; 138  ; 0            ; |simple_ram_test                                                                                  ; simple_ram_test   ; work         ;
+;    |TestWBMaster:a|                     ; 2621 (11)           ; 2626 (53)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |simple_ram_test|TestWBMaster:a                                                                   ; TestWBMaster      ; work         ;
+;       |WBArbiter:arb|                   ; 13 (13)             ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |simple_ram_test|TestWBMaster:a|WBArbiter:arb                                                     ; WBArbiter         ; work         ;
+;       |WBSDRAMCtlr:ramController|       ; 528 (528)           ; 290 (290)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController                                         ; WBSDRAMCtlr       ; work         ;
+;       |WBUartIhexWrapper:uart|          ; 2069 (0)            ; 2282 (0)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart                                            ; WBUartIhexWrapper ; work         ;
+;          |WBUartWithIhex:m|             ; 2069 (0)            ; 2282 (0)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m                           ; WBUartWithIhex    ; work         ;
+;             |ihex:intel_hex_controller| ; 1940 (1940)         ; 2195 (2195)               ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller ; ihex              ; work         ;
+;             |uart_rx:rx_part|           ; 67 (67)             ; 47 (47)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_rx:rx_part           ; uart_rx           ; work         ;
+;             |uart_tx:tx_part|           ; 62 (62)             ; 40 (40)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_tx:tx_part           ; uart_tx           ; work         ;
+;    |sseg:seg1|                          ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |simple_ram_test|sseg:seg1                                                                        ; sseg              ; work         ;
+;    |sseg:seg2|                          ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |simple_ram_test|sseg:seg2                                                                        ; sseg              ; work         ;
+;    |sseg:seg3|                          ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |simple_ram_test|sseg:seg3                                                                        ; sseg              ; work         ;
+;    |sseg:seg4|                          ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |simple_ram_test|sseg:seg4                                                                        ; sseg              ; work         ;
+;    |sseg:seg5|                          ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |simple_ram_test|sseg:seg5                                                                        ; sseg              ; work         ;
+;    |sseg:seg6|                          ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |simple_ram_test|sseg:seg6                                                                        ; sseg              ; work         ;
+;    |sseg:seg7|                          ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |simple_ram_test|sseg:seg7                                                                        ; sseg              ; work         ;
+;    |sseg:seg8|                          ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |simple_ram_test|sseg:seg8                                                                        ; sseg              ; work         ;
++-----------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------+-------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------+
+; State Machine - |simple_ram_test|TestWBMaster:a|state ;
++----------+----------+----------+----------------------+
+; Name     ; state.00 ; state.10 ; state.01             ;
++----------+----------+----------+----------------------+
+; state.00 ; 0        ; 0        ; 0                    ;
+; state.01 ; 1        ; 0        ; 1                    ;
+; state.10 ; 1        ; 1        ; 0                    ;
++----------+----------+----------+----------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state ;
++-----------------+-----------------+----------------+---------------------------------------------------------------------------+
+; Name            ; wb_state.WBIDLE ; wb_state.WBACK ; wb_state.WBEXEC                                                           ;
++-----------------+-----------------+----------------+---------------------------------------------------------------------------+
+; wb_state.WBIDLE ; 0               ; 0              ; 0                                                                         ;
+; wb_state.WBEXEC ; 1               ; 0              ; 1                                                                         ;
+; wb_state.WBACK  ; 1               ; 1              ; 0                                                                         ;
++-----------------+-----------------+----------------+---------------------------------------------------------------------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|state                                                                                                                                         ;
++--------------------+--------------------+-------------------+----------------+---------------+--------------+-------------+------------+-------------+-------------+-------------+-------------+------------+------------+------------+------------+------------+
+; Name               ; state.EXEC_WB_WAIT ; state.EXEC_WB_REQ ; state.EXEC_ACK ; state.CHKSUM2 ; state.CHKSUM ; state.EXEC2 ; state.EXEC ; state.ADDR4 ; state.ADDR3 ; state.ADDR2 ; state.ADDR1 ; state.LEN2 ; state.LEN1 ; state.CMD2 ; state.CMD1 ; state.IDLE ;
++--------------------+--------------------+-------------------+----------------+---------------+--------------+-------------+------------+-------------+-------------+-------------+-------------+------------+------------+------------+------------+------------+
+; state.IDLE         ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 0          ;
+; state.CMD1         ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 1          ; 1          ;
+; state.CMD2         ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 1          ; 0          ; 1          ;
+; state.LEN1         ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 1          ; 0          ; 0          ; 1          ;
+; state.LEN2         ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 1          ; 0          ; 0          ; 0          ; 1          ;
+; state.ADDR1        ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 1           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.ADDR2        ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 1           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.ADDR3        ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 1           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.ADDR4        ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 1           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.EXEC         ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 1          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.EXEC2        ; 0                  ; 0                 ; 0              ; 0             ; 0            ; 1           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.CHKSUM       ; 0                  ; 0                 ; 0              ; 0             ; 1            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.CHKSUM2      ; 0                  ; 0                 ; 0              ; 1             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.EXEC_ACK     ; 0                  ; 0                 ; 1              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.EXEC_WB_REQ  ; 0                  ; 1                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
+; state.EXEC_WB_WAIT ; 1                  ; 0                 ; 0              ; 0             ; 0            ; 0           ; 0          ; 0           ; 0           ; 0           ; 0           ; 0          ; 0          ; 0          ; 0          ; 1          ;
++--------------------+--------------------+-------------------+----------------+---------------+--------------+-------------+------------+-------------+-------------+-------------+-------------+------------+------------+------------+------------+------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                                                               ;
++------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+; Register name                                                                                        ; Reason for Removal                                                                                        ;
++------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|o_tx_data[0..7] ; Stuck at GND due to stuck port clock_enable                                                               ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|o_tx_stb        ; Stuck at GND due to stuck port data_in                                                                    ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|slave_mode                                    ; Stuck at GND due to stuck port data_in                                                                    ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[7]        ; Merged with TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[5] ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_tx:tx_part|data[7]                       ; Merged with TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_tx:tx_part|data[5]                ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[6]        ; Stuck at VCC due to stuck port data_in                                                                    ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[5]        ; Stuck at GND due to stuck port data_in                                                                    ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_tx:tx_part|data[6]                       ; Stuck at VCC due to stuck port data_in                                                                    ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_tx:tx_part|data[5]                       ; Stuck at GND due to stuck port data_in                                                                    ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state.WBIDLE ; Lost fanout                                                                                               ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state.WBEXEC ; Lost fanout                                                                                               ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state.WBACK  ; Lost fanout                                                                                               ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state~5      ; Lost fanout                                                                                               ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state~6      ; Lost fanout                                                                                               ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|state~15            ; Lost fanout                                                                                               ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|state~16            ; Lost fanout                                                                                               ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|state~17            ; Lost fanout                                                                                               ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|state~18            ; Lost fanout                                                                                               ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[2]        ; Merged with TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[1] ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_tx:tx_part|data[2]                       ; Merged with TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_tx:tx_part|data[1]                ;
+; Total Number of Removed Registers = 27                                                               ;                                                                                                           ;
++------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                                                                         ;
++---------------------------------------------------------------------------------------------------+--------------------------------+--------------------------------------------------------------------------------+
+; Register name                                                                                     ; Reason for Removal             ; Registers Removed due to This Register                                         ;
++---------------------------------------------------------------------------------------------------+--------------------------------+--------------------------------------------------------------------------------+
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|o_tx_data[5] ; Stuck at GND                   ; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_tx:tx_part|data[5] ;
+;                                                                                                   ; due to stuck port clock_enable ;                                                                                ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|o_tx_data[6] ; Stuck at GND                   ; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_tx:tx_part|data[6] ;
+;                                                                                                   ; due to stuck port clock_enable ;                                                                                ;
++---------------------------------------------------------------------------------------------------+--------------------------------+--------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 2628  ;
+; Number of registers using Synchronous Clear  ; 159   ;
+; Number of registers using Synchronous Load   ; 118   ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 2518  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------------------------------------------------+
+; Inverted Register Statistics                                                               ;
++----------------------------------------------------------------------------------+---------+
+; Inverted Register                                                                ; Fan out ;
++----------------------------------------------------------------------------------+---------+
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_rx:rx_part|i_rx_db   ; 3       ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_rx:rx_part|i_rx_prev ; 1       ;
+; TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_rx:rx_part|i_rx_int  ; 1       ;
+; Total number of inverted registers = 3                                           ;         ;
++----------------------------------------------------------------------------------+---------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------------------+
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|cmd[5]           ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|len[3]           ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|addr[9]          ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|cmp_sum[3]       ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|wbReqest_bits_addr[9]                                    ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|refreshTimeout[25]                                       ;
+; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|bankActivation_0_bits[4]                                 ;
+; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|bankActivation_1_bits[4]                                 ;
+; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|bankActivation_2_bits[10]                                ;
+; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|bankActivation_3_bits[5]                                 ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|dataBuffer_0[15]                                         ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|addr[6]          ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|activationCounter_0[5]                                   ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|activationCounter_1[10]                                  ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|activationCounter_2[7]                                   ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|activationCounter_3[0]                                   ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|wbReqest_bits_sel[0]                                     ;
+; 4:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|wbReqest_bits_addr[3]                                    ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |simple_ram_test|TestWBMaster:a|out[2]                                                                             ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_tx:tx_part|state[2]                   ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_tx:tx_part|counter[13]                ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|refreshCounter[6]                                        ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_rx:rx_part|clk_counter[12]            ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|cmd[3]           ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|addr[0]          ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_rx:rx_part|internal_state[0]          ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_sel[3]        ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_addr[18]      ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_addr[10]      ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_mosi_data[31] ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_mosi_data[21] ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_mosi_data[10] ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|wb_mosi_data[6]  ;
+; 257:1              ; 10 bits   ; 1710 LEs      ; 10 LEs               ; 1700 LEs               ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|addr_offset[3]   ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|buffer_fill[7]   ;
+; 11:1               ; 8 bits    ; 56 LEs        ; 8 LEs                ; 48 LEs                 ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|computed_sum[7]  ;
+; 7:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|buffer_fill[2]   ;
+; 12:1               ; 22 bits   ; 176 LEs       ; 110 LEs              ; 66 LEs                 ; Yes        ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|delayCounter[22]                                         ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 0 LEs                ; 12 LEs                 ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[6]     ;
+; 136:1              ; 2 bits    ; 180 LEs       ; 18 LEs               ; 162 LEs                ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[4]     ;
+; 136:1              ; 2 bits    ; 180 LEs       ; 10 LEs               ; 170 LEs                ; Yes        ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|o_tx_data[2]     ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|wbReqest_bits_data[13]                                   ;
+; 4:1                ; 14 bits   ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; No         ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|_GEN_26[0]                                               ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|Add2             ;
+; 16:1               ; 4 bits    ; 40 LEs        ; 24 LEs               ; 16 LEs                 ; No         ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|io_sdram_dqm[3]                                          ;
+; 5:1                ; 9 bits    ; 27 LEs        ; 27 LEs               ; 0 LEs                  ; No         ; |simple_ram_test|TestWBMaster:a|WBSDRAMCtlr:ramController|io_sdram_addr[2]                                         ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 8 LEs                ; 2 LEs                  ; No         ; |simple_ram_test|TestWBMaster:a|state                                                                              ;
+; 256:1              ; 8 bits    ; 1360 LEs      ; 1360 LEs             ; 0 LEs                  ; No         ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|Mux7             ;
+; 22:1               ; 10 bits   ; 140 LEs       ; 120 LEs              ; 20 LEs                 ; No         ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|state            ;
+; 22:1               ; 2 bits    ; 28 LEs        ; 20 LEs               ; 8 LEs                  ; No         ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|state            ;
+; 27:1               ; 2 bits    ; 36 LEs        ; 14 LEs               ; 22 LEs                 ; No         ; |simple_ram_test|TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller|state            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m ;
++----------------+----------+-------------------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                                    ;
++----------------+----------+-------------------------------------------------------------------------+
+; I_CLOCK_FREQ   ; 50000000 ; Signed Integer                                                          ;
+; BAUD_RATE      ; 115200   ; Signed Integer                                                          ;
++----------------+----------+-------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_rx:rx_part ;
++----------------+----------+-----------------------------------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                                                    ;
++----------------+----------+-----------------------------------------------------------------------------------------+
+; I_CLOCK_FREQ   ; 50000000 ; Signed Integer                                                                          ;
+; BAUD_RATE      ; 115200   ; Signed Integer                                                                          ;
++----------------+----------+-----------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_tx:tx_part ;
++----------------+----------+-----------------------------------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                                                    ;
++----------------+----------+-----------------------------------------------------------------------------------------+
+; I_CLOCK_FREQ   ; 50000000 ; Signed Integer                                                                          ;
+; BAUD_RATE      ; 115200   ; Signed Integer                                                                          ;
++----------------+----------+-----------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|wishbone:ihex_wb ;
++----------------+-------+---------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                        ;
++----------------+-------+---------------------------------------------------------------------------------------------+
+; AW             ; 30    ; Signed Integer                                                                              ;
+; DW             ; 32    ; Signed Integer                                                                              ;
+; SELW           ; 4     ; Signed Integer                                                                              ;
++----------------+-------+---------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr ;
++----------------+----------+-------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                                                                  ;
++----------------+----------+-------------------------------------------------------------------------------------------------------+
+; I_CLOCK_FREQ   ; 50000000 ; Signed Integer                                                                                        ;
+; BAUD_RATE      ; 115200   ; Signed Integer                                                                                        ;
++----------------+----------+-------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Port Connectivity Checks: "TestWBMaster:a|WBArbiter:arb"    ;
++---------------------------+-------+----------+--------------+
+; Port                      ; Type  ; Severity ; Details      ;
++---------------------------+-------+----------+--------------+
+; io_masters_0_addr[31..17] ; Input ; Info     ; Stuck at GND ;
++---------------------------+-------+----------+--------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m"                                   ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port       ; Type   ; Severity ; Details                                                                             ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_mwb_err  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; i_wb_cyc   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; i_wb_stb   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; i_wb_we    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; i_wb_sel   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_wb_stall ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; o_wb_ack   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; o_wb_err   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; i_wb_addr  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; i_wb_data  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_wb_data  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 138                         ;
+; cycloneiii_ff         ; 2628                        ;
+;     ENA               ; 2287                        ;
+;     ENA SCLR          ; 151                         ;
+;     ENA SLD           ; 80                          ;
+;     SCLR              ; 8                           ;
+;     SLD               ; 38                          ;
+;     plain             ; 64                          ;
+; cycloneiii_io_obuf    ; 32                          ;
+; cycloneiii_lcell_comb ; 2691                        ;
+;     arith             ; 241                         ;
+;         2 data inputs ; 211                         ;
+;         3 data inputs ; 30                          ;
+;     normal            ; 2450                        ;
+;         0 data inputs ; 3                           ;
+;         1 data inputs ; 25                          ;
+;         2 data inputs ; 206                         ;
+;         3 data inputs ; 397                         ;
+;         4 data inputs ; 1819                        ;
+;                       ;                             ;
+; Max LUT depth         ; 12.00                       ;
+; Average LUT depth     ; 7.10                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:08     ;
++----------------+--------------+
 
 
 +-------------------------------+
@@ -164,31 +565,82 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
-    Info: Processing started: Sat Nov 27 21:13:20 2021
+    Info: Processing started: Mon Nov 29 00:08:15 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off simple_ram_test -c simple_ram_test
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 32 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wishbone.sv
+    Info (12023): Found entity 1: wishbone File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wishbone.sv Line: 4
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wbuart_with_ihex.sv
+    Info (12023): Found entity 1: WBUartWithIhex File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wbuart_with_ihex.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wbuart_with_buffer.sv
+    Info (12023): Found entity 1: wbuart_with_buffer File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wbuart_with_buffer.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wb_master_breakout.sv
+    Info (12023): Found entity 1: wb_master_breakout File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wb_master_breakout.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/uart_tx.sv
+    Info (12023): Found entity 1: uart_tx File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/uart_tx.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/uart_rx.sv
+    Info (12023): Found entity 1: uart_rx File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/uart_rx.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/ihex.sv
+    Info (12023): Found entity 1: ihex File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/ihex.sv Line: 15
+Info (12021): Found 4 design units, including 4 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/testwbmaster.v
+    Info (12023): Found entity 1: WBUartIhexWrapper File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/TestWBMaster.v Line: 1
+    Info (12023): Found entity 2: WBArbiter File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/TestWBMaster.v Line: 87
+    Info (12023): Found entity 3: WBSDRAMCtlr File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/TestWBMaster.v Line: 187
+    Info (12023): Found entity 4: TestWBMaster File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/TestWBMaster.v Line: 886
 Info (12021): Found 1 design units, including 1 entities, in source file simple_ram_test.sv
     Info (12023): Found entity 1: simple_ram_test File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/simple_ram_test/simple_ram_test.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file sseg.v
     Info (12023): Found entity 1: sseg File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/simple_ram_test/sseg.v Line: 1
-Info (12021): Found 2 design units, including 2 entities, in source file /users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test/testwbmaster.v
-    Info (12023): Found entity 1: WBSDRAMCtlr File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test/TestWBMaster.v Line: 1
-    Info (12023): Found entity 2: TestWBMaster File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test/TestWBMaster.v Line: 712
 Info (12127): Elaborating entity "simple_ram_test" for the top level hierarchy
-Error (10897): SystemVerilog error at simple_ram_test.sv(68): can't implicitly connect port "io_sdram_addr" on instance "a" of module "TestWBMaster" - matching object in present scope does not have an equivalent data type File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/simple_ram_test/simple_ram_test.sv Line: 68
-Error (10784): HDL error at TestWBMaster.v(715): see declaration for object "io_sdram_addr" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test/TestWBMaster.v Line: 715
-Error (10784): HDL error at simple_ram_test.sv(29): see declaration for object "io_sdram_addr" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/simple_ram_test/simple_ram_test.sv Line: 29
-Error (10897): SystemVerilog error at simple_ram_test.sv(80): can't implicitly connect port "io_switches" on instance "a" of module "TestWBMaster" - matching object in present scope does not have an equivalent data type File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/simple_ram_test/simple_ram_test.sv Line: 80
-Error (10784): HDL error at TestWBMaster.v(727): see declaration for object "io_switches" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test/TestWBMaster.v Line: 727
-Error (10784): HDL error at simple_ram_test.sv(39): see declaration for object "io_switches" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/simple_ram_test/simple_ram_test.sv Line: 39
-Error (12153): Can't elaborate top-level user hierarchy
+Info (12128): Elaborating entity "sseg" for hierarchy "sseg:seg1" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/simple_ram_test/simple_ram_test.sv Line: 73
+Info (12128): Elaborating entity "TestWBMaster" for hierarchy "TestWBMaster:a" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/simple_ram_test/simple_ram_test.sv Line: 112
+Info (12128): Elaborating entity "WBUartIhexWrapper" for hierarchy "TestWBMaster:a|WBUartIhexWrapper:uart" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/TestWBMaster.v Line: 1004
+Info (12128): Elaborating entity "WBUartWithIhex" for hierarchy "TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/TestWBMaster.v Line: 65
+Warning (10230): Verilog HDL assignment warning at wbuart_with_ihex.sv(71): truncated value with size 32 to match size of target (1) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wbuart_with_ihex.sv Line: 71
+Info (12128): Elaborating entity "uart_rx" for hierarchy "TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_rx:rx_part" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wbuart_with_ihex.sv Line: 47
+Warning (10230): Verilog HDL assignment warning at uart_rx.sv(41): truncated value with size 32 to match size of target (4) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/uart_rx.sv Line: 41
+Warning (10230): Verilog HDL assignment warning at uart_rx.sv(57): truncated value with size 32 to match size of target (4) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/uart_rx.sv Line: 57
+Warning (10230): Verilog HDL assignment warning at uart_rx.sv(65): truncated value with size 32 to match size of target (4) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/uart_rx.sv Line: 65
+Warning (10230): Verilog HDL assignment warning at uart_rx.sv(74): truncated value with size 32 to match size of target (4) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/uart_rx.sv Line: 74
+Warning (10230): Verilog HDL assignment warning at uart_rx.sv(76): truncated value with size 32 to match size of target (4) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/uart_rx.sv Line: 76
+Info (12128): Elaborating entity "uart_tx" for hierarchy "TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|uart_tx:tx_part" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wbuart_with_ihex.sv Line: 58
+Warning (10230): Verilog HDL assignment warning at uart_tx.sv(53): truncated value with size 32 to match size of target (4) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/uart_tx.sv Line: 53
+Warning (10230): Verilog HDL assignment warning at uart_tx.sv(61): truncated value with size 32 to match size of target (4) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/uart_tx.sv Line: 61
+Warning (10230): Verilog HDL assignment warning at uart_tx.sv(63): truncated value with size 32 to match size of target (4) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/uart_tx.sv Line: 63
+Info (12128): Elaborating entity "wishbone" for hierarchy "TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|wishbone:ihex_wb" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wbuart_with_ihex.sv Line: 62
+Info (12128): Elaborating entity "wb_master_breakout" for hierarchy "TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|wb_master_breakout:dbg_bus_breakout" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wbuart_with_ihex.sv Line: 69
+Info (12128): Elaborating entity "ihex" for hierarchy "TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|ihex:intel_hex_controller" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wbuart_with_ihex.sv Line: 83
+Warning (10230): Verilog HDL assignment warning at ihex.sv(76): truncated value with size 32 to match size of target (8) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/ihex.sv Line: 76
+Warning (10230): Verilog HDL assignment warning at ihex.sv(137): truncated value with size 32 to match size of target (8) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/ihex.sv Line: 137
+Warning (10230): Verilog HDL assignment warning at ihex.sv(212): truncated value with size 32 to match size of target (8) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/ihex.sv Line: 212
+Warning (10230): Verilog HDL assignment warning at ihex.sv(243): truncated value with size 32 to match size of target (8) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/ihex.sv Line: 243
+Info (12128): Elaborating entity "wbuart_with_buffer" for hierarchy "TestWBMaster:a|WBUartIhexWrapper:uart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wbuart_with_ihex.sv Line: 97
+Warning (10230): Verilog HDL assignment warning at wbuart_with_buffer.sv(43): truncated value with size 32 to match size of target (9) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wbuart_with_buffer.sv Line: 43
+Warning (10230): Verilog HDL assignment warning at wbuart_with_buffer.sv(77): truncated value with size 32 to match size of target (9) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wbuart_with_buffer.sv Line: 77
+Warning (10230): Verilog HDL assignment warning at wbuart_with_buffer.sv(103): truncated value with size 32 to match size of target (9) File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wbuart_with_buffer.sv Line: 103
+Warning (10034): Output port "o_wb_err" at wbuart_with_buffer.sv(29) has no driver File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/wbuart_with_buffer.sv Line: 29
+Info (12128): Elaborating entity "WBArbiter" for hierarchy "TestWBMaster:a|WBArbiter:arb" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/TestWBMaster.v Line: 1032
+Info (12128): Elaborating entity "WBSDRAMCtlr" for hierarchy "TestWBMaster:a|WBSDRAMCtlr:ramController" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/generated/fpga_test_de2_115/TestWBMaster.v Line: 1057
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "io_sdram_cke" is stuck at VCC File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/simple_ram_test/simple_ram_test.sv Line: 43
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 9 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/simple_ram_test/output_files/simple_ram_test.map.smsg
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 7 errors, 1 warning
-    Error: Peak virtual memory: 4711 megabytes
-    Error: Processing ended: Sat Nov 27 21:13:28 2021
-    Error: Elapsed time: 00:00:08
-    Error: Total CPU time (on all processors): 00:00:18
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "io_write" File: C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/simple_ram_test/simple_ram_test.sv Line: 50
+Info (21057): Implemented 4977 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 22 input pins
+    Info (21059): Implemented 84 output pins
+    Info (21060): Implemented 32 bidirectional pins
+    Info (21061): Implemented 4839 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 22 warnings
+    Info: Peak virtual memory: 4877 megabytes
+    Info: Processing ended: Mon Nov 29 00:08:33 2021
+    Info: Elapsed time: 00:00:18
+    Info: Total CPU time (on all processors): 00:00:27
 
 
 +------------------------------------------+

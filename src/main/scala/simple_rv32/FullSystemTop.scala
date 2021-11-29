@@ -1,47 +1,89 @@
 package simple_rv32
 
 import chisel3._
-import wb_device.WBLeds
+import wb_device.{BlockRam, Memdev, WBLeds, WBSSeg}
 import wb_device.ihex.{WBUartIhexWrapper, WBUartWithIhex}
 import wb_device.sdram.{SDRAM, WBSDRAMCtlr}
-import wishbone.{WBAddressRange, WBInterconnect}
+import wb_device.sseg.SSEG
+import wishbone.{WBAddressRange, WBArbiter, WBInterconnect, Wishbone}
 
-class FullSystemTop(numSwitches: Int = 18, numLeds: Int = 16) extends Module {
+class FullSystemTop(numSwitches: Int = 18, numLeds: Int = 16, ramDq: Int = 16, simulation: Boolean = false) extends Module {
   val io = IO(new Bundle {
-    val sdram = new SDRAM
-    val dqIn = Input(UInt(16.W))
+    val sdram = new SDRAM(dq = ramDq)
+    val dqIn = Input(UInt(ramDq.W))
 
-//    val switches = Input(UInt(18.W))
+    val switches = Input(UInt(numSwitches.W))
     val leds = Output(UInt(numLeds.W))
     val rx = Input(Bool())
     val tx = Output(Bool())
+
+    val ssegs = Output(Vec(8, UInt(7.W)))
   })
-  io <> DontCare
   dontTouch(io)
 
-//  val core = Module(new ProcTop(fullSystem = true))
+//  val segMod = Module(new SSEG(numSSEG = 8))
+//  io.ssegs := segMod.io.ssegs
+
+
+  val core = withReset((io.switches(numSwitches - 1) || reset.asBool()))(Module(new ProcTop(fullSystem = true)))
+//  segMod.io.value := core.io.currPC
+
 
   val leds = Module(new WBLeds)
   leds.io.leds <> io.leds
+  leds.io.switches := io.switches(15, 0)
+
+  val ssegs = Module(new WBSSeg(numSSeg = 8))
+  io.ssegs := ssegs.io.ssegs
 
   val ihexUart = Module(new WBUartIhexWrapper())
   ihexUart.io.rx := io.rx
   io.tx := ihexUart.io.tx
   ihexUart.io.slaveWb.cyc := false.B
 
-  val dramController = Module(new WBSDRAMCtlr)
-  io.sdram := dramController.io.sdram
-  dramController.io.dataIn := io.dqIn
+  val arbiter = Module(new WBArbiter())
+  arbiter.io.masters(1) <> core.io.wb
+  arbiter.io.masters(0) <> ihexUart.io.masterWb
+
+  val ramWB =
+  if (simulation) {
+    io.sdram <> DontCare
+    val memdev = Module(new Memdev())
+    val theWb = Wire(Flipped(new Wishbone()))
+    memdev.io.i_clk := clock
+    memdev.io.i_wb_cyc := theWb.cyc
+    memdev.io.i_wb_stb := theWb.stb
+    memdev.io.i_wb_we := theWb.we
+    memdev.io.i_wb_sel := theWb.sel
+    memdev.io.i_wb_addr := theWb.addr
+    memdev.io.i_wb_data := theWb.mosi_data
+    theWb.miso_data := memdev.io.o_wb_data
+    theWb.ack := memdev.io.o_wb_ack
+    theWb.stall :=  memdev.io.o_wb_stall
+    theWb.error := false.B
+    theWb
+  } else {
+//    val blockram = Module(new BlockRam(aw=13))
+//    blockram.io.wb
+    val dramController = Module(new WBSDRAMCtlr(dq = ramDq))
+    io.sdram := dramController.io.sdram
+    dramController.io.dataIn := io.dqIn
+    dramController.io.wb
+  }
+
+
 
   val interconnect = Module(new WBInterconnect(Array
   (
-    new WBAddressRange("RAM", 0x0, 64 * 1024 * 1024 ),
+    new WBAddressRange("RAM", 0x0, 128 * 1024 * 1024),
     new WBAddressRange("LEDs", 0xF0000000, 4),
+    new WBAddressRange("SSEG", 0xF0000004, 4),
     new WBAddressRange("UART", base_address = 0xF0001000, numAddresses = 8),
   )))
-  interconnect.io.devices(0) <> dramController.io.wb
+  interconnect.io.devices(0) <> ramWB
   interconnect.io.devices(1) <> leds.io.wb
-  interconnect.io.devices(2) <> ihexUart.io.slaveWb
+  interconnect.io.devices(2) <> ssegs.io.wb
+  interconnect.io.devices(3) <> ihexUart.io.slaveWb
 
-  interconnect.io.master <> ihexUart.io.masterWb
+  interconnect.io.master <> arbiter.io.output
 }

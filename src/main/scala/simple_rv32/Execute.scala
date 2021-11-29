@@ -16,15 +16,15 @@ class Execute extends Module {
 
     val idrr = Flipped(new IDRRBuf)
     val wb = Flipped(new Wishbone())
-    val out = Flipped(new RegFileWritePort)
+    val dprf_write = Flipped(new RegFileWritePort)
 
     val doBranch = Output(Bool())
     val targetPc = Output(UInt(32.W))
   })
   val outBuf = RegInit(0.U.asTypeOf(new ExOut))
-  io.out.we := true.B
-  io.out.regNo := outBuf.rd
-  io.out.data := outBuf.rdVal
+  io.dprf_write.we := true.B
+  io.dprf_write.regNo := outBuf.rd
+  io.dprf_write.data := outBuf.rdVal
   io.doBranch := false.B
   io.targetPc := DontCare
 

@@ -23,3 +23,16 @@ state.CHKSUM2 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1
 state.EXEC_ACK 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
 state.EXEC_WB_REQ 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
 state.EXEC_WB_WAIT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |system|FullSystemTop:top|ProcTop:core|Execute:ex|LoadStore:lsu1|state
+Name state.00 state.10 state.01 
+state.00 0 0 0 
+state.01 1 0 1 
+state.10 1 1 0 
+
+State Machine - |system|FullSystemTop:top|ProcTop:core|Fetch:fetch|wbState
+Name wbState.11 wbState.10 wbState.01 wbState.00 
+wbState.00 0 0 0 0 
+wbState.01 0 0 1 1 
+wbState.10 0 1 0 1 
+wbState.11 1 0 0 1 

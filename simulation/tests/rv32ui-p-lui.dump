@@ -1,0 +1,56 @@
+
+rv32ui-p-lui:     file format elf32-littleriscv
+
+
+Disassembly of section .text.init:
+
+00000000 <_start>:
+   0:	000000b7          	lui	ra,0x0
+   4:	00000393          	li	t2,0
+   8:	00200193          	li	gp,2
+   c:	04709a63          	bne	ra,t2,60 <fail>
+
+00000010 <test_3>:
+  10:	fffff0b7          	lui	ra,0xfffff
+  14:	4010d093          	srai	ra,ra,0x1
+  18:	80000393          	li	t2,-2048
+  1c:	00300193          	li	gp,3
+  20:	04709063          	bne	ra,t2,60 <fail>
+
+00000024 <test_4>:
+  24:	7ffff0b7          	lui	ra,0x7ffff
+  28:	4140d093          	srai	ra,ra,0x14
+  2c:	7ff00393          	li	t2,2047
+  30:	00400193          	li	gp,4
+  34:	02709663          	bne	ra,t2,60 <fail>
+
+00000038 <test_5>:
+  38:	800000b7          	lui	ra,0x80000
+  3c:	4140d093          	srai	ra,ra,0x14
+  40:	80000393          	li	t2,-2048
+  44:	00500193          	li	gp,5
+  48:	00709c63          	bne	ra,t2,60 <fail>
+
+0000004c <test_6>:
+  4c:	80000037          	lui	zero,0x80000
+  50:	00000393          	li	t2,0
+  54:	00600193          	li	gp,6
+  58:	00701463          	bne	zero,t2,60 <fail>
+  5c:	00301663          	bne	zero,gp,68 <pass>
+
+00000060 <fail>:
+  60:	f00008b7          	lui	a7,0xf0000
+  64:	0038a023          	sw	gp,0(a7) # f0000000 <_end+0xeffff000>
+
+00000068 <pass>:
+  68:	000071b7          	lui	gp,0x7
+  6c:	96918193          	addi	gp,gp,-1687 # 6969 <_end+0x5969>
+  70:	f00008b7          	lui	a7,0xf0000
+  74:	0038a023          	sw	gp,0(a7) # f0000000 <_end+0xeffff000>
+
+00000078 <here>:
+  78:	0000006f          	j	78 <here>
+  7c:	0000                	unimp
+  7e:	0000                	unimp
+  80:	0000                	unimp
+  82:	0000                	unimp

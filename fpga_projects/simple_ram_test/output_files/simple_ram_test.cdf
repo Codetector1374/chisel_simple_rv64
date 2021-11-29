@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(10M50DAF484) Path("C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/simple_ram_test/output_files/") File("simple_ram_test.sof") MfrSpec(OpMask(1));
+		Device PartName(EP4CE115F29) Path("C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/simple_ram_test/output_files/") File("simple_ram_test.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

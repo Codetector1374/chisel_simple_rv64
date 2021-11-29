@@ -7,12 +7,14 @@ import wishbone.{WBArbiter, Wishbone}
 class ProcTop(fullSystem: Boolean = false) extends Module {
   val io = IO(new Bundle {
     val wb = Flipped(new Wishbone())
+    val currPC = Output(UInt(32.W))
   })
   if (!fullSystem) {
     io.wb <> DontCare
   }
 
   val fetch = Module(new Fetch)
+  io.currPC := fetch.io.currPC
 
   val dprf = Module(new DPRF())
 
@@ -26,16 +28,16 @@ class ProcTop(fullSystem: Boolean = false) extends Module {
   val ex = Module(new Execute)
   ex.io.idrr <> idrr.io.out
   ex.io.pipeSignalsOut <> idrr.io.pipeSignalsIn
-  idrr.io.operandForward(1).regNo := ex.io.out.regNo
-  dprf.io.write <> ex.io.out
+  idrr.io.operandForward(1).regNo := ex.io.dprf_write.regNo
+  dprf.io.write <> ex.io.dprf_write
   fetch.io.loadPC := ex.io.doBranch
   fetch.io.newPC := ex.io.targetPc
 
 
   // Wishbone Stuff
   val arb = Module(new WBArbiter(numConn = 2))
-  arb.io.masters(0) <> fetch.io.wb
-  arb.io.masters(1) <> ex.io.wb
+  arb.io.masters(1) <> fetch.io.wb
+  arb.io.masters(0) <> ex.io.wb
 
   if (!fullSystem) {
     val memdev = Module(new Memdev())

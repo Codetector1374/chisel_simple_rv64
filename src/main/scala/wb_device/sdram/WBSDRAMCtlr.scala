@@ -9,7 +9,7 @@ class SDRAM(ra: Int = 13, ba: Int = 2, dq: Int = 16) extends Bundle {
   val addr = Output(UInt(ra.W))
   val bank = Output(UInt(ba.W))
   val dataOut = Output(UInt(dq.W))
-  val dqm = Output(UInt((dq/8).W))
+  val dqm = Output(UInt((dq / 8).W))
   val clk = Output(Bool())
   val cke = Output(Bool())
   val cs_n = Output(Bool())
@@ -22,12 +22,14 @@ class SDRAM(ra: Int = 13, ba: Int = 2, dq: Int = 16) extends Bundle {
 class WBRequest(aw: Int = 32, dw: Int = 32) extends Bundle {
   val addr = UInt(aw.W)
   val data = UInt(dw.W)
-  val sel = UInt((dw/8).W)
+  val sel = UInt((dw / 8).W)
   val we = Bool()
 }
 
 class WBSDRAMCtlr(clockSpeedHz: Long = 50000000, wbDataWidth: Int = 32,
                   ra: Int = 13, ca: Int = 10, ba: Int = 2, dq: Int = 16, cas: Int = 2) extends Module {
+
+  println(s"GENERATING RAM CONTROLLER FOR DRAM: ${(math.pow(2, ra) * math.pow(2, ca) / 1024 / 1024).toInt}M x ${math.pow(2, ba).toInt} bank x $dq bits")
   require(wbDataWidth >= dq && wbDataWidth % dq == 0) // LOL Requirement
   require(cas == 2 || cas == 3, "CAS must be 2 or 3")
   // Constants
@@ -55,13 +57,16 @@ class WBSDRAMCtlr(clockSpeedHz: Long = 50000000, wbDataWidth: Int = 32,
 
   val dataBufferSizeInWords = wbDataWidth / dq
   val burstSize = wbDataWidth / dq
+  println(s"Burst size is $burstSize")
   require(burstSize == 1 || burstSize == 2 || burstSize == 4 || burstSize == 8)
   val burstLengthModeCfgValue = burstSize match {
     case 1 => "b000".U(3.W)
     case 2 => "b001".U(3.W)
     case 4 => "b010".U(3.W)
     case 8 => "b011".U(3.W)
-    case _ =>  { require(false); "b001".U(3.W) }
+    case _ => {
+      require(false); "b001".U(3.W)
+    }
   }
 
   // Begin Hardware
@@ -86,6 +91,7 @@ class WBSDRAMCtlr(clockSpeedHz: Long = 50000000, wbDataWidth: Int = 32,
     val issueRead, readWait, readLoad, readAck = Value
     val issueWrite, writeData = Value
   }
+
   val delayCounter = RegInit(resetClks.U(24.W))
 
   val refreshTimeout = RegInit(refreshTimeoutReload.U(32.W))
@@ -100,24 +106,30 @@ class WBSDRAMCtlr(clockSpeedHz: Long = 50000000, wbDataWidth: Int = 32,
   val activationCounter = RegInit(VecInit(Seq.fill(numBanks)(0.U(16.W))))
 
   // Address Mapping
-  val raStart = ca-2+ba+ra
-  val raEnd = ca-2+ba+1
-  val caStart = ca-2
+  val zBits = wbDataWidth / dq - 1
+
+  val raStart = ca - 1 - zBits + ba + ra
+  val raEnd = ca - 1 - zBits + ba + 1
+  val caStart = ca - 1 - zBits
   val caEnd = 0
-  val baStart = ca-2+ba
-  val baEnd = ca-2+1
+  val baStart = ca - 1 - zBits + ba
+  val baEnd = ca - 1 - zBits + 1
 
   val rowAddr = Wire(UInt(ra.W))
   val n_rowAddr = Wire(UInt(ra.W))
-  n_rowAddr := io.wb.addr(ca-2+ba+ra,ca-2+ba+1)
-  rowAddr := wbReqest.bits.addr(ca-2+ba+ra,ca-2+ba+1)
+  n_rowAddr := io.wb.addr(raStart, raEnd)
+  rowAddr := wbReqest.bits.addr(raStart, raEnd)
   val colAddr = Wire(UInt(ca.W))
-  colAddr := Cat(wbReqest.bits.addr(ca-2, 0), 0.U(1.W))
+  if (zBits > 0) {
+    colAddr := Cat(wbReqest.bits.addr(caStart, caEnd), 0.U(zBits.W))
+  } else {
+    colAddr := Cat(wbReqest.bits.addr(caStart, caEnd))
+  }
   val bAddr = Wire(UInt(ba.W))
   val n_bAddr = Wire(UInt(ba.W))
-  n_bAddr := io.wb.addr(ca-2+ba, ca-2+1)
-  bAddr := wbReqest.bits.addr(ca-2+ba, ca-2+1)
-  println(s"rowAddr = wbAddr[$raStart:$raEnd], ba = wbAddr[$baStart:$baEnd], colAddr = {wbAddr[$caStart:$caEnd], 1'b0}")
+  n_bAddr := io.wb.addr(baStart, baEnd)
+  bAddr := wbReqest.bits.addr(baStart, baEnd)
+  println(s"rowAddr = wbAddr[$raStart:$raEnd], ba = wbAddr[$baStart:$baEnd], colAddr = {wbAddr[$caStart:$caEnd]} (zbits = $zBits)")
 
   val state = RegInit(SDRamState.reset)
 
@@ -135,7 +147,7 @@ class WBSDRAMCtlr(clockSpeedHz: Long = 50000000, wbDataWidth: Int = 32,
   }
 
   // Activation Counter
-  for(x <- 0 until numBanks) {
+  for (x <- 0 until numBanks) {
     when(bankActivation(x).valid) {
       activationCounter(x) := activationCounter(x) - 1.U
     }
@@ -144,12 +156,12 @@ class WBSDRAMCtlr(clockSpeedHz: Long = 50000000, wbDataWidth: Int = 32,
   def activateBank(bank: UInt, rowAddr: UInt): Unit = {
     bankActivation(bank).valid := true.B
     bankActivation(bank).bits := rowAddr
-    activationCounter(bank) := (tRAS-1).U
+    activationCounter(bank) := (tRAS - 1).U
   }
   // End Activation Counter
 
   val prechargeDue = Wire(Vec(numBanks, Bool()))
-  for(x <- 0 until numBanks) {
+  for (x <- 0 until numBanks) {
     prechargeDue(x) := bankActivation(x).valid && (activationCounter(x) <= tRASThreshold.U)
   }
   val prechargeBank = Reg(UInt(ba.W))
@@ -195,15 +207,9 @@ class WBSDRAMCtlr(clockSpeedHz: Long = 50000000, wbDataWidth: Int = 32,
       }
     }
     is(SDRamState.idle) {
-      wbReqest.valid := false.B
       when(forceRefreshDue) {
         doRefresh()
-      }.elsewhen(prechargeDue.asUInt().orR()){
-        for (x <- 0 until numBanks) {
-          when(prechargeDue(x)) {
-            prechargeBank := x.U
-          }
-        }
+      }.elsewhen(prechargeDue.asUInt().orR()) {
         doPrecharge()
       }.elsewhen(io.wb.cyc && io.wb.stb) {
         wbReqest.valid := true.B
@@ -214,7 +220,7 @@ class WBSDRAMCtlr(clockSpeedHz: Long = 50000000, wbDataWidth: Int = 32,
 
         when(bankActivation(n_bAddr).valid) {
           when(bankActivation(n_bAddr).bits === n_rowAddr) {
-            when (io.wb.we) {
+            when(io.wb.we) {
               state := SDRamState.issueWrite
             }.otherwise {
               state := SDRamState.issueRead
@@ -238,7 +244,9 @@ class WBSDRAMCtlr(clockSpeedHz: Long = 50000000, wbDataWidth: Int = 32,
           state := SDRamState.idle
         }
         delayCounter := (tRCD - 1).U
-        bankActivation(bAddr).valid := false.B
+        for(b <- 0 until numBanks) {
+          bankActivation(b).valid := false.B
+        }
       }
     }
     is(SDRamState.row_activate) {
@@ -259,17 +267,18 @@ class WBSDRAMCtlr(clockSpeedHz: Long = 50000000, wbDataWidth: Int = 32,
       delayCounter := (cas - 2).U
     }
     is(SDRamState.readWait) {
-      when (delayCounter === 0.U) {
+      when(delayCounter === 0.U) {
         state := SDRamState.readLoad
-        delayCounter := (burstSize-1).U
+        delayCounter := (burstSize - 1).U
       }
     }
     is(SDRamState.readLoad) {
-      when (delayCounter === 0.U) {
+      when(delayCounter === 0.U) {
         state := SDRamState.readAck
       }
     }
     is(SDRamState.readAck) {
+      wbReqest.valid := false.B
       io.wb.ack := io.wb.cyc
       io.wb.miso_data := dataBuffer.asUInt()
       state := SDRamState.idle
@@ -282,28 +291,30 @@ class WBSDRAMCtlr(clockSpeedHz: Long = 50000000, wbDataWidth: Int = 32,
       } else {
         state := SDRamState.idle
         io.wb.ack := io.wb.cyc
+        wbReqest.valid := false.B
       }
     }
     is(SDRamState.writeData) {
       when(delayCounter === 0.U) {
         state := SDRamState.idle
         io.wb.ack := io.wb.cyc
+        wbReqest.valid := false.B
       }
     }
   }
 
-  io.sdram.dqm := Fill(dq/8, 0.U(1.W))
+  io.sdram.dqm := Fill(dq / 8, 0.U(1.W))
   io.sdram.cs_n := true.B
   switch(state) {
     is(SDRamState.reset) {
-      io.sdram.dqm := Fill(dq/8, 1.U(1.W))
+      io.sdram.dqm := Fill(dq / 8, 1.U(1.W))
       io.sdram.cs_n := true.B
       io.sdram.ras_n := true.B
       io.sdram.cas_n := true.B
       io.sdram.we_n := true.B
     }
     is(SDRamState.reset_precharge_all) {
-      io.sdram.dqm := Fill(dq/8, 1.U(1.W))
+      io.sdram.dqm := Fill(dq / 8, 1.U(1.W))
       io.sdram.cs_n := false.B
       io.sdram.ras_n := false.B
       io.sdram.cas_n := true.B
@@ -311,7 +322,7 @@ class WBSDRAMCtlr(clockSpeedHz: Long = 50000000, wbDataWidth: Int = 32,
       io.sdram.addr := "b10000000000".U
     }
     is(SDRamState.reset_set_mode) {
-      io.sdram.dqm := Fill(dq/8, 1.U(1.W))
+      io.sdram.dqm := Fill(dq / 8, 1.U(1.W))
       when(delayCounter === (tMRD - 1).U) {
         io.sdram.cs_n := false.B
         io.sdram.ras_n := false.B
@@ -319,7 +330,7 @@ class WBSDRAMCtlr(clockSpeedHz: Long = 50000000, wbDataWidth: Int = 32,
         io.sdram.we_n := false.B
         io.sdram.bank := 0.U
         io.sdram.addr := Cat(
-          1.U(1.W), // Write Burst Mode
+          0.U(1.W), // Write Burst Mode
           0.U(2.W), // Operating Mode
           cas.U(3.W), // CAS
           0.U(1.W), // Burst type (Sequential / Interleaved)
@@ -328,6 +339,7 @@ class WBSDRAMCtlr(clockSpeedHz: Long = 50000000, wbDataWidth: Int = 32,
       }
     }
     is(SDRamState.reset_auto_refresh, SDRamState.refresh) {
+      io.sdram.dqm := Fill(io.sdram.dqm.getWidth, 1.U(1.W))
       when(delayCounter === (tRC - 1).U) {
         io.sdram.cs_n := false.B
         io.sdram.ras_n := false.B
@@ -349,8 +361,7 @@ class WBSDRAMCtlr(clockSpeedHz: Long = 50000000, wbDataWidth: Int = 32,
         io.sdram.ras_n := false.B
         io.sdram.cas_n := true.B
         io.sdram.we_n := false.B
-        io.sdram.addr := Cat(1.U(1.W), 0.U(10.W)) // A10 = 1 select bank
-        io.sdram.bank := bAddr
+        io.sdram.addr := Cat(1.U(1.W), 0.U(10.W)) // A10 = 1 all banks
       }
     }
     is(SDRamState.row_activate) {
@@ -371,9 +382,9 @@ class WBSDRAMCtlr(clockSpeedHz: Long = 50000000, wbDataWidth: Int = 32,
       io.sdram.we_n := true.B
       io.sdram.bank := bAddr
       if (ca < 10) {
-        io.sdram.addr := Cat(0.U(1.W), 0.U((10-ca).W), colAddr)
+        io.sdram.addr := Cat(0.U(1.W), 0.U((10 - ca).W), colAddr)
       } else if (ca == 10) {
-        io.sdram.addr := Cat(0.U(1.W), colAddr(9,0)) // noPrecharge
+        io.sdram.addr := Cat(0.U(1.W), colAddr(9, 0)) // noPrecharge
       } else {
         require(false, "Not supported yet")
       }
@@ -383,7 +394,7 @@ class WBSDRAMCtlr(clockSpeedHz: Long = 50000000, wbDataWidth: Int = 32,
       io.sdram.dqm := 0.U
     }
     is(SDRamState.readLoad) {
-      for(x <- 0 until burstSize) { // TODO: burst size
+      for (x <- 0 until burstSize) {
         when(delayCounter === x.U) {
           dataBuffer(x) := io.dataIn
         }
@@ -396,35 +407,29 @@ class WBSDRAMCtlr(clockSpeedHz: Long = 50000000, wbDataWidth: Int = 32,
       io.sdram.we_n := false.B
       io.sdram.output_en := true.B
       if (ca < 10) {
-        io.sdram.addr := Cat(0.U(1.W), 0.U((10-ca).W), colAddr)
+        io.sdram.addr := Cat(0.U(1.W), 0.U((10 - ca).W), colAddr)
       } else {
-        io.sdram.addr := Cat(0.U(1.W), colAddr(9,0)) // noPrecharge
+        io.sdram.addr := Cat(0.U(1.W), colAddr(9, 0)) // noPrecharge
       }
       io.sdram.bank := bAddr
-      io.sdram.dqm := ~wbReqest.bits.sel(3,2)
-      io.sdram.dataOut := wbReqest.bits.data(31, 16) // TODO width
+      io.sdram.dqm := ~wbReqest.bits.sel(wbReqest.bits.sel.getWidth - 1,(wbReqest.bits.sel.getWidth) - (dq/8))
+      io.sdram.dataOut := wbReqest.bits.data(wbDataWidth - 1, wbDataWidth - dq)
     }
     is(SDRamState.writeData) {
-      io.sdram.cs_n := false.B
-      io.sdram.ras_n := true.B
-      io.sdram.cas_n := false.B
-      io.sdram.we_n := false.B
       io.sdram.output_en := true.B
       if (ca < 10) {
         print(ca)
-        io.sdram.addr := Cat(0.U(1.W), 0.U((10-ca).W), colAddr(ca-1, 1), 1.U(1.W))
+        io.sdram.addr := Cat(0.U(1.W), 0.U((10 - ca).W), colAddr(ca - 1, 1), 1.U(1.W))
       } else {
-        io.sdram.addr := Cat(0.U(1.W), colAddr(9,1), 1.U(1.W)) // noPrecharge
+        io.sdram.addr := Cat(0.U(1.W), colAddr(9, 1), 1.U(1.W)) // noPrecharge
       }
       io.sdram.bank := bAddr
-      io.sdram.dataOut := wbReqest.bits.data(15, 0)
-      io.sdram.dqm := ~wbReqest.bits.sel(1, 0)
-//      for(x <- 0 until (burstSize - 1)) { // TODO replace 1 with busW/dq - 1
-//        when(delayCounter === x.U) {
-//          io.sdram.dataOut := wbReqest.bits.data(x * dq + dq - 1, x * dq)
-//          io.sdram.dqm := ~wbReqest.bits.sel((dq / 8) * (x+1) - 1, (dq / 8) * x)
-//        }
-//      }
+      for(x <- 0 until (burstSize - 1)) {
+        when(delayCounter === x.U) {
+          io.sdram.dataOut := wbReqest.bits.data(x * dq + dq - 1, x * dq)
+          io.sdram.dqm := ~wbReqest.bits.sel((dq / 8) * (x+1) - 1, (dq / 8) * x)
+        }
+      }
     }
   }
 

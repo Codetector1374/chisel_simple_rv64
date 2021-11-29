@@ -20,3 +20,11 @@ verilate(rv_sim SOURCES ../generated/Top.v ../generated/memdev.v
 add_executable(sdram_sim src/sdramsim.cpp src/wbsdram_sim.cpp)
 verilate(sdram_sim SOURCES ../generated/fpga_test/TestWBMaster.v TRACE
         VERILATOR_ARGS)
+
+add_executable(riscv_test src/FullSystemTest.cpp)
+verilate(riscv_test
+        SOURCES
+        ../generated/riscv_full_test/FullSystemTop.v ../generated/riscv_full_test/wbuart_with_ihex.sv ../generated/memdev.v
+        INCLUDE_DIRS ../generated/riscv_full_test
+        TRACE
+        )

@@ -1,0 +1,132 @@
+
+a.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	00010137          	lui	sp,0x10
+   4:	16c0006f          	j	170 <cmain>
+   8:	00000013          	nop
+   c:	00000013          	nop
+  10:	00000013          	nop
+
+00000014 <_here>:
+  14:	0000006f          	j	14 <_here>
+
+00000018 <rand>:
+  18:	ff010113          	addi	sp,sp,-16 # fff0 <data+0xfdec>
+  1c:	00812623          	sw	s0,12(sp)
+  20:	01010413          	addi	s0,sp,16
+  24:	20002703          	lw	a4,512(zero) # 200 <rseed>
+  28:	00070793          	mv	a5,a4
+  2c:	00179793          	slli	a5,a5,0x1
+  30:	00e787b3          	add	a5,a5,a4
+  34:	00279793          	slli	a5,a5,0x2
+  38:	00e787b3          	add	a5,a5,a4
+  3c:	00479793          	slli	a5,a5,0x4
+  40:	00e787b3          	add	a5,a5,a4
+  44:	00879793          	slli	a5,a5,0x8
+  48:	40e787b3          	sub	a5,a5,a4
+  4c:	00279793          	slli	a5,a5,0x2
+  50:	00e78733          	add	a4,a5,a4
+  54:	0026a7b7          	lui	a5,0x26a
+  58:	ec378793          	addi	a5,a5,-317 # 269ec3 <data+0x269cbf>
+  5c:	00f70733          	add	a4,a4,a5
+  60:	800007b7          	lui	a5,0x80000
+  64:	fff7c793          	not	a5,a5
+  68:	00f77733          	and	a4,a4,a5
+  6c:	20e02023          	sw	a4,512(zero) # 200 <rseed>
+  70:	20002783          	lw	a5,512(zero) # 200 <rseed>
+  74:	4107d793          	srai	a5,a5,0x10
+  78:	00078513          	mv	a0,a5
+  7c:	00c12403          	lw	s0,12(sp)
+  80:	01010113          	addi	sp,sp,16
+  84:	00008067          	ret
+
+00000088 <memtest_addr_pattern>:
+  88:	fd010113          	addi	sp,sp,-48
+  8c:	02812623          	sw	s0,44(sp)
+  90:	03010413          	addi	s0,sp,48
+  94:	fca42e23          	sw	a0,-36(s0)
+  98:	fcb42c23          	sw	a1,-40(s0)
+  9c:	fd842783          	lw	a5,-40(s0)
+  a0:	0027d793          	srli	a5,a5,0x2
+  a4:	fef42223          	sw	a5,-28(s0)
+  a8:	fd842783          	lw	a5,-40(s0)
+  ac:	fef42623          	sw	a5,-20(s0)
+  b0:	0380006f          	j	e8 <memtest_addr_pattern+0x60>
+  b4:	fec42703          	lw	a4,-20(s0)
+  b8:	400007b7          	lui	a5,0x40000
+  bc:	fff78793          	addi	a5,a5,-1 # 3fffffff <data+0x3ffffdfb>
+  c0:	00f707b3          	add	a5,a4,a5
+  c4:	00279793          	slli	a5,a5,0x2
+  c8:	fdc42703          	lw	a4,-36(s0)
+  cc:	00f707b3          	add	a5,a4,a5
+  d0:	fec42703          	lw	a4,-20(s0)
+  d4:	fff70713          	addi	a4,a4,-1
+  d8:	00e7a023          	sw	a4,0(a5)
+  dc:	fec42783          	lw	a5,-20(s0)
+  e0:	fff78793          	addi	a5,a5,-1
+  e4:	fef42623          	sw	a5,-20(s0)
+  e8:	fec42783          	lw	a5,-20(s0)
+  ec:	fc0794e3          	bnez	a5,b4 <memtest_addr_pattern+0x2c>
+  f0:	fe042423          	sw	zero,-24(s0)
+  f4:	05c0006f          	j	150 <memtest_addr_pattern+0xc8>
+  f8:	fe842783          	lw	a5,-24(s0)
+  fc:	00279793          	slli	a5,a5,0x2
+ 100:	fdc42703          	lw	a4,-36(s0)
+ 104:	00f707b3          	add	a5,a4,a5
+ 108:	0007a783          	lw	a5,0(a5)
+ 10c:	fe842703          	lw	a4,-24(s0)
+ 110:	02f70a63          	beq	a4,a5,144 <memtest_addr_pattern+0xbc>
+ 114:	f00007b7          	lui	a5,0xf0000
+ 118:	00478793          	addi	a5,a5,4 # f0000004 <data+0xeffffe00>
+ 11c:	fe842703          	lw	a4,-24(s0)
+ 120:	00e7a023          	sw	a4,0(a5)
+ 124:	fe842783          	lw	a5,-24(s0)
+ 128:	00279793          	slli	a5,a5,0x2
+ 12c:	fdc42703          	lw	a4,-36(s0)
+ 130:	00f70733          	add	a4,a4,a5
+ 134:	f00007b7          	lui	a5,0xf0000
+ 138:	00072703          	lw	a4,0(a4)
+ 13c:	00e7a023          	sw	a4,0(a5) # f0000000 <data+0xeffffdfc>
+ 140:	fe5ff06f          	j	124 <memtest_addr_pattern+0x9c>
+ 144:	fe842783          	lw	a5,-24(s0)
+ 148:	00178793          	addi	a5,a5,1
+ 14c:	fef42423          	sw	a5,-24(s0)
+ 150:	fe842703          	lw	a4,-24(s0)
+ 154:	fe442783          	lw	a5,-28(s0)
+ 158:	faf760e3          	bltu	a4,a5,f8 <memtest_addr_pattern+0x70>
+ 15c:	00100793          	li	a5,1
+ 160:	00078513          	mv	a0,a5
+ 164:	02c12403          	lw	s0,44(sp)
+ 168:	03010113          	addi	sp,sp,48
+ 16c:	00008067          	ret
+
+00000170 <cmain>:
+ 170:	fe010113          	addi	sp,sp,-32
+ 174:	00812e23          	sw	s0,28(sp)
+ 178:	02010413          	addi	s0,sp,32
+ 17c:	fe042423          	sw	zero,-24(s0)
+ 180:	f00017b7          	lui	a5,0xf0001
+ 184:	0007a023          	sw	zero,0(a5) # f0001000 <data+0xf0000dfc>
+ 188:	f00017b7          	lui	a5,0xf0001
+ 18c:	0007a703          	lw	a4,0(a5) # f0001000 <data+0xf0000dfc>
+ 190:	000107b7          	lui	a5,0x10
+ 194:	fff78793          	addi	a5,a5,-1 # ffff <data+0xfdfb>
+ 198:	00f777b3          	and	a5,a4,a5
+ 19c:	fe0786e3          	beqz	a5,188 <cmain+0x18>
+ 1a0:	f00017b7          	lui	a5,0xf0001
+ 1a4:	00478793          	addi	a5,a5,4 # f0001004 <data+0xf0000e00>
+ 1a8:	0007a783          	lw	a5,0(a5)
+ 1ac:	fef42623          	sw	a5,-20(s0)
+ 1b0:	f00007b7          	lui	a5,0xf0000
+ 1b4:	00478793          	addi	a5,a5,4 # f0000004 <data+0xeffffe00>
+ 1b8:	fec42703          	lw	a4,-20(s0)
+ 1bc:	00e7a023          	sw	a4,0(a5)
+ 1c0:	f00017b7          	lui	a5,0xf0001
+ 1c4:	00478793          	addi	a5,a5,4 # f0001004 <data+0xf0000e00>
+ 1c8:	fec42703          	lw	a4,-20(s0)
+ 1cc:	00e7a023          	sw	a4,0(a5)
+ 1d0:	fb9ff06f          	j	188 <cmain+0x18>

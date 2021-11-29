@@ -103,27 +103,26 @@ class IDRR(aftStageCount: Int = 2) extends Module {
 
   when(!io.pipeSignalsIn.pipeStall) { // Not an external stall
     outBuf := 0.U.asTypeOf(new IDRRBuf)
-    when(!io.pipeSignalsIn.pipeFlush) {
-      // Check internal stall condition
-      for(x <- 0 until aftStageCount) {
-        when((io.operandForward(x).regNo =/= 0.U)
-          && (io.operandForward(x).regNo === decodedInst.rs1 || io.operandForward(x).regNo === decodedInst.rs2)) {
-          generateStall := true.B
-        }
-      }
-
-      when(!io.pipeSignalsOut.pipeStall) {
-        outBuf.opcode := opcode
-        outBuf.pc := io.fetch.pc
-        outBuf.func7 := decodedInst.func7
-        outBuf.func3 := decodedInst.func3
-        outBuf.rs1Val := io.port1.data
-        outBuf.rs2Val := io.port2.data
-        outBuf.rd := decodedInst.rd
-        outBuf.imm := decodedInst.imm
+  }
+  when(!io.pipeSignalsIn.pipeFlush) {
+    // Check internal stall condition
+    for(x <- 0 until aftStageCount) {
+      when((io.operandForward(x).regNo =/= 0.U)
+        && (io.operandForward(x).regNo === decodedInst.rs1 || io.operandForward(x).regNo === decodedInst.rs2)) {
+        generateStall := true.B
       }
     }
-  }
 
+    when(!io.pipeSignalsOut.pipeStall) {
+      outBuf.opcode := opcode
+      outBuf.pc := io.fetch.pc
+      outBuf.func7 := decodedInst.func7
+      outBuf.func3 := decodedInst.func3
+      outBuf.rs1Val := io.port1.data
+      outBuf.rs2Val := io.port2.data
+      outBuf.rd := decodedInst.rd
+      outBuf.imm := decodedInst.imm
+    }
+  }
 }
 

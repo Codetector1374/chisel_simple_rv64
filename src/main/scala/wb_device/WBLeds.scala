@@ -4,12 +4,13 @@ import chisel3._
 import chisel3.util.Fill
 import wishbone.Wishbone
 
-class WBLeds(numLeds: Int = 16, activeLow: Boolean = false) extends Module {
+class WBLeds(numLeds: Int = 16, numSw: Int = 16, activeLow: Boolean = false) extends Module {
   require(numLeds <= 32)
   val numBytes = Math.ceil(numLeds / 8.0).toInt
 
   val io = IO(new Bundle {
     val leds = Output(UInt(numLeds.W))
+    val switches = Input(UInt(numSw.W))
 
     val wb = new Wishbone
   })
@@ -23,7 +24,7 @@ class WBLeds(numLeds: Int = 16, activeLow: Boolean = false) extends Module {
     io.leds := ledBuf.asUInt()
   }
 
-  io.wb.miso_data := ledBuf.asUInt()
+  io.wb.miso_data := io.switches
   io.wb.ack := false.B
   when(io.wb.cyc && io.wb.stb) {
     io.wb.ack := true.B
@@ -31,6 +32,8 @@ class WBLeds(numLeds: Int = 16, activeLow: Boolean = false) extends Module {
       for(x <- 0 until numBytes) {
         when(io.wb.sel(x)) {
           ledBuf(x) := io.wb.mosi_data(8 * (x + 1) - 1, 8 * x)
+        }.otherwise {
+          ledBuf(x) := 0.U
         }
       }
     }

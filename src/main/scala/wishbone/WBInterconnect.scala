@@ -21,7 +21,7 @@ class WBInterconnect(addrMap: Array[WBAddressRange]) extends Module {
 
   println("=============== WBInterconnect ADDRESS MAP ================")
   for(x <- addrMap) {
-    println(f"0x${x.base_address}%08X - 0x${x.limit_address}%08X (WB: 0x${x.wb_base}%X)(${x.activeBits})=> ${x.name}")
+    println(f"0x${x.base_address}%08X - 0x${x.limit_address}%08X activeBits: ${x.activeBits}=> ${x.name}")
   }
   println("=============== END ADDRESS MAP ===========================")
 
@@ -52,7 +52,7 @@ class WBInterconnect(addrMap: Array[WBAddressRange]) extends Module {
   val deviceSels = Wire(Vec(addrMap.length, Bool()))
   for(x <- addrMap.indices) {
     val dev = addrMap(x)
-    deviceSels(x) := io.master.addr(29, dev.activeBits-2) === dev.wb_base.U
+    deviceSels(x) := io.master.addr(29, 0) >= (dev.base_address >>> 2).U && io.master.addr(29,0) <= (dev.limit_address >>> 2).U
   }
   when(io.master.stb && !deviceSels.asUInt().orR()) {
     wberr := true.B
@@ -68,8 +68,10 @@ class WBInterconnect(addrMap: Array[WBAddressRange]) extends Module {
     val dev = addrMap(x)
     io.devices(x).stb := io.master.stb && deviceSels(x)
     io.devices(x).sel := io.master.sel
-    if (dev.activeBits > 2) {
+    if (dev.activeBits > 3) {
       io.devices(x).addr := io.master.addr(dev.activeBits - 2 - 1, 0).asUInt()
+    } else if (dev.activeBits > 2) {
+      io.devices(x).addr := io.master.addr(0).asUInt()
     } else {
       io.devices(x).addr := 0.U
     }

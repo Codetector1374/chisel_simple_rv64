@@ -1,0 +1,38 @@
+
+rv32ui-p-simple:     file format elf32-littleriscv
+
+
+Disassembly of section .text.init:
+
+00000000 <_start>:
+   0:	000071b7          	lui	gp,0x7
+   4:	96918193          	addi	gp,gp,-1687 # 6969 <_end+0x5969>
+   8:	f00008b7          	lui	a7,0xf0000
+   c:	0038a023          	sw	gp,0(a7) # f0000000 <_end+0xeffff000>
+
+00000010 <here>:
+  10:	0000006f          	j	10 <here>
+  14:	0000                	unimp
+  16:	0000                	unimp
+  18:	0000                	unimp
+  1a:	0000                	unimp
+  1c:	0000                	unimp
+  1e:	0000                	unimp
+  20:	0000                	unimp
+  22:	0000                	unimp
+  24:	0000                	unimp
+  26:	0000                	unimp
+  28:	0000                	unimp
+  2a:	0000                	unimp
+  2c:	0000                	unimp
+  2e:	0000                	unimp
+  30:	0000                	unimp
+  32:	0000                	unimp
+  34:	0000                	unimp
+  36:	0000                	unimp
+  38:	0000                	unimp
+  3a:	0000                	unimp
+  3c:	0000                	unimp
+  3e:	0000                	unimp
+  40:	0000                	unimp
+  42:	0000                	unimp
