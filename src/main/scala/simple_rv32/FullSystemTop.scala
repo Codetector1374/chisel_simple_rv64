@@ -1,7 +1,7 @@
 package simple_rv32
 
 import chisel3._
-import wb_device.{BlockRam, Memdev, WBLeds, WBSSeg}
+import wb_device.{BlockRam, Memdev, WBLeds, WBNeoPixel, WBSSeg}
 import wb_device.ihex.{WBUartIhexWrapper, WBUartWithIhex}
 import wb_device.sdram.{SDRAM, WBSDRAMCtlr}
 import wb_device.sseg.SSEG
@@ -16,6 +16,8 @@ class FullSystemTop(numSwitches: Int = 18, numLeds: Int = 16, ramDq: Int = 16, s
     val leds = Output(UInt(numLeds.W))
     val rx = Input(Bool())
     val tx = Output(Bool())
+
+    val neopixel_data = Output(Bool())
 
     val ssegs = Output(Vec(8, UInt(7.W)))
   })
@@ -45,8 +47,7 @@ class FullSystemTop(numSwitches: Int = 18, numLeds: Int = 16, ramDq: Int = 16, s
   arbiter.io.masters(1) <> core.io.wb
   arbiter.io.masters(0) <> ihexUart.io.masterWb
 
-  val ramWB =
-  if (simulation) {
+  val ramWB = if (simulation) {
     io.sdram <> DontCare
     val memdev = Module(new Memdev())
     val theWb = Wire(Flipped(new Wishbone()))
@@ -71,19 +72,22 @@ class FullSystemTop(numSwitches: Int = 18, numLeds: Int = 16, ramDq: Int = 16, s
     dramController.io.wb
   }
 
-
+  val neopixel = Module(new WBNeoPixel)
+  io.neopixel_data := neopixel.io.led
 
   val interconnect = Module(new WBInterconnect(Array
   (
-    new WBAddressRange("RAM", 0x0, 128 * 1024 * 1024),
-    new WBAddressRange("LEDs", 0xF0000000, 4),
-    new WBAddressRange("SSEG", 0xF0000004, 4),
-    new WBAddressRange("UART", base_address = 0xF0001000, numAddresses = 8),
+    WBAddressRange("RAM", 0x0, 128 * 1024 * 1024),
+    WBAddressRange("LEDs", 0xF0000000, 4),
+    WBAddressRange("SSEG", 0xF0000004, 4),
+    WBAddressRange("NeoPixel", 0xF0000010, 4),
+    WBAddressRange("UART", base_address = 0xF0001000, numAddresses = 8),
   )))
   interconnect.io.devices(0) <> ramWB
   interconnect.io.devices(1) <> leds.io.wb
   interconnect.io.devices(2) <> ssegs.io.wb
-  interconnect.io.devices(3) <> ihexUart.io.slaveWb
+  interconnect.io.devices(3) <> neopixel.io.wb
+  interconnect.io.devices(4) <> ihexUart.io.slaveWb
 
   interconnect.io.master <> arbiter.io.output
 }
