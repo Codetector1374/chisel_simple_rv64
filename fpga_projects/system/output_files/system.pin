@@ -192,7 +192,7 @@ RESERVED_INPUT               : AD11      :        :                   :         
 RESERVED_INPUT               : AD12      :        :                   :         : 3         :                
 VCCIO3                       : AD13      : power  :                   : 2.5V    : 3         :                
 RESERVED_INPUT               : AD14      :        :                   :         : 3         :                
-RESERVED_INPUT               : AD15      :        :                   :         : 4         :                
+io_neopixel_data             : AD15      : output : 2.5 V             :         : 4         : Y              
 VCCIO4                       : AD16      : power  :                   : 2.5V    : 4         :                
 io_ssegs_7[6]                : AD17      : output : 2.5 V             :         : 4         : Y              
 io_ssegs_5[6]                : AD18      : output : 2.5 V             :         : 4         : Y              

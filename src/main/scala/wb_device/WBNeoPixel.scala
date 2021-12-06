@@ -19,10 +19,10 @@ class WBNeoPixel(clockSpeed: Long = 50000000, maxNumLeds: Int = 256) extends Mod
   val t0l = 0.0000009D
   val tRes = 0.0001D
 
-  val t0hCyc = (t0h * clockSpeed).toInt
-  val t1lCyc = (t1l * clockSpeed).toInt
-  val t1hCyc = (t1h * clockSpeed).toInt
-  val t0lCyc = (t0l * clockSpeed).toInt
+  val t0hCyc = (t0h * clockSpeed).round.toInt
+  val t1lCyc = (t1l * clockSpeed).round.toInt
+  val t1hCyc = (t1h * clockSpeed).round.toInt
+  val t0lCyc = (t0l * clockSpeed).round.toInt
   val tResCyc = (tRes * clockSpeed).toInt
 
   println(s"t0h = $t0hCyc, t1l = $t1lCyc, t1h = $t1hCyc, t0l = $t0lCyc, tResCyc = $tResCyc")
@@ -84,6 +84,9 @@ class WBNeoPixel(clockSpeed: Long = 50000000, maxNumLeds: Int = 256) extends Mod
   val currentLED = mem(oLEDCntr).asUInt()
 
   io.led := false.B
+  io.wb.ack := false.B
+  io.wb.miso_data := DontCare
+  io.wb.error := false.B
   // Combinational Output part
   switch(oState) {
     is(OutputState.output) {
@@ -95,30 +98,11 @@ class WBNeoPixel(clockSpeed: Long = 50000000, maxNumLeds: Int = 256) extends Mod
     }
   }
 
-  object CommandState extends ChiselEnum {
-    val idle = Value
-    val set16bColor = Value
-    val set24bColor1, set24bColor2 = Value
-    val setAllColor = Value
-  }
-
-  val cmdState = RegInit(CommandState.idle)
-  val setAllCounter = Reg(UInt(8.W))
-
-  val cmdLedNum = Reg(UInt(8.W))
-  val nextColorBuf = Reg(new LEDColor)
-  val nextColor = Wire(new LEDColor)
-  nextColor := DontCare
-  val isBusy = Wire(Bool())
-  isBusy := cmdState === CommandState.setAllColor
-
-  io.wb.stall := isBusy
-
-  when(!isBusy && io.wb.cyc && io.wb.stb) {
+  io.wb.stall := false.B
+  when(io.wb.cyc && io.wb.stb) {
     when(io.wb.we) {
-      when(io.wb.addr === 0.U) {
-        mem(io.wb.mosi_data(31, 24)) := io.wb.mosi_data(23, 0).asTypeOf(new LEDColor)
-      }
+      io.wb.ack := true.B
+      mem(io.wb.addr(7, 0)) := io.wb.mosi_data(23, 0).asTypeOf(new LEDColor)
     }
   }
 }

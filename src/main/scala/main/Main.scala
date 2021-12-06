@@ -13,11 +13,13 @@ object Main {
 //    (new ChiselStage).emitVerilog(new TestWBMaster(ramdw=32), args = Array("-td", "generated/fpga_test_de2_115"))
 //    (new ChiselStage).emitVerilog(new YJTop, args = Array("-td", "generated/yj"))
 
-    println("GENERATING Verilator FULL SYSTEM")
-    (new ChiselStage).emitVerilog(new FullSystemTop(simulation = true), args = Array("-td", "generated/riscv_full_test"))
-
-    println("GENERATING FPGA FULL SYSTEM")
-    (new ChiselStage).emitVerilog(new FullSystemTop(ramDq = 32), args = Array("-td", "generated/riscv_full"))
+//    println("GENERATING Verilator FULL SYSTEM")
+//    (new ChiselStage).emitVerilog(new FullSystemTop(simulation = true), args = Array("-td", "generated/riscv_full_test"))
+//
+//    println("GENERATING FPGA FULL SYSTEM")
+//    (new ChiselStage).emitVerilog(new FullSystemTop(ramDq = 32), args = Array("-td", "generated/riscv_full"))
     //    (new ChiselStage).emitVerilog(new WBArbiter(numConn = 4), args= Array("-td", "generated/wbarb"))
+
+    (new ChiselStage).emitVerilog(new CDCExperimentTop, args = Array("-td", "generated/cdc_demo"))
   }
 }

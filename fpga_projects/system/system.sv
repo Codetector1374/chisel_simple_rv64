@@ -15,6 +15,8 @@ module system (
     io_sdram_cas_n,
     io_sdram_we_n,
 	 io_switches,
+	 io_neopixel_data,
+
 	 io_ssegs_0,
 	io_ssegs_1,
 	io_ssegs_2,
@@ -49,6 +51,9 @@ input [17:0] io_switches;
   output [6:0]  io_ssegs_5;
   output [6:0]  io_ssegs_6;
   output [6:0]  io_ssegs_7;
+  
+    output        io_neopixel_data;
+
 
 reg reset, reset_int;
 always @(posedge clock) begin
@@ -78,6 +83,8 @@ FullSystemTop top(
     .io_sdram_we_n,
     .io_sdram_output_en,
     .io_dqIn(io_sdram_data),
+	 
+	 .io_neopixel_data,
 	 
 	 .io_switches,
 	 .io_ssegs_0,

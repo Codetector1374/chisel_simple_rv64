@@ -168,6 +168,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "io_neopixel_data",
+					"strict" : false
+				},
+				{
 					"name" : "io_ssegs_0[0]",
 					"strict" : false
 				},
@@ -580,10 +584,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "io_switches[12]",
-					"strict" : false
-				},
-				{
 					"name" : "io_switches[11]",
 					"strict" : false
 				},
@@ -593,6 +593,10 @@
 				},
 				{
 					"name" : "io_switches[9]",
+					"strict" : false
+				},
+				{
+					"name" : "io_switches[12]",
 					"strict" : false
 				},
 				{

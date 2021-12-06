@@ -1,7 +1,7 @@
 package simple_rv32
 
 import chisel3._
-import wb_device.{BlockRam, Memdev, WBLeds, WBNeoPixel, WBSSeg}
+import wb_device.{BlockRam, Memdev, WBLeds, WBNeoPixel, WBSSeg, WBTimer}
 import wb_device.ihex.{WBUartIhexWrapper, WBUartWithIhex}
 import wb_device.sdram.{SDRAM, WBSDRAMCtlr}
 import wb_device.sseg.SSEG
@@ -23,13 +23,7 @@ class FullSystemTop(numSwitches: Int = 18, numLeds: Int = 16, ramDq: Int = 16, s
   })
   dontTouch(io)
 
-//  val segMod = Module(new SSEG(numSSEG = 8))
-//  io.ssegs := segMod.io.ssegs
-
-
   val core = withReset((io.switches(numSwitches - 1) || reset.asBool()))(Module(new ProcTop(fullSystem = true)))
-//  segMod.io.value := core.io.currPC
-
 
   val leds = Module(new WBLeds)
   leds.io.leds <> io.leds
@@ -72,22 +66,26 @@ class FullSystemTop(numSwitches: Int = 18, numLeds: Int = 16, ramDq: Int = 16, s
     dramController.io.wb
   }
 
-  val neopixel = Module(new WBNeoPixel)
+  val neopixel = Module(new WBNeoPixel(maxNumLeds = 32))
   io.neopixel_data := neopixel.io.led
+
+  val timer1 = Module(new WBTimer) // Tick 1ms
 
   val interconnect = Module(new WBInterconnect(Array
   (
     WBAddressRange("RAM", 0x0, 128 * 1024 * 1024),
     WBAddressRange("LEDs", 0xF0000000, 4),
     WBAddressRange("SSEG", 0xF0000004, 4),
-    WBAddressRange("NeoPixel", 0xF0000010, 4),
+    WBAddressRange("NeoPixel", 0xF0002000, 1024),
     WBAddressRange("UART", base_address = 0xF0001000, numAddresses = 8),
+    WBAddressRange("Timer", 0xF0000010, 4),
   )))
   interconnect.io.devices(0) <> ramWB
   interconnect.io.devices(1) <> leds.io.wb
   interconnect.io.devices(2) <> ssegs.io.wb
   interconnect.io.devices(3) <> neopixel.io.wb
   interconnect.io.devices(4) <> ihexUart.io.slaveWb
+  interconnect.io.devices(5) <> timer1.io.wb
 
   interconnect.io.master <> arbiter.io.output
 }

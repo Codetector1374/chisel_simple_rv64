@@ -1,4 +1,10 @@
 
+State Machine - |system|FullSystemTop:top|WBNeoPixel:neopixel|oState
+Name oState.00 oState.10 oState.01 
+oState.00 0 0 0 
+oState.01 1 0 1 
+oState.10 1 1 0 
+
 State Machine - |system|FullSystemTop:top|WBUartIhexWrapper:ihexUart|WBUartWithIhex:m|wbuart_with_buffer:uart_ctrlr|wb_state
 Name wb_state.WBIDLE wb_state.WBACK wb_state.WBEXEC 
 wb_state.WBIDLE 0 0 0 

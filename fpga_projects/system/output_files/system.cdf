@@ -4,10 +4,10 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP4CE115F29) Path("C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/output_files/") File("system.sof") MfrSpec(OpMask(1));
+		Device PartName(EPCS64) Path("C:/Users/user/projects/github.com/codetector1374/chisel_simple_rv64/fpga_projects/system/") File("output_file.pof") MfrSpec(OpMask(1) Child_OpMask(1 1));
 
 ChainEnd;
 
 AlteraBegin;
-	ChainType(JTAG);
+	ChainType(asc);
 AlteraEnd;
