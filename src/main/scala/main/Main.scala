@@ -3,6 +3,7 @@ package main
 import chisel3.stage.ChiselStage
 import simple_rv32.{FullSystemTop, ProcTop}
 import wb_device.TestWBMaster
+import wb_device.mii_ether.MIIManagement
 import wb_device.sdram.WBSDRAMCtlr
 
 object Main {
@@ -17,9 +18,8 @@ object Main {
 //    (new ChiselStage).emitVerilog(new FullSystemTop(simulation = true), args = Array("-td", "generated/riscv_full_test"))
 //
 //    println("GENERATING FPGA FULL SYSTEM")
-//    (new ChiselStage).emitVerilog(new FullSystemTop(ramDq = 32), args = Array("-td", "generated/riscv_full"))
-    //    (new ChiselStage).emitVerilog(new WBArbiter(numConn = 4), args= Array("-td", "generated/wbarb"))
+    (new ChiselStage).emitVerilog(new FullSystemTop(ramDq = 32), args = Array("-td", "generated/riscv_full"))
 
-    (new ChiselStage).emitVerilog(new CDCExperimentTop, args = Array("-td", "generated/cdc_demo"))
+    (new ChiselStage).emitVerilog(new MIIManagement(sysClk = 4, mdc = 1), args = Array("-td", "generated/mdio_test"))
   }
 }

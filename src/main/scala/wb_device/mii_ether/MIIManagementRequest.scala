@@ -8,3 +8,7 @@ class MIIManagementRequest extends Bundle {
   val regAddr = UInt(5.W)
   val wrData = UInt(16.W)
 }
+
+class MIIManagementResponse extends Bundle {
+  val value = UInt(16.W)
+}

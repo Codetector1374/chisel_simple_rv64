@@ -1,22 +1,22 @@
 [*]
-[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Thu Nov 25 01:32:59 2021
+[*] GTKWave Analyzer v3.3.107 (w)1999-2020 BSI
+[*] Thu Nov 25 03:49:08 2021
 [*]
-[dumpfile] "C:\Users\user\projects\github.com\codetector1374\chisel_simple_rv64\simulation\cmake-build-debug\trace.vcd"
-[dumpfile_mtime] "Wed Nov 24 21:45:22 2021"
-[dumpfile_size] 50067
-[savefile] "C:\Users\user\projects\github.com\codetector1374\chisel_simple_rv64\simulation\top.gtkw"
-[timestart] 1
-[size] 3072 1665
+[dumpfile] "/Users/codetector/projects/github.com/codetector1374/chisel_simple_rv64/simulation/cmake-build-debug/trace.vcd"
+[dumpfile_mtime] "Thu Nov 25 03:44:59 2021"
+[dumpfile_size] 87864
+[savefile] "/Users/codetector/projects/github.com/codetector1374/chisel_simple_rv64/simulation/top.gtkw"
+[timestart] 25
+[size] 1680 918
 [pos] -1 -1
-*-1.921819 15 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-2.244149 28 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.Top.
 [treeopen] TOP.Top.ex.
 [sst_width] 305
-[signals_width] 562
+[signals_width] 403
 [sst_expanded] 1
-[sst_vpaned_height] 528
+[sst_vpaned_height] 446
 @22
 TOP.Top.fetch.clock
 TOP.Top.fetch.reset
@@ -25,9 +25,13 @@ TOP.Top.fetch.reset
 @800022
 TOP.Top.fetch.pc[31:0]
 @28
+TOP.Top.fetch.io_loadPC
+@23
+TOP.Top.fetch.io_newPC[31:0]
+@28
 TOP.Top.fetch.io_pipeSignalsIn_pipeStall
 TOP.Top.fetch.io_pipeSignalsIn_pipeFlush
-@800200
+@c00200
 -Fetch WB
 @c00028
 [color] 7
@@ -63,7 +67,7 @@ TOP.Top.fetch.io_wb_ack
 @22
 [color] 7
 TOP.Top.fetch.io_wb_miso_data[31:0]
-@1000200
+@1401200
 -Fetch WB
 @1001200
 -group_end
@@ -76,7 +80,7 @@ TOP.Top.fetch.fetchBuf_inst[31:0]
 -ID/RR
 @2028
 [color] 1
-^1 C:\Users\user\projects\github.com\codetector1374\chisel_simple_rv64\simulation\opcode.dict
+^1 /Users/codetector/projects/github.com/codetector1374/chisel_simple_rv64/simulation/opcode.dict
 TOP.Top.idrr.opcode[6:0]
 @22
 TOP.Top.idrr.io_pipeSignalsIn_pipeStall
@@ -85,7 +89,7 @@ TOP.Top.idrr.io_pipeSignalsIn_pipeFlush
 -
 @2028
 [color] 1
-^1 C:\Users\user\projects\github.com\codetector1374\chisel_simple_rv64\simulation\opcode.dict
+^1 /Users/codetector/projects/github.com/codetector1374/chisel_simple_rv64/simulation/opcode.dict
 TOP.Top.idrr.outBuf_opcode[6:0]
 @22
 TOP.Top.idrr.outBuf_rd[4:0]
@@ -174,17 +178,17 @@ TOP.Top.dprf.registers_31[31:0]
 -Registers
 @c00200
 -WBMaster_0
-@29
+@28
 TOP.Top.arb.io_masters_0_ack
-@23
+@22
 TOP.Top.arb.io_masters_0_addr[31:0]
-@29
+@28
 TOP.Top.arb.io_masters_0_cyc
-@23
+@22
 TOP.Top.arb.io_masters_0_miso_data[31:0]
 TOP.Top.arb.io_masters_0_mosi_data[31:0]
 TOP.Top.arb.io_masters_0_sel[3:0]
-@29
+@28
 TOP.Top.arb.io_masters_0_stall
 TOP.Top.arb.io_masters_0_stb
 TOP.Top.arb.io_masters_0_we

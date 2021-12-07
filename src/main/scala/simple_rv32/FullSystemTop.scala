@@ -54,12 +54,12 @@ class FullSystemTop(numSwitches: Int = 18, numLeds: Int = 16, ramDq: Int = 16, s
     memdev.io.i_wb_data := theWb.mosi_data
     theWb.miso_data := memdev.io.o_wb_data
     theWb.ack := memdev.io.o_wb_ack
-    theWb.stall :=  memdev.io.o_wb_stall
+    theWb.stall := memdev.io.o_wb_stall
     theWb.error := false.B
     theWb
   } else {
-//    val blockram = Module(new BlockRam(aw=13))
-//    blockram.io.wb
+    //    val blockram = Module(new BlockRam(aw=13))
+    //    blockram.io.wb
     val dramController = Module(new WBSDRAMCtlr(dq = ramDq))
     io.sdram := dramController.io.sdram
     dramController.io.dataIn := io.dqIn
@@ -71,21 +71,15 @@ class FullSystemTop(numSwitches: Int = 18, numLeds: Int = 16, ramDq: Int = 16, s
 
   val timer1 = Module(new WBTimer) // Tick 1ms
 
-  val interconnect = Module(new WBInterconnect(Array
+  val interconnect = WBInterconnect(Array
   (
-    WBAddressRange("RAM", 0x0, 128 * 1024 * 1024),
-    WBAddressRange("LEDs", 0xF0000000, 4),
-    WBAddressRange("SSEG", 0xF0000004, 4),
-    WBAddressRange("NeoPixel", 0xF0002000, 1024),
-    WBAddressRange("UART", base_address = 0xF0001000, numAddresses = 8),
-    WBAddressRange("Timer", 0xF0000010, 4),
-  )))
-  interconnect.io.devices(0) <> ramWB
-  interconnect.io.devices(1) <> leds.io.wb
-  interconnect.io.devices(2) <> ssegs.io.wb
-  interconnect.io.devices(3) <> neopixel.io.wb
-  interconnect.io.devices(4) <> ihexUart.io.slaveWb
-  interconnect.io.devices(5) <> timer1.io.wb
+    (WBAddressRange("RAM", 0x0, 128 * 1024 * 1024), ramWB),
+    (WBAddressRange("LEDs", 0xF0000000, 4), leds.io.wb),
+    (WBAddressRange("SSEG", 0xF0000004, 4), ssegs.io.wb),
+    (WBAddressRange("Timer", 0xF0000010, 4), timer1.io.wb),
+    (WBAddressRange("UART", 0xF0001000, numAddresses = 8), ihexUart.io.slaveWb),
+    (WBAddressRange("NeoPixel", 0xF0002000, 1024), neopixel.io.wb),
+  ))
 
   interconnect.io.master <> arbiter.io.output
 }

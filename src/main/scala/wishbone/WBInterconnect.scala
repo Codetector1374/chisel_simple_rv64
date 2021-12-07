@@ -20,8 +20,13 @@ numAddresses: Int
 class WBInterconnect(addrMap: Array[WBAddressRange]) extends Module {
 
   println("=============== WBInterconnect ADDRESS MAP ================")
-  for(x <- addrMap) {
-    println(f"0x${x.base_address}%08X - 0x${x.limit_address}%08X activeBits: ${x.activeBits}=> ${x.name}")
+  val sortedAddrMap = addrMap.sortWith((a, b) => {
+    val i = a.base_address
+    val j = b.base_address
+    (i < j) ^ (i < 0) ^ (j < 0)
+  })
+  for(x <- sortedAddrMap) {
+    println(f"0x${x.base_address}%08X - 0x${x.limit_address}%08X activeBits: ${x.activeBits}%02d\t=>\t${x.name}")
   }
   println("=============== END ADDRESS MAP ===========================")
 
@@ -82,3 +87,15 @@ class WBInterconnect(addrMap: Array[WBAddressRange]) extends Module {
 
 }
 
+object WBInterconnect {
+  def apply(addrMap: Array[(WBAddressRange, Wishbone)]): WBInterconnect = {
+    val addrRanges = addrMap.map(x => x._1)
+    val m = Module(new WBInterconnect(addrRanges))
+
+    for (x <- addrMap.indices) {
+      m.io.devices(x) <> addrMap(x)._2
+    }
+
+    return m
+  }
+}
