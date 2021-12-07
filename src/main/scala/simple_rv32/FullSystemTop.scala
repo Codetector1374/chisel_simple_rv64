@@ -3,11 +3,13 @@ package simple_rv32
 import chisel3._
 import wb_device.{BlockRam, Memdev, WBLeds, WBNeoPixel, WBSSeg, WBTimer}
 import wb_device.ihex.{WBUartIhexWrapper, WBUartWithIhex}
+import wb_device.mii_ether.{MIIInterface, WBMIIEthernet}
 import wb_device.sdram.{SDRAM, WBSDRAMCtlr}
 import wb_device.sseg.SSEG
 import wishbone.{WBAddressRange, WBArbiter, WBInterconnect, Wishbone}
 
 class FullSystemTop(numSwitches: Int = 18, numLeds: Int = 16, ramDq: Int = 16, simulation: Boolean = false) extends Module {
+  val sysClockSpeed = 50000000
   val io = IO(new Bundle {
     val sdram = new SDRAM(dq = ramDq)
     val dqIn = Input(UInt(ramDq.W))
@@ -18,7 +20,7 @@ class FullSystemTop(numSwitches: Int = 18, numLeds: Int = 16, ramDq: Int = 16, s
     val tx = Output(Bool())
 
     val neopixel_data = Output(Bool())
-
+    val miiEther0 = new MIIInterface
     val ssegs = Output(Vec(8, UInt(7.W)))
   })
   dontTouch(io)
@@ -71,6 +73,9 @@ class FullSystemTop(numSwitches: Int = 18, numLeds: Int = 16, ramDq: Int = 16, s
 
   val timer1 = Module(new WBTimer) // Tick 1ms
 
+  val miiEthernet = Module(new WBMIIEthernet(sysClock = sysClockSpeed))
+  miiEthernet.io.mii <> io.miiEther0
+
   val interconnect = WBInterconnect(Array
   (
     (WBAddressRange("RAM", 0x0, 128 * 1024 * 1024), ramWB),
@@ -79,6 +84,7 @@ class FullSystemTop(numSwitches: Int = 18, numLeds: Int = 16, ramDq: Int = 16, s
     (WBAddressRange("Timer", 0xF0000010, 4), timer1.io.wb),
     (WBAddressRange("UART", 0xF0001000, numAddresses = 8), ihexUart.io.slaveWb),
     (WBAddressRange("NeoPixel", 0xF0002000, 1024), neopixel.io.wb),
+    (WBAddressRange("MIIEther", 0xF1000000, 8), miiEthernet.io.wb),
   ))
 
   interconnect.io.master <> arbiter.io.output

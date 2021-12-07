@@ -2,7 +2,7 @@ package wb_device.mii_ether
 
 import chisel3._
 import chisel3.experimental.ChiselEnum
-import chisel3.util.{DecoupledIO, is, switch}
+import chisel3.util._
 
 class SerializedMIIMgmtRequest extends Bundle {
   val preamble = UInt(32.W)
@@ -21,9 +21,8 @@ class MIIManagement(sysClk: Int = 50000000, mdc: Int = 1000000) extends Module {
   val io = IO(new Bundle {
     val mgmt = new MIIManagementIf
     val request = Flipped(new DecoupledIO(new MIIManagementRequest))
-    val response = new DecoupledIO(new MIIManagementResponse)
+    val response = new Valid(new MIIManagementResponse)
   })
-  io.mgmt <> DontCare
 
   val clkDivCounter = RegInit((clkDiv - 1).U(24.W))
   val mgmtClk = RegInit(false.B)
@@ -35,7 +34,7 @@ class MIIManagement(sysClk: Int = 50000000, mdc: Int = 1000000) extends Module {
   }
 
   object State extends ChiselEnum {
-    val idle, request, ta, writeData, readData, readResult = Value
+    val idle, request, ta, writeData, readData = Value
   }
 
   val mgmtState = RegInit(State.idle)
@@ -61,11 +60,34 @@ class MIIManagement(sysClk: Int = 50000000, mdc: Int = 1000000) extends Module {
   io.response.valid := mgmtState === State.idle
   io.response.bits.value := readBuffer.asUInt()
   io.mgmt.dataOut := false.B
-  when(clkDivCounter === 0.U && mgmtClk === false.B) {
+
+  io.mgmt.outEn := true.B
+  switch(mgmtState) {
+    is(State.idle) {
+      io.mgmt.outEn := false.B
+    }
+    is(State.request) {
+      io.mgmt.dataOut := encodedRequest.asUInt()(counter).asBool()
+    }
+    is(State.ta) {
+      when(!currentRequest.bWrite) {
+        io.mgmt.outEn := false.B
+      }.otherwise {
+        io.mgmt.dataOut := counter(0);
+      }
+    }
+    is(State.writeData) {
+      io.mgmt.dataOut := currentRequest.wrData(counter)
+    }
+    is(State.readData) {
+      io.mgmt.outEn := false.B
+    }
+  }
+
+  when(clkDivCounter === 0.U && mgmtClk === true.B) {
     counter := counter - 1.U
     switch(mgmtState) {
       is(State.idle) {
-        io.mgmt.outEn := false.B
         io.request.ready := true.B
         when(io.request.valid) {
           currentRequest := io.request.bits
@@ -78,7 +100,6 @@ class MIIManagement(sysClk: Int = 50000000, mdc: Int = 1000000) extends Module {
           mgmtState := State.ta
           counter := 1.U
         }
-        io.mgmt.dataOut := currentRequest.asUInt()(counter).asBool()
       }
       is(State.ta) {
         when(counter === 0.U) {
@@ -86,27 +107,22 @@ class MIIManagement(sysClk: Int = 50000000, mdc: Int = 1000000) extends Module {
           when(currentRequest.bWrite) {
             mgmtState := State.writeData
           }.otherwise {
+            readBuffer(15) := io.mgmt.dataIn
             mgmtState := State.readData
           }
-        }
-        when(!currentRequest.bWrite) {
-          io.mgmt.outEn := false.B
         }
       }
       is(State.writeData) {
         when(counter === 0.U) {
           mgmtState := State.idle
         }
-        io.mgmt.dataOut := currentRequest.wrData(counter)
       }
       is(State.readData) {
         when(counter === 0.U) {
-          mgmtState := State.readResult
+          mgmtState := State.idle
+        }.otherwise {
+          readBuffer(counter - 1.U) := io.mgmt.dataIn
         }
-        readBuffer(counter) := io.mgmt.dataIn
-      }
-      is(State.readResult) {
-        mgmtState := State.idle
       }
     }
   }
