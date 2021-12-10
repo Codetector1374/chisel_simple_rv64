@@ -17,9 +17,9 @@ verilate(rv_sim SOURCES ../generated/Top.v ../generated/memdev.v
         )
 
 
-add_executable(sdram_sim src/sdramsim.cpp src/wbsdram_sim.cpp)
-verilate(sdram_sim SOURCES ../generated/fpga_test/TestWBMaster.v TRACE
-        VERILATOR_ARGS)
+#add_executable(sdram_sim src/sdramsim.cpp src/wbsdram_sim.cpp)
+#verilate(sdram_sim SOURCES ../generated/fpga_test/TestWBMaster.v TRACE
+#        VERILATOR_ARGS)
 
 add_executable(riscv_test src/FullSystemTest.cpp)
 verilate(riscv_test
@@ -28,3 +28,9 @@ verilate(riscv_test
         INCLUDE_DIRS ../generated/riscv_full_test
         TRACE
         )
+
+add_executable(crc32_test src/CRC32Test.cpp)
+verilate(crc32_test
+        SOURCES
+        ../src/main/resources/crc32.v
+        TRACE)

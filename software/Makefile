@@ -12,7 +12,7 @@ OBJS = $(patsubst %.c, %.o, $(SRCS))
 
 all: a.bin
 
-entry.o: entry.s
+entry.o: src_asm/entry.s
 	$(CC) -c $^ -o $@
 
 %.o: %.c

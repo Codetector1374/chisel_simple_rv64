@@ -39,6 +39,8 @@ module system (
     io_miiEther0_rx_collision,
     io_miiEther0_mgmt_clk,
     io_miiEther0_mgmt_data,
+	 
+	 o_mii_tx_clk_out
 );
 
 input         clock;
@@ -86,6 +88,9 @@ output io_miiEther0_gtx_clk;
 output io_miiEther0_reset_n;
 assign io_miiEther0_gtx_clk = 1'b0;
 assign io_miiEther0_reset_n = ~reset;
+
+output o_mii_tx_clk_out;
+assign o_mii_tx_clk_out = io_miiEther0_tx_clk;
 
 // Ether0 TriState
 wire io_miiEther0_mgmt_dataOut, io_miiEther0_mgmt_outEn;
