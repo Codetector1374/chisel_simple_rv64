@@ -35,14 +35,15 @@ set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
 
+set(CMAKE_C_FLAGS "-Os -O3")
 
-include_directories(inc)
+include_directories(inc lib)
 
 add_executable(
         system
         src_asm/entry.s
         src/main.c
-        src/mii_net.c src/system.c inc/system.h)
+        src/mii_net.c src/system.c inc/system.h inc/net/ethernet.h lib/printf.c)
 
 add_custom_command(
         OUTPUT system.bin system.dump system.numeric.dump

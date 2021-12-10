@@ -237,4 +237,14 @@ set_location_assignment PIN_C18 -to io_miiEther0_tx_data[0]
 set_location_assignment PIN_A18 -to io_miiEther0_tx_en
 set_location_assignment PIN_B18 -to io_miiEther0_tx_err
 set_location_assignment PIN_AB22 -to o_mii_tx_clk_out
+set_location_assignment PIN_D15 -to io_miiEther0_rx_carrierSense
+set_location_assignment PIN_A15 -to io_miiEther0_rx_clk
+set_location_assignment PIN_E15 -to io_miiEther0_rx_collision
+set_location_assignment PIN_C15 -to io_miiEther0_rx_data[3]
+set_location_assignment PIN_D17 -to io_miiEther0_rx_data[2]
+set_location_assignment PIN_D16 -to io_miiEther0_rx_data[1]
+set_location_assignment PIN_C16 -to io_miiEther0_rx_data[0]
+set_location_assignment PIN_D18 -to io_miiEther0_rx_err
+set_location_assignment PIN_C17 -to io_miiEther0_rx_valid
+set_global_assignment -name SDC_FILE ../system.sdc
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

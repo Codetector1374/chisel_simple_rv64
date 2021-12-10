@@ -3,8 +3,9 @@ package wb_device
 import chisel3._
 import chisel3.util.HasBlackBoxResource
 
-class SinglePortRam(aw: Int = 14) extends BlackBox(Map(
-  "AW" -> aw
+class SinglePortRam(aw: Int = 14, dw: Int = 8) extends BlackBox(Map(
+  "AW" -> aw,
+  "DW" -> dw
 )) with HasBlackBoxResource {
   val io = IO(new Bundle {
     val clock = Input(Clock())

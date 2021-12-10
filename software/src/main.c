@@ -2,6 +2,9 @@
 #include <stddef.h>
 #include "hardware.h"
 #include "system.h"
+#include "printf.h"
+
+#include "net/ethernet.h"
 
 _Noreturn void cmain(void) {
     UART_CMD = 0;
@@ -10,21 +13,24 @@ _Noreturn void cmain(void) {
     eth_init(&ETHER0);
     eth_wait_link(&ETHER0);
 
-    uint8_t frame[] = {
-        0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 
-        0x02, 0x12, 0x34, 0x56, 0x78, 0x90,
-        0x08, 0x06
-    };
+    uint8_t inspectionBuffer[1024];
 
     for(;;) {
-        for (size_t i = 0; i < sizeof(frame); i++)
-        {
-            ETHER0.pushByte = frame[i];
+        if (ETHER0.rxHasFrame) {
+            uint16_t size = ETHER0.rxFrameSize;
+            printf("Got a frame of size %d\n", size);
+            ETHER0.rxFrameAddress = 0;
+
+            for (int i = 0; i < size; ++i) {
+                uint8_t  byte = ETHER0.rxGetByte;
+                if (i % 16 == 0) {
+                    printf("\n");
+                }
+                printf("%02X ", byte);
+            }
+            ETHER0.rxClearFrame = 0;
+            printf("\nEND\n");
         }
-        HEX = ETHER0.txCommandStatus;
-        ETHER0.txCommandStatus = 0;
-        while((HEX = ETHER0.txCommandStatus)){}
-        wait_ms(1000);
     }
     
 

@@ -7,14 +7,15 @@ module SinglePortRam (
 );
 
 parameter AW = 14;
+parameter DW = 8;
 
 input clock;
 input [AW-1: 0] addr;
 input we;
-output reg [7:0] data_out;
-input [7:0] data_in;
+output reg [DW-1:0] data_out;
+input [DW-1:0] data_in;
 
-reg [7:0] mem [0:(1 << AW)-1];
+reg [DW-1:0] mem [0:(1 << AW)-1];
 
 always @(posedge clock) begin
     if (we)

@@ -21,3 +21,12 @@ void eth_wait_link(MIIEthernet_t *eth) {
         currentStatus = eth->mgmtPort;
     } while(!(currentStatus & MII_SPECSTS_LINK_UP));
 }
+
+void eth_send_frame(MIIEthernet_t *eth, const void* frame, size_t size) {
+    for (size_t i = 0; i < size; i++)
+    {
+        eth->pushByte = ((uint8_t *)frame)[i];
+    }
+    while(eth->txCommandStatus){}
+    eth->txCommandStatus = 0;
+}

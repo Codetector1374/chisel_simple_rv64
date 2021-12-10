@@ -6,6 +6,7 @@ import chisel3.experimental.ChiselEnum
 import firrtl.PrimOps
 import firrtl.PrimOps.Pad
 import freechips.asyncqueue.{AsyncQueue, AsyncQueueParams}
+import wb_device.SinglePortRam
 
 class MIIEthernetTX extends RawModule {
   val io = IO(new Bundle {
@@ -53,12 +54,21 @@ class MIIEthernetTX extends RawModule {
     val sendCntr = RegInit(0.U(11.W))
     val byteCntr = RegInit(0.U(11.W))
     val timeCntr = RegInit(0.U(16.W))
-    val ram = SyncReadMem(2048, UInt(8.W))
-    timeCntr := timeCntr - 1.U
+    val ram = Module(new SinglePortRam(aw = 11))
+    ram.io.clock := io.miiTx.clk
+    ram.io.we := false.B
+    ram.io.data_in := DontCare
+    when(sendState === SendState.idle) { // waiting for push bytes
+      ram.io.addr := byteCntr
+    }.elsewhen(sendState === SendState.sof) {
+      ram.io.addr := sendCntr
+    }.otherwise {
+      ram.io.addr := sendCntr + 1.U
+    }
 
-    val ramContent = Reg(UInt(8.W))
-    val ramNexValue = Wire(UInt(8.W))
-    ramNexValue := ram.read(sendCntr + 1.U, true.B).asUInt()
+    val ramContentBuffer = Reg(UInt(8.W))
+
+    timeCntr := timeCntr - 1.U
 
     deq.ready := false.B
     when(sendState === SendState.idle) {
@@ -66,7 +76,8 @@ class MIIEthernetTX extends RawModule {
       when(deq.valid) {
         switch(deq.bits.reqType) {
           is(MIITxRequestType.pushByte) {
-            ram.write(byteCntr, deq.bits.payload)
+            ram.io.data_in := deq.bits.payload
+            ram.io.we := true.B
             byteCntr := byteCntr + 1.U
           }
           is(MIITxRequestType.send) {
@@ -93,7 +104,7 @@ class MIIEthernetTX extends RawModule {
       is(SendState.sof) {
         when(timeCntr === 0.U) {
           timeCntr := 1.U
-          ramContent := ram.read(0.U, true.B)
+          ramContentBuffer := ram.io.data_out
           sendState := SendState.payload
           crc.io.clear := true.B
         }
@@ -110,7 +121,7 @@ class MIIEthernetTX extends RawModule {
       is(SendState.payload) {
         when(timeCntr === 0.U) {
           timeCntr := 1.U
-          ramContent := ramNexValue
+          ramContentBuffer := ram.io.data_out
           sendCntr := sendCntr + 1.U
           when(sendCntr === (byteCntr - 1.U)) {
             when(sendCntr < (64 - 4 - 1).U) {
@@ -122,11 +133,11 @@ class MIIEthernetTX extends RawModule {
         }
 
         when(timeCntr === 1.U) {
-          crc.io.data.bits := ramContent(3, 0)
-          io.miiTx.data := ramContent(3, 0)
+          crc.io.data.bits := ramContentBuffer(3, 0)
+          io.miiTx.data := ramContentBuffer(3, 0)
         }.otherwise {
-          crc.io.data.bits := ramContent(7, 4)
-          io.miiTx.data := ramContent(7, 4)
+          crc.io.data.bits := ramContentBuffer(7, 4)
+          io.miiTx.data := ramContentBuffer(7, 4)
         }
         crc.io.data.valid := true.B
         io.miiTx.en := true.B

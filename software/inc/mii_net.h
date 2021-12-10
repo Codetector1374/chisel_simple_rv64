@@ -17,6 +17,20 @@ typedef struct {
 
   volatile uint32_t txCommandStatus;
 
+  union {
+    struct {
+      volatile uint8_t rxHasFrame;
+      uint8_t _pad;
+      uint16_t rxFrameSize;
+    };
+    volatile uint32_t rxClearFrame;
+  };
+
+  union {
+    volatile uint32_t   rxFrameAddress;
+    volatile uint8_t    rxGetByte;
+  };
+
 } MIIEthernet_t;
 #pragma pack(pop)
 
@@ -30,4 +44,11 @@ typedef struct {
 
 void eth_init(MIIEthernet_t *eth);
 void eth_wait_link(MIIEthernet_t *eth);
+void eth_send_frame(MIIEthernet_t *eth, const void* frame, size_t size);
+/**
+ * check if MIIEthernet eth has a frame
+ * @param eth
+ * @return size of the pending frame
+ */
+uint16_t eth_has_frame(MIIEthernet_t *eth);
 

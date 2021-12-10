@@ -3,7 +3,7 @@ package main
 import chisel3.stage.ChiselStage
 import simple_rv32.{FullSystemTop, ProcTop}
 import wb_device.TestWBMaster
-import wb_device.mii_ether.{MIIEthernetTX, MIIManagement}
+import wb_device.mii_ether.{MIIEthernetRX, MIIEthernetTX, MIIManagement}
 import wb_device.sdram.WBSDRAMCtlr
 
 object Main {
@@ -21,5 +21,7 @@ object Main {
     (new ChiselStage).emitVerilog(new FullSystemTop(ramDq = 32), args = Array("-td", "generated/riscv_full"))
 
     (new ChiselStage).emitVerilog(new MIIEthernetTX, args = Array("-td", "generated/miitx_test"))
+
+    (new ChiselStage).emitVerilog(new MIIEthernetRX, args = Array("-td", "generated/miirx_test"))
   }
 }

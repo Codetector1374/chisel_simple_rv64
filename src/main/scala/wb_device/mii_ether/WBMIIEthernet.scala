@@ -17,6 +17,7 @@ class WBMIIEthernet(sysClock: Int = 50000000, mgmtClock: Int = 1000000) extends 
     val mii = new MIIInterface
   })
 
+  // Power On Reset
   val porCounter = RegInit("hFFFF".U(16.W))
   when(porCounter > 0.U) {
     porCounter := porCounter - 1.U
@@ -31,6 +32,16 @@ class WBMIIEthernet(sysClock: Int = 50000000, mgmtClock: Int = 1000000) extends 
   val txEnq = txUnit.io.reqEnq
   txEnq.valid := false.B
   txEnq.bits <> DontCare
+
+  val rxUnit = Module(new MIIEthernetRX)
+  rxUnit.io.reset := porCounter.orR()
+  rxUnit.io.sysClk := clock
+  rxUnit.io.miiRx <> io.mii.rx
+  rxUnit.io.clrFrame := false.B
+
+  val rxReadAddr = RegInit(0.U(11.W))
+  rxUnit.io.readAddr := rxReadAddr
+
 
   val mgmtUnit = Module(new MIIManagement(sysClock, mgmtClock))
   mgmtUnit.io.mgmt <> io.mii.mgmt
@@ -109,6 +120,22 @@ class WBMIIEthernet(sysClock: Int = 50000000, mgmtClock: Int = 1000000) extends 
           }.otherwise {
             io.wb.miso_data := txUnit.io.txBusy.asUInt()
           }
+        }.elsewhen(io.wb.addr === 4.U) { // WBOffset 4: R RxFrameInfo: (frameSize{16}|........|.......bValid{1})
+          io.wb.ack := true.B
+          when(io.wb.we) {
+            rxUnit.io.clrFrame := true.B
+          }
+          io.wb.miso_data := Cat(rxUnit.io.frameInfo.size, 0.U(15.W), rxUnit.io.frameInfo.valid.asUInt())
+        }.elsewhen(io.wb.addr === 5.U) { // WBOffset 5: W: Set RxAddress, R: get a byte and increment address
+          io.wb.ack := true.B
+          when(io.wb.we && io.wb.sel(0) && io.wb.sel(1)) {
+            rxReadAddr := io.wb.mosi_data(10, 0)
+          }.otherwise {
+            rxReadAddr := rxReadAddr + 1.U
+          }
+          io.wb.miso_data := rxUnit.io.data
+        }.otherwise {
+          io.wb.ack := true.B
         }
       }
     }

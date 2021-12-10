@@ -84,7 +84,7 @@ class FullSystemTop(numSwitches: Int = 18, numLeds: Int = 16, ramDq: Int = 16, s
     (WBAddressRange("Timer", 0xF0000010, 4), timer1.io.wb),
     (WBAddressRange("UART", 0xF0001000, numAddresses = 8), ihexUart.io.slaveWb),
     (WBAddressRange("NeoPixel", 0xF0002000, 1024), neopixel.io.wb),
-    (WBAddressRange("MIIEther", 0xF1000000, 16), miiEthernet.io.wb),
+    (WBAddressRange("MIIEther", 0xF1000000, 32), miiEthernet.io.wb),
   ))
 
   interconnect.io.master <> arbiter.io.output

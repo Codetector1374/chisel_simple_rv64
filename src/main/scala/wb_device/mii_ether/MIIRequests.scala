@@ -23,3 +23,19 @@ class MIITxRequest extends Bundle {
   val reqType = MIITxRequestType()
   val payload = UInt(8.W)
 }
+
+class MIIRxPacketSegment extends Bundle {
+  val payload = UInt(4.W)
+  val bEnd = Bool()
+}
+
+class MIIRxPacketByte extends Bundle {
+  val payload = UInt(8.W)
+  val bStart = Bool()
+  val bEnd = Bool()
+}
+
+class MIIRxFrameInfo extends Bundle {
+  val valid = Bool()
+  val size = UInt(16.W)
+}

@@ -26,7 +26,7 @@ class WBInterconnect(addrMap: Array[WBAddressRange]) extends Module {
     (i < j) ^ (i < 0) ^ (j < 0)
   })
   for(x <- sortedAddrMap) {
-    println(f"0x${x.base_address}%08X - 0x${x.limit_address}%08X activeBits: ${x.activeBits}%02d\t=>\t${x.name}")
+    println(f"0x${x.base_address}%08X - 0x${x.limit_address}%08X activeBits: ${x.activeBits}%02d\t=>\t${x.name} (numWbAddr: ${x.numAddresses / 4})")
   }
   println("=============== END ADDRESS MAP ===========================")
 
